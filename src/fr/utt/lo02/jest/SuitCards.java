@@ -1,0 +1,23 @@
+package fr.utt.lo02.jest;
+
+//The variable hauteur IS NOT VALUE! Value is influenced by the hauteur of the card when it's in the Jest
+public class SuitCards extends Carte {
+    private boolean couleur;
+
+    private suits enseigne;
+    
+    public SuitCards(int hauteur, boolean couleur, String condition, suits enseigne) {
+    	super(hauteur, couleur, condition);
+    	this.enseigne = enseigne;
+    }
+
+    public String montrer() {
+    	StringBuffer sb = new StringBuffer();
+		sb.append("La carte est un ");
+		sb.append(this.hauteur);
+		sb.append(" de ");
+		sb.append(this.enseigne);
+		return sb.toString();
+    }
+}
+
