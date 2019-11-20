@@ -23,7 +23,6 @@ public class Carte {
 	
 
     public String montrer() {
-    	}
     	
     }
 
