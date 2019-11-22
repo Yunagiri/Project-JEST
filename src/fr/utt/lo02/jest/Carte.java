@@ -23,7 +23,18 @@ public class Carte {
 	
 
     public String montrer() {
+    	StringBuffer sb = new StringBuffer();
+    	if (!this.faceCachee) {
+    		sb.append("La hauteur de cette carte est");
+    		sb.append(this.hauteur);
+    		sb.append(" La condition de la carte est");
+    		sb.append(this.condition);
+    		
+    		sb.toString();
+    	}
     	
+    		return sb.append("La carte est face cachee").toString();
+
     }
 
 
