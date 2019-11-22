@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tas {
-    private int nombreDeCartes;
+    protected int nombreDeCartes;
 
     //The array used to stock the cards 
     public List<Carte> listCarte = new ArrayList<Carte> ();
