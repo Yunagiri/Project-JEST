@@ -14,8 +14,11 @@ public class Partie {
     public List<Joueur> joueur = new ArrayList<Joueur> ();
 
     public Visitor visitor;
-
+    
+    // ??? What's finished? the round? the game? myself? I fucking wish
     public boolean estTerminee() {
+    	//Assuming that it's the player round finishing
+    	
     }
 
     public void donnerTour() {
@@ -25,9 +28,14 @@ public class Partie {
     }
 
     public void afficherScore() {
+    	
     }
 
     public void terminer() {
+    }
+    
+    public static void main(String[] args) {
+    	
     }
 
 }

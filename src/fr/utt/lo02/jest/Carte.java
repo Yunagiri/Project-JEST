@@ -22,19 +22,20 @@ public class Carte {
 	}
 	
 
+	/* The class Carte can only show the condition of the card, the rest of the attributes 
+	 * is left to the subclasses SuitCards( suit and hauteur) and Joker ( doesn't have hauteur)
+	 */
     public String montrer() {
     	StringBuffer sb = new StringBuffer();
     	if (!this.faceCachee) {
-    		sb.append("La hauteur de cette carte est");
-    		sb.append(this.hauteur);
-    		sb.append(" La condition de la carte est");
+    		sb.append(" La condition de cette carte est");
     		sb.append(this.condition);
-    		
     		sb.toString();
+    		return sb.toString();
     	}
     	
-    		return sb.append("La carte est face cachee").toString();
-
+    	//If the condition was not met, this method doesn't allow the player calling to see it.
+    	return sb.append("La carte est face cachee").toString();
     }
 
 

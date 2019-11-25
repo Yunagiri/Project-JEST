@@ -9,7 +9,17 @@ public class Joker extends Carte {
 	
     public String montrer() {
     	StringBuffer sb = new StringBuffer();
-		sb.append("La carte est un Joker");
-		return sb.toString();
+    	if (!this.faceCachee) {
+    		sb.append(super.toString());
+    		sb.append("Why so serious?");
+    		return sb.toString();
+    	}
+    	
+    	/*If faceCachee is true, return the toString() method from Carte class
+    	 * which doesn't show the card if it's face down and return a String 
+    	 * saying why it doesnt.
+    	 */
+		return super.toString();
+
     }
 }

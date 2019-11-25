@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tas {
+	
     protected int nombreDeCartes;
 
     //The array used to stock the cards 

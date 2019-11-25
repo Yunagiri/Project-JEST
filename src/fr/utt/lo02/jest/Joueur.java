@@ -20,18 +20,24 @@ public class Joueur {
     	this.main.ajouterCartes(carte);
     }
 
+    
+    //This method allow a player to look at the cards in their hand even if it's face down.
     public void regarderMain() {
     }
     
     public void montrerCarte() {
     }
+    
     //add the card into the jest
     public void mettreJest(Carte carte) {
     	this.jest.ajouterCartes(carte);
     }
-    //give card to another desk
-    public void donnerCarte(Carte carte, Tas autreTas) {
-    	this.main.distribuer(carte, autreTas);
+    
+    //give card to another desk, 
+    //parameter posCarte indicates the position of the card 
+    // and the autreTas indicates where to take it from.
+    public void donnerCarte(int posCarte, Main autreMain) {
+    	this.main.distribuer(posCarte, autreMain);
     }
     // finish round
     public void finTour() {
