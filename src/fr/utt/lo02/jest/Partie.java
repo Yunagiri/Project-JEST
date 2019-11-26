@@ -23,9 +23,9 @@ public class Partie {
 		trophee = new Trophee();
 		piocheGrand.melanger();
 
-	//	for (int i = 0; i < 2; i++) {
-		//	piocheGrand.distribuer(trophee);
-		//}
+		for (int i = 0; i < 2; i++) {
+			piocheGrand.distribuer(trophee);
+		}
 	}
 
 	// create cartes and add to pioche
@@ -41,13 +41,12 @@ public class Partie {
 					SuitCards carte = new SuitCards(i, true, condition.getRandomCondition(), s);
 					this.piocheGrand.listCarte.add(carte);
 				}
-				
+
 			}
 		}
 		Joker joker = new Joker(condition.BEST);
 		this.piocheGrand.listCarte.add(joker);
 	}
-	
 
 	// add joueur
 	public void ajouterJoueur(Joueur joueur) {
@@ -64,10 +63,10 @@ public class Partie {
 	// public Visitor visitor;
 
 	// ??? What's finished? the round? the game? myself? I fucking wish
-	//public boolean estTerminee() {
-		// Assuming that it's the player round finishing
+	// public boolean estTerminee() {
+	// Assuming that it's the player round finishing
 
-		// distribute 2 cards in each row
+	// distribute 2 cards in each row
 //	}
 
 	public void distribuerCartes() {
@@ -92,16 +91,33 @@ public class Partie {
 	public void donnerTour(Joueur joueur) {
 		if (joueur.estEnTour == false) {
 			joueur.estEnTour = true;
-			System.out.println("Now, it's " + joueur + "'s turn " );
+			System.out.println("Now, it's " + joueur + "'s turn ");
 		}
 	}
 
-	public void choisirJoueur() { 
-		while ( this.partienEnCours) {
+	public void choisirJoueur() {
+		while (this.partienEnCours) {
+			Joueur joueurMax = new Joueur();
 			Iterator<Joueur> it = joueurs.iterator();
+			joueurMax = it.next();
 			while (it.hasNext()) {
-				Joueur i =(Joueur) it.next();
+				Joueur i = (Joueur) it.next();
+				for (int counter = 0; counter < i.main.listCarte.size(); counter++) {
+					if (!i.main.listCarte.get(counter).faceCachee)
+						if (i.main.listCarte.get(counter).hauteur > joueurMax.main.listCarte.get(counter).hauteur) {
+							joueurMax = i;
+						} else if (i.main.listCarte.get(counter).hauteur == joueurMax.main.listCarte
+								.get(counter).hauteur
+								&& i.main.listCarte.get(counter).enseigne
+										.getValeur() != joueurMax.main.listCarte.get(counter).enseigne.getValeur()) {
+							if (i.main.listCarte.get(counter).enseigne
+									.getValeur() > joueurMax.main.listCarte.get(counter).enseigne.getValeur()) {
+								joueurMax = i;
+							}
+						}
+				}
 			}
+			this.donnerTour(joueurMax);
 		}
 	}
 
@@ -123,7 +139,7 @@ public class Partie {
 		partie.ajouterJoueur(thanhtri);
 		partie.ajouterJoueur(vietphuong);
 		partie.creerPioche();
-		
+
 		System.out.println(partie.piocheGrand.listCarte.size());
 
 	}

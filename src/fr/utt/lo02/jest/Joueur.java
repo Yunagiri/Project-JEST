@@ -6,8 +6,8 @@ public class Joueur {
     protected String prenom;
     protected boolean estEnTour;
     
-    private Main main;
-    private Jest jest;
+    protected Main main;
+    protected Jest jest;
     
     public Joueur( String nom, String prenom) {
     	this.nom = nom;
