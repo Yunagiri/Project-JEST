@@ -18,7 +18,7 @@ public class Conditions {
 	}
 	public String montrer() {
 		StringBuffer sb = new StringBuffer();
-		if (this.hasEnseigne) {
+		if (this.hasEnseigne == true) {
 			sb.append("La condition pour gagner est: ");
 			sb.append(this.cond);
 			sb.append(" ");

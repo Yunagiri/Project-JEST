@@ -36,7 +36,7 @@ public class Tas {
     	
     	for (int i = 0; i < this.listCarte.size(); i++) {
     		//Generates a random number between  and the size of the listCarte
-    		nombreAleat = Math.abs(2*this.listCarte.size()*(int)Math.random()- this.listCarte.size());
+    		nombreAleat = Math.abs(2*this.listCarte.size()*(int)Math.random()- this.listCarte.size()+1);
     		
     		//Swap a random card with the card in the i position in listCartes
     		Carte inter = this.listCarte.get(nombreAleat);

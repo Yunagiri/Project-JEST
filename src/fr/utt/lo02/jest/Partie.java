@@ -31,18 +31,23 @@ public class Partie {
 	public void creerPioche() {
 		for (int i = 1; i < 5; i++) {
 			for (suits s : suits.values()) {
-				if (condition.getRandomCondition() == condition.HIGHEST
-						&& condition.getRandomCondition() == condition.LOWEST
-						&& condition.getRandomCondition() == condition.MAJORITY) {
-					Conditions cond = new Conditions(condition.getRandomCondition(), suits.getRandomSuits());
+				condition temp = condition.getRandomCondition();
+				if (temp == condition.HIGHEST
+						|| temp == condition.LOWEST
+						|| temp == condition.MAJORITY) {
+					System.out.println(condition.getRandomCondition());
+					Conditions cond = new Conditions(temp, suits.getRandomSuits());
+					System.out.println("Creation d'une condition a 2 parametres");
 					SuitCards carte = new SuitCards(i, true, cond , s);
 					this.piocheGrand.listCarte.add(carte);
-				} else {
-					Conditions cond = new Conditions(condition.getRandomCondition());
+				} 
+				else {
+					System.out.println(temp);
+					Conditions cond = new Conditions(temp);
+					System.out.println("Creation d'une condition a 1 parametre");
 					SuitCards carte = new SuitCards(i, true, cond, s);
 					this.piocheGrand.listCarte.add(carte);
 				}
-
 			}
 		}
 		Joker joker = new Joker();
@@ -142,9 +147,11 @@ public class Partie {
 		partie.creerPioche();
 
 		System.out.println(partie.piocheGrand.listCarte.size());
-		partie.piocheGrand.listCarte.get(5).faceCachee = false;
-		System.out.println(partie.piocheGrand.listCarte.get(5).montrer());
-
+		
+		for (int i=0; i < partie.piocheGrand.listCarte.size(); i++) {
+			partie.piocheGrand.listCarte.get(i).faceCachee = false;
+			System.out.println(partie.piocheGrand.listCarte.get(i).montrer());
+		}
 	}
 
 }
