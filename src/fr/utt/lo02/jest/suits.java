@@ -5,7 +5,7 @@ import java.util.Random;
 public enum suits {
 	TREFLE,
 	CARREAU, 
-	COEUR, 
+	COEUR,
 	PIQUE;
 	
 	
