@@ -9,7 +9,7 @@ public class Partie {
 
     public List<Pioche> pioche = new ArrayList<Pioche> ();
 
-    public List<Trophee> trophée = new ArrayList<Trophee> ();
+    public List<Trophee> trophee = new ArrayList<Trophee> ();
 
     public List<Joueur> joueur = new ArrayList<Joueur> ();
 
@@ -35,6 +35,28 @@ public class Partie {
     }
     
     public static void main(String[] args) {
+    	//Create players
+    	
+    	//Create Jests
+    	
+    	//Create Cards
+    	
+    	//Create Trophies 
+    	
+    	//Create Tas
+    	
+    	//Start turn 
+    	
+    	//Make offers
+    	
+    	//Take offers
+    	
+    	//Create Pioche
+    	
+    	//Stock not taken offers in Pioche
+    	
+    	//Add cards to Pioche equal to the numbers of players 
+    	
     	
     }
 
