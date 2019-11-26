@@ -8,6 +8,7 @@ public class Carte {
 
 	protected boolean faceCachee;
 	protected condition condition;
+	protected suits enseigne;
 
 	// Storing the win condition, a set of action and a suit, or a action and null
 	// if it doesn't need a suit to be done.

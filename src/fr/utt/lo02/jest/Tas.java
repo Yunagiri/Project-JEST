@@ -47,8 +47,8 @@ public class Tas {
 
     //Distribute a card from this Tas to another one, the card distributed is the last one to arrive (LIFO)
     public void distribuer(Tas autreTas) {
-    	autreTas.ajouterCartes(this.listCarte.get(this.nombreDeCartes));
-    	this.listCarte.remove(this.nombreDeCartes);
+    	autreTas.ajouterCartes(this.listCarte.get(this.nombreDeCartes-1));
+    	this.listCarte.remove(this.nombreDeCartes-1);
     	this.nombreDeCartes--;
     	
     }
