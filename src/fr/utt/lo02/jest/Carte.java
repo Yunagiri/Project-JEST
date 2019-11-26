@@ -4,7 +4,7 @@ public class Carte {
 	
     protected int hauteur;
 
-    protected boolean faceCachee;
+    protected boolean faceCachee = true; 
 
     protected String condition;
     
