@@ -1,4 +1,3 @@
-
 package fr.utt.lo02.jest;
 
 import java.util.ArrayList;
@@ -104,4 +103,4 @@ public class Partie {
 
 	}
 
-}
+}r

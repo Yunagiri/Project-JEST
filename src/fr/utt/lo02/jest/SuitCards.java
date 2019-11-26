@@ -4,9 +4,8 @@ package fr.utt.lo02.jest;
 public class SuitCards extends Carte {
 
     private suits enseigne;
-    
-    public SuitCards(int hauteur, boolean couleur, String condition, suits enseigne) {
-    	super(hauteur, couleur, condition);
+    public SuitCards(int hauteur, boolean faceCachee, condition condition, suits ensCondition, suits enseigne) {
+    	super(hauteur, faceCachee, condition, ensCondition );
     	this.enseigne = enseigne;
     }
 
