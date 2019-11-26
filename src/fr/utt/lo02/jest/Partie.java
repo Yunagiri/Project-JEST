@@ -11,7 +11,7 @@ public class Partie {
 
 	private Pioche piocheGrand;
 	private Trophee trophee;
-	private Pioche piochePetit;
+	private Tas piochePetit;
 
 	public List<Joueur> joueurs;
 
@@ -23,10 +23,31 @@ public class Partie {
 		trophee = new Trophee();
 		piocheGrand.melanger();
 
-		for (int i = 0; i < 2; i++) {
-			piocheGrand.distribuer(trophee);
-		}
+	//	for (int i = 0; i < 2; i++) {
+		//	piocheGrand.distribuer(trophee);
+		//}
 	}
+
+	// create cartes and add to pioche
+	public void creerPioche() {
+		for (int i = 1; i < 5; i++) {
+			for (suits s : suits.values()) {
+				if (condition.getRandomCondition() == condition.HIGHEST
+						&& condition.getRandomCondition() == condition.LOWEST
+						&& condition.getRandomCondition() == condition.MAJORITY) {
+					SuitCards carte = new SuitCards(i, true, condition.getRandomCondition(), suits.getRandomSuits(), s);
+					this.piocheGrand.listCarte.add(carte);
+				} else {
+					SuitCards carte = new SuitCards(i, true, condition.getRandomCondition(), s);
+					this.piocheGrand.listCarte.add(carte);
+				}
+				
+			}
+		}
+		Joker joker = new Joker(condition.BEST);
+		this.piocheGrand.listCarte.add(joker);
+	}
+	
 
 	// add joueur
 	public void ajouterJoueur(Joueur joueur) {
@@ -43,11 +64,11 @@ public class Partie {
 	// public Visitor visitor;
 
 	// ??? What's finished? the round? the game? myself? I fucking wish
-	public boolean estTerminee() {
+	//public boolean estTerminee() {
 		// Assuming that it's the player round finishing
 
 		// distribute 2 cards in each row
-	}
+//	}
 
 	public void distribuerCartes() {
 		this.partienEnCours = true;
@@ -69,16 +90,17 @@ public class Partie {
 	}
 
 	public void donnerTour(Joueur joueur) {
-		if (joueur.estentour == false) {
-			joueur.estentour = true;
+		if (joueur.estEnTour == false) {
+			joueur.estEnTour = true;
 			System.out.println("Now, it's " + joueur + "'s turn " );
+		}
 	}
+
 	public void choisirJoueur() { 
 		while ( this.partienEnCours) {
 			Iterator<Joueur> it = joueurs.iterator();
 			while (it.hasNext()) {
 				Joueur i =(Joueur) it.next();
-				if ( i.)
 			}
 		}
 	}
@@ -100,7 +122,10 @@ public class Partie {
 		Joueur vietphuong = new Joueur("Viet", "Phuong");
 		partie.ajouterJoueur(thanhtri);
 		partie.ajouterJoueur(vietphuong);
+		partie.creerPioche();
+		
+		System.out.println(partie.piocheGrand.listCarte.size());
 
 	}
 
-}r
+}

@@ -2,7 +2,6 @@ package fr.utt.lo02.jest;
 
 public class Main extends Tas {
     public Joueur joueur;
-    
     public Main() {
     	super();
     }
@@ -30,7 +29,7 @@ public class Main extends Tas {
     public void faireOffre(int posCarteFaceCachee) {
     	
     	//Change the faceCachee value of the card 
-    	this.listCarte.get(posCarteFaceCachee).faceCachee = true;
+    	this.listCarte.get(posCarteFaceCachee).faceCachee = false;
     	//Shows the newly made offer, can also offer insight on the number of cards.
     	for (int i = 0; i < this.listCarte.size(); i++) {
     		this.listCarte.get(i).montrer();

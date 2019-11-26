@@ -4,6 +4,7 @@ public class Joueur {
 	
     protected String nom;
     protected String prenom;
+    protected boolean estEnTour;
     
     private Main main;
     private Jest jest;

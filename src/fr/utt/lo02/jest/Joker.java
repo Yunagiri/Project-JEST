@@ -3,8 +3,8 @@ package fr.utt.lo02.jest;
 public class Joker extends Carte {
 	
 	//The value of the Joker card depends on the amount of hearts the player possess in their hands 
-	public Joker(int hauteur,boolean faceCachee, condition condition, suits ensCondition) {
-		super(faceCachee, condition , ensCondition);
+	public Joker(condition cond) {
+		super(0,true,cond);
 	}
 	
     public String montrer() {
