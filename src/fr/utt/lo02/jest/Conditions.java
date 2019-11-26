@@ -19,7 +19,7 @@ public class Conditions {
 	public String montrer() {
 		StringBuffer sb = new StringBuffer();
 		if (this.hasEnseigne) {
-			sb.append("La condition pour gagner est");
+			sb.append("La condition pour gagner est: ");
 			sb.append(this.cond);
 			sb.append(" ");
 			sb.append(this.enseigne);
@@ -28,7 +28,7 @@ public class Conditions {
 		}
 		
 		else {
-			sb.append("La condition pour gagner est");
+			sb.append("La condition pour gagner est: ");
 			sb.append(this.cond);
 			
 			return sb.toString();

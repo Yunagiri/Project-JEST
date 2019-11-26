@@ -10,6 +10,7 @@ public class Carte {
 	
 	protected suits enseigne;
 
+	//Constructor for SuitCards
 	public Carte(int hauteur, boolean faceCachee, Conditions condi, suits enseigne) {
 		this.hauteur = hauteur;
 		this.faceCachee = faceCachee;
@@ -17,6 +18,7 @@ public class Carte {
 		this.enseigne = enseigne;
 	}
 	
+	//Constructor for Joker
 	public Carte(int hauteur, boolean faceCachee, Conditions condi) {
 		this.hauteur = hauteur;
 		this.faceCachee = faceCachee;

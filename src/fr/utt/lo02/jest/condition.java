@@ -1,9 +1,5 @@
 package fr.utt.lo02.jest;
-
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.EnumMap;
-import java.util.List;
 
 /* Condition of each card in the game will be defined by an enum class which will link each condition to a 
  * way to calculate to whom should the trophy card be awarded.
@@ -42,6 +38,8 @@ public enum condition {
 //	SuitCards carte = new SuitCards(5, true, HIGHEST, suits.COEUR, suits.PIQUE );
 
 	// }
+
+
 	public static condition getRandomCondition() {
 		Random random = new Random();
 		return values()[random.nextInt(values().length)];

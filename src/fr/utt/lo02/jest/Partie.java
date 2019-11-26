@@ -1,5 +1,4 @@
 package fr.utt.lo02.jest;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,9 +22,9 @@ public class Partie {
 		trophee = new Trophee();
 		piocheGrand.melanger();
 
-		for (int i = 0; i < 2; i++) {
-			piocheGrand.distribuer(trophee);
-		}
+//		for (int i = 0; i < 2; i++) {
+//			piocheGrand.distribuer(trophee);
+//		}
 	}
 
 	// create cartes and add to pioche
@@ -35,16 +34,18 @@ public class Partie {
 				if (condition.getRandomCondition() == condition.HIGHEST
 						&& condition.getRandomCondition() == condition.LOWEST
 						&& condition.getRandomCondition() == condition.MAJORITY) {
-					SuitCards carte = new SuitCards(i, true, condition.getRandomCondition(), suits.getRandomSuits(), s);
+					Conditions cond = new Conditions(condition.getRandomCondition(), suits.getRandomSuits());
+					SuitCards carte = new SuitCards(i, true, cond , s);
 					this.piocheGrand.listCarte.add(carte);
 				} else {
-					SuitCards carte = new SuitCards(i, true, condition.getRandomCondition(), s);
+					Conditions cond = new Conditions(condition.getRandomCondition());
+					SuitCards carte = new SuitCards(i, true, cond, s);
 					this.piocheGrand.listCarte.add(carte);
 				}
 
 			}
 		}
-		Joker joker = new Joker(condition.BEST);
+		Joker joker = new Joker();
 		this.piocheGrand.listCarte.add(joker);
 	}
 
@@ -141,6 +142,8 @@ public class Partie {
 		partie.creerPioche();
 
 		System.out.println(partie.piocheGrand.listCarte.size());
+		partie.piocheGrand.listCarte.get(5).faceCachee = false;
+		System.out.println(partie.piocheGrand.listCarte.get(5).montrer());
 
 	}
 
