@@ -29,7 +29,7 @@ public class Carte {
 	public String montrer() {
 		StringBuffer sb = new StringBuffer();
 		if (this.faceCachee) {
-			return sb.append("La carte est face cachée").toString();
+			return sb.append("La carte est face cachee").toString();
 		}
 		else {
 			sb.append(this.condi.montrer());

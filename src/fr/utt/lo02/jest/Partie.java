@@ -2,92 +2,103 @@ package fr.utt.lo02.jest;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 public class Partie {
 	private int rounds;
-	private boolean partienEnCours;
+	private boolean partieEnCours;
 	private int numeroRound;
 
 	private Pioche piocheGrand;
 	private Trophee trophee;
-	private Tas piochePetit;
+	private Tas piochePetite;
 
 	public List<Joueur> joueurs;
 
+	// Can't use melanger() on piocheGrand, there's nothing in its listCarte yet,
+	// hence it also cannot distribuer(trophee), there's nothing to distribute.
 	public Partie() {
 		numeroRound = 1;
 		joueurs = new ArrayList<Joueur>();
 		piocheGrand = new Pioche();
-		piochePetit = new Tas();
+		piochePetite = new Tas();
 		trophee = new Trophee();
-		piocheGrand.melanger();
-
-//		for (int i = 0; i < 2; i++) {
-//			piocheGrand.distribuer(trophee);
-//		}
 	}
 
 	// create cartes and add to pioche
 	public void creerPioche() {
 		for (int i = 1; i < 5; i++) {
 			for (suits s : suits.values()) {
-				condition temp = condition.getRandomCondition();
-				if (temp == condition.HIGHEST
-						|| temp == condition.LOWEST
-						|| temp == condition.MAJORITY) {
-					System.out.println(condition.getRandomCondition());
+				action temp = action.getRandomAction();
+				if (temp == action.HIGHEST || temp == action.LOWEST || temp == action.MAJORITY) {
+					// System.out.println(action.getRandomAction());
 					Conditions cond = new Conditions(temp, suits.getRandomSuits());
-					System.out.println("Creation d'une condition a 2 parametres");
-					SuitCards carte = new SuitCards(i, true, cond , s);
-					this.piocheGrand.listCarte.add(carte);
-				} 
-				else {
-					System.out.println(temp);
-					Conditions cond = new Conditions(temp);
-					System.out.println("Creation d'une condition a 1 parametre");
+					// System.out.println("Creation d'une condition a 2 parametres");
 					SuitCards carte = new SuitCards(i, true, cond, s);
 					this.piocheGrand.listCarte.add(carte);
+					this.piocheGrand.nombreDeCartes++;
+				} else {
+					// System.out.println(temp);
+					Conditions cond = new Conditions(temp);
+					// System.out.println("Creation d'une condition a 1 parametre");
+					SuitCards carte = new SuitCards(i, true, cond, s);
+					this.piocheGrand.listCarte.add(carte);
+					this.piocheGrand.nombreDeCartes++;
 				}
 			}
 		}
 		Joker joker = new Joker();
 		this.piocheGrand.listCarte.add(joker);
+		this.piocheGrand.nombreDeCartes++;
+	}
+
+	// shuffles piocheGrand AND distribute 2 cards to the trophy.
+	public void preparer() {
+		this.piocheGrand.melanger();
+		for (int i = 0; i < 2; i++) {
+			this.piocheGrand.distribuer(this.trophee);
+		}
 	}
 
 	// add joueur
 	public void ajouterJoueur(Joueur joueur) {
-		if (this.partienEnCours == false) {
-			joueurs.add(joueur);
+		if (this.partieEnCours == false) {
+			this.joueurs.add(joueur);
 		}
 	}
 
 	// delete joueur
 	public void retirerJoueur(Joueur joueur) {
-		joueurs.remove(joueur);
+		this.joueurs.remove(joueur);
 	}
 
 	// public Visitor visitor;
 
 	// ??? What's finished? the round? the game? myself? I fucking wish
 	// public boolean estTerminee() {
-	// Assuming that it's the player round finishing
-
-	// distribute 2 cards in each row
 //	}
 
+	// Each player takes 2 cards from the piocheGrand in the 1st round and 2 cards
+	// from the piochePetit from the 2nd round onwards
 	public void distribuerCartes() {
-		this.partienEnCours = true;
+		this.partieEnCours = true;
 		Iterator<Joueur> it = joueurs.iterator();
-		while (piocheGrand.estVide() == false) {
+
+		// Fucking hell it was a while when it should have been an if, lost like an hour looking for a problem in the other classes XD
+		if (piocheGrand.estVide() == false) {
 			while (it.hasNext()) {
 				Joueur j = (Joueur) it.next();
 				if (this.numeroRound == 1) {
+					String msg = String.format("Distribution en cours au joueur %s", j.prenom);
+					System.out.println(msg);
 					for (int i = 0; i < 2; i++) {
-						j.prendreCartes(piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1));
+						j.prendreCartes(piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1), piocheGrand);
+
 					}
 				} else {
 					for (int i = 0; i < 2; i++) {
-						j.prendreCartes(piochePetit.listCarte.get(piochePetit.nombreDeCartes - 1));
+						j.prendreCartes(piochePetite.listCarte.get(piochePetite.nombreDeCartes - 1), piocheGrand);
+
 					}
 				}
 			}
@@ -97,37 +108,58 @@ public class Partie {
 	public void donnerTour(Joueur joueur) {
 		if (joueur.estEnTour == false) {
 			joueur.estEnTour = true;
-			System.out.println("Now, it's " + joueur + "'s turn ");
+			String msg = String.format("Au tour de %s de jouer.", joueur.prenom);
+			System.out.println(msg);
 		}
 	}
 
 	public void choisirJoueur() {
-		while (this.partienEnCours) {
+		//while (this.partieEnCours) {
+
+			// joueurMax stocks the player with the highest face-up card in this iteration
 			Joueur joueurMax = new Joueur();
 			Iterator<Joueur> it = joueurs.iterator();
+			// the 1st element of the iterator is affected to joueurMax to initialize it
 			joueurMax = it.next();
+			// while the iterator hasn't finished running through the joueur ArrayList
 			while (it.hasNext()) {
-				Joueur i = (Joueur) it.next();
-				for (int counter = 0; counter < i.main.listCarte.size(); counter++) {
-					if (!i.main.listCarte.get(counter).faceCachee)
-						if (i.main.listCarte.get(counter).hauteur > joueurMax.main.listCarte.get(counter).hauteur) {
-							joueurMax = i;
-						} else if (i.main.listCarte.get(counter).hauteur == joueurMax.main.listCarte
+				// Creation of a new instance, i different from JoueurMax that stores the
+				// current Joueur with whom to compare face_up cards value
+				Joueur joueurActuel = (Joueur) it.next();
+
+				// This loop compares the joueurActuel face-up card value with the face-up card
+				// value of the joueurMax
+				for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
+					// This condition allows the loop to only compare face-up cards.
+					if (!joueurActuel.main.listCarte.get(counter).faceCachee)
+
+						// If face-up value of joueurActuel is higher than joueurMax' value, affect
+						// joueurActuel to joueurMax
+						if (joueurActuel.main.listCarte.get(counter).hauteur > joueurMax.main.listCarte
+								.get(counter).hauteur) {
+							joueurMax = joueurActuel;
+						}
+						// else if they're the same value, break ties following the values of the suits.
+						// Exclude the case where joueurActuel IS joueurMax.
+						else if (joueurActuel.main.listCarte.get(counter).hauteur == joueurMax.main.listCarte
 								.get(counter).hauteur
-								&& i.main.listCarte.get(counter).enseigne
+								&& joueurActuel.main.listCarte.get(counter).enseigne
 										.getValeur() != joueurMax.main.listCarte.get(counter).enseigne.getValeur()) {
-							if (i.main.listCarte.get(counter).enseigne
+							// Break ties accordingly
+							if (joueurActuel.main.listCarte.get(counter).enseigne
 									.getValeur() > joueurMax.main.listCarte.get(counter).enseigne.getValeur()) {
-								joueurMax = i;
+								joueurMax = joueurActuel;
 							}
 						}
 				}
 			}
+			// Once the iterator is done running through joueur, give the turn to joueurMax
 			this.donnerTour(joueurMax);
 		}
-	}
+	//}
 
 	public void verifierCondition() {
+
 	}
 
 	public void afficherScore() {
@@ -135,23 +167,65 @@ public class Partie {
 	}
 
 	public void terminer() {
-		this.partienEnCours = false;
+		this.partieEnCours = false;
 	}
 
 	public static void main(String[] args) {
+
+		// Declaration
+		Scanner sc = new Scanner(System.in);
 		Partie partie = new Partie();
 		Joueur thanhtri = new Joueur("Thanh", "Tri");
 		Joueur vietphuong = new Joueur("Viet", "Phuong");
+		
+		
 		partie.ajouterJoueur(thanhtri);
 		partie.ajouterJoueur(vietphuong);
 		partie.creerPioche();
+		partie.preparer();
+		System.out.println(partie.piocheGrand.nombreDeCartes);
 
-		System.out.println(partie.piocheGrand.listCarte.size());
-		
-		for (int i=0; i < partie.piocheGrand.listCarte.size(); i++) {
+		// Show the deck shuffled
+		for (int i = 0; i < partie.piocheGrand.listCarte.size(); i++) {
 			partie.piocheGrand.listCarte.get(i).faceCachee = false;
 			System.out.println(partie.piocheGrand.listCarte.get(i).montrer());
+			partie.piocheGrand.listCarte.get(i).faceCachee = true;
 		}
-	}
+		partie.distribuerCartes();
 
+		// Players look at their hand
+		for (int i = 0; i < partie.joueurs.size(); i++) {
+			partie.joueurs.get(i).regarderMain();
+
+		}
+
+		// Players making offer, will have to replace it with a scanner class so we can
+		// take inputs in the console.
+		
+		for (int i = 0; i < partie.joueurs.size(); i++) {
+			partie.joueurs.get(i).faireOffre(i);
+		}
+		partie.choisirJoueur();
+		
+		
+		for (int i = 0; i < partie.joueurs.size(); i++) {
+			if (partie.joueurs.get(i).estEnTour) {
+				System.out.println("Veuillez choisir un joueur");
+				String prenom = sc.nextLine();
+				for (int o = 0; o < partie.joueurs.size(); o++) {
+					if (prenom == partie.joueurs.get(i).prenom && partie.joueurs.get(o).main.nombreDeCartes == 2) {
+						System.out.println("Vous ne pouvez pas vous choisir");
+					}
+					int z = sc.nextInt();
+					for (int j = 0; j < partie.joueurs.size();j++) {
+						System.out.println(partie.joueurs.get(j).prenom);
+						if (prenom == partie.joueurs.get(j).prenom) {
+							partie.joueurs.get(i).prendreOffre(z, partie.joueurs.get(j));
+						}
+					}
+				}
+			}
+		}
+			
+	}
 }

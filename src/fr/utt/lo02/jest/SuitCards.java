@@ -11,11 +11,11 @@ public class SuitCards extends Carte {
 	public String montrer() {
 		StringBuffer sb = new StringBuffer();
 		if (!this.faceCachee) {
-			sb.append(super.montrer());
-			sb.append(". La carte est un ");
+			sb.append("La carte est un ");
 			sb.append(this.hauteur);
 			sb.append(" de ");
 			sb.append(this.enseigne);
+			sb.append(super.montrer());
 			return sb.toString();
 		}
 		

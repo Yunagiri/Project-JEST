@@ -4,7 +4,7 @@ import java.util.Random;
 /* Condition of each card in the game will be defined by an enum class which will link each condition to a 
  * way to calculate to whom should the trophy card be awarded.
  */
-public enum condition {
+public enum action {
 	HIGHEST, LOWEST, MAJORITY, JOKER, BEST, BEST_NOJOKER;
 
 //public static void main(String[] args) {
@@ -40,7 +40,7 @@ public enum condition {
 	// }
 
 
-	public static condition getRandomCondition() {
+	public static action getRandomAction() {
 		Random random = new Random();
 		return values()[random.nextInt(values().length)];
 	}
