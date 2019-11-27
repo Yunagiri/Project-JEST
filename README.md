@@ -11,5 +11,5 @@ To-do list:
 
 -Implement a visitor design pattern 
 
--A few methods in Tas.java aren't working as intended
+-A few methods in Tas.java aren't working as intended //DONE
 
