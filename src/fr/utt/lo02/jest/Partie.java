@@ -112,6 +112,12 @@ public class Partie {
 			System.out.println(msg);
 		}
 	}
+	
+	public void finirTour(Joueur joueur) {
+		joueur.estEnTour = false;
+		String msg = String.format("Fin du tour de %s.", joueur.prenom);
+		System.out.println(msg);
+	}
 
 	public void choisirJoueur() {
 		//while (this.partieEnCours) {
@@ -226,15 +232,23 @@ public class Partie {
 				System.out.println("Veuillez choisir le numéro de sa carte");	
 				int z = sc.nextInt();
 				sc.nextLine();
+				Joueur prochainJoueur = new Joueur();
 				System.out.println("Recherche du joueur en cours");
 				for (int r = 0; r < partie.joueurs.size(); r++) {
 					if (partie.joueurs.get(r).getPrenom().equals(prenom)) {
 						partie.joueurs.get(i).prendreOffre(z, partie.joueurs.get(r));
+						prochainJoueur = partie.joueurs.get(r);
 					}
 				}
+				partie.finirTour(partie.joueurs.get(i));
+				partie.donnerTour(prochainJoueur);
+				
+				
 				
 			}	
 		}
+		
+		
 		
 		
 	}
