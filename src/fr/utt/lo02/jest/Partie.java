@@ -210,6 +210,8 @@ public class Partie {
 		}
 		partie.choisirJoueur();
 		
+		
+		//Actions to take in a single turn of a player: Choose a player, take a card in their hand and put it in jest.
 		for (int i = 0; i < partie.joueurs.size(); i++) {
 			if (partie.joueurs.get(i).estEnTour) {
 				sc.nextLine();
@@ -224,9 +226,16 @@ public class Partie {
 				System.out.println("Veuillez choisir le numéro de sa carte");	
 				int z = sc.nextInt();
 				sc.nextLine();
+				System.out.println("Recherche du joueur en cours");
+				for (int r = 0; r < partie.joueurs.size(); r++) {
+					if (partie.joueurs.get(r).getPrenom().equals(prenom)) {
+						partie.joueurs.get(i).prendreOffre(z, partie.joueurs.get(r));
+					}
+				}
 				
-				partie.joueurs.get(i).prendreOffre(z, vietphuong);
 			}	
 		}
+		
+		
 	}
 }

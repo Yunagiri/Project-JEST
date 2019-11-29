@@ -13,12 +13,16 @@ public class Joueur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.main = new Main();
+		this.jest = new Jest();
 	}
 
 	public Joueur() {
 
 	}
 
+	public String getPrenom() {
+		return this.prenom;
+	}
 	// Take a card from another Tas, then remove it from the said Tas and decrease
 	// it's nombreDeCartes accordingly.
 	public void prendreCartes(Carte carte, Tas autreTas) {
@@ -56,10 +60,10 @@ public class Joueur {
 	// This method allows this player to take a card from another player's offer,
 	// and put it in their jest.
 	public void prendreOffre(int posCarte, Joueur j) {
-		this.jest.ajouterCartes(this.main.listCarte.get(posCarte-1));
 		String msg = String.format("%s prend la carte %d de %s et le met dans son jest.", this.prenom, posCarte, j.prenom);
 		System.out.println(msg);
-		j.main.listCarte.remove(posCarte);
+		this.jest.ajouterCartes(j.main.listCarte.get(posCarte-1));
+		j.main.listCarte.remove(posCarte-1);
 		j.main.nombreDeCartes--;
 	}
 
