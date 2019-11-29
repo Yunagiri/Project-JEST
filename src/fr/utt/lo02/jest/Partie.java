@@ -186,11 +186,11 @@ public class Partie {
 		System.out.println(partie.piocheGrand.nombreDeCartes);
 
 		// Show the deck shuffled
-		for (int i = 0; i < partie.piocheGrand.listCarte.size(); i++) {
-			partie.piocheGrand.listCarte.get(i).faceCachee = false;
-			System.out.println(partie.piocheGrand.listCarte.get(i).montrer());
-			partie.piocheGrand.listCarte.get(i).faceCachee = true;
-		}
+		//for (int i = 0; i < partie.piocheGrand.listCarte.size(); i++) {
+			//partie.piocheGrand.listCarte.get(i).faceCachee = false;
+			//System.out.println(partie.piocheGrand.listCarte.get(i).montrer());
+			//partie.piocheGrand.listCarte.get(i).faceCachee = true;
+		//}
 		partie.distribuerCartes();
 
 		// Players look at their hand
@@ -203,29 +203,30 @@ public class Partie {
 		// take inputs in the console.
 		
 		for (int i = 0; i < partie.joueurs.size(); i++) {
-			partie.joueurs.get(i).faireOffre(i);
+			String msg = String.format("%s, veuillez choisir une carte à mettre face recto, l'autre sera verso.", partie.joueurs.get(i).prenom);
+			System.out.println(msg);
+			int posCarteFaceCachee = sc.nextInt();
+			partie.joueurs.get(i).faireOffre(posCarteFaceCachee -1);
 		}
 		partie.choisirJoueur();
 		
-		
 		for (int i = 0; i < partie.joueurs.size(); i++) {
 			if (partie.joueurs.get(i).estEnTour) {
+				sc.nextLine();
 				System.out.println("Veuillez choisir un joueur");
 				String prenom = sc.nextLine();
-				for (int o = 0; o < partie.joueurs.size(); o++) {
-					if (prenom == partie.joueurs.get(i).prenom && partie.joueurs.get(o).main.nombreDeCartes == 2) {
-						System.out.println("Vous ne pouvez pas vous choisir");
-					}
-					int z = sc.nextInt();
-					for (int j = 0; j < partie.joueurs.size();j++) {
-						System.out.println(partie.joueurs.get(j).prenom);
-						if (prenom == partie.joueurs.get(j).prenom) {
-							partie.joueurs.get(i).prendreOffre(z, partie.joueurs.get(j));
-						}
-					}
-				}
-			}
+				String msg = String.format("%s a choisi %s",partie.joueurs.get(i).prenom, prenom);
+				System.out.println(msg);
+//				for (int o = 0; o < partie.joueurs.size(); o++) {
+//					if (prenom == partie.joueurs.get(i).prenom && partie.joueurs.get(o).main.nombreDeCartes == 2) {
+//						System.out.println("Vous ne pouvez pas vous choisir");
+//					}
+				System.out.println("Veuillez choisir le numéro de sa carte");	
+				int z = sc.nextInt();
+				sc.nextLine();
+				
+				partie.joueurs.get(i).prendreOffre(z, vietphuong);
+			}	
 		}
-			
 	}
 }

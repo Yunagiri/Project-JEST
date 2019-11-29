@@ -32,7 +32,7 @@ public class Joueur {
 	public void faireOffre(int posCarteFaceCachee) {
 		String msg = String.format("%s fait une offre", this.prenom);
 		System.out.println(msg);
-		// Change the faceCachee value of the card
+		// Change the faceCachee value of the card, this one is face-up
 		this.main.listCarte.get(posCarteFaceCachee).faceCachee = false;
 		// Shows the newly made offer, can also offer insight on the number of cards.
 		for (int i = 0; i < this.main.listCarte.size(); i++) {
@@ -51,7 +51,6 @@ public class Joueur {
 			System.out.println(this.main.listCarte.get(i).montrer());
 			this.main.listCarte.get(i).faceCachee = true;
 		}
-
 	}
 
 	// This method allows this player to take a card from another player's offer,
