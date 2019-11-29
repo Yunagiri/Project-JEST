@@ -14,13 +14,12 @@ public class Partie {
 	private Trophee trophee;
 	private Tas piochePetite;
 
-	public List<Joueur> joueurs;
+	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
 	// Can't use melanger() on piocheGrand, there's nothing in its listCarte yet,
 	// hence it also cannot distribuer(trophee), there's nothing to distribute.
 	public Partie() {
 		numeroRound = 1;
-		joueurs = new ArrayList<Joueur>();
 		piocheGrand = new Pioche();
 		piochePetite = new Tas();
 		trophee = new Trophee();
@@ -186,14 +185,19 @@ public class Partie {
 			this.piocheGrand.listCarte.get(i).faceCachee = true;
 		}
 	}
+	
+	public void DisplayMain() {
+		for (int i = 0; i < this.joueurs.size(); i++) {
+			this.joueurs.get(i).regarderMain();
+		}
+	}
 
 	public void commencer(int nbJoueurs) {
 		Scanner sc = new Scanner(System.in);
 		while (this.joueurs.size() < nbJoueurs) {
-			System.out.println("Entrez le nom et prénom du joueur");
-			String nom = sc.nextLine();
+			System.out.println("Entrez le prenom du joueur");
 			String prenom = sc.nextLine();
-			Joueur j = new Joueur(nom, prenom);
+			Joueur j = new Joueur(prenom);
 			this.joueurs.add(j);
 		}
 		this.creerPioche();
@@ -216,10 +220,8 @@ public class Partie {
 		partie.distribuerCartes();
 
 		// Players look at their hand
-		for (int i = 0; i < partie.joueurs.size(); i++) {
-			partie.joueurs.get(i).regarderMain();
-		}
-
+		partie.DisplayMain();
+		
 		for (int i = 0; i < partie.joueurs.size(); i++) {
 			String msg = String.format("%s, veuillez choisir une carte à mettre face recto, l'autre sera verso.",
 					partie.joueurs.get(i).prenom);
@@ -235,12 +237,16 @@ public class Partie {
 			// their hand and put it in jest.
 			for (int i = 0; i < partie.joueurs.size(); i++) {
 				if (partie.joueurs.get(i).estEnTour) {
+					for (int j = 0; j < partie.joueurs.size();j++) {
+						System.out.println("Main de " + partie.joueurs.get(j).getPrenom() );
+						partie.joueurs.get(j).montrerOffre();
+					}
 					sc.nextLine();
 					System.out.println("Veuillez choisir un joueur");
 					String prenom = sc.nextLine();
 					String msg = String.format("%s a choisi %s", partie.joueurs.get(i).prenom, prenom);
 					System.out.println(msg);
-					System.out.println("Veuillez choisir le numéro de sa carte");
+					System.out.println("Veuillez choisir le numero de sa carte");
 					int z = sc.nextInt();
 					sc.nextLine();
 					Joueur prochainJoueur = new Joueur();

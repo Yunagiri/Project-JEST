@@ -2,15 +2,13 @@ package fr.utt.lo02.jest;
 
 public class Joueur {
 
-	protected String nom;
 	protected String prenom;
 	protected boolean estEnTour;
 
 	protected Main main;
 	protected Jest jest;
 
-	public Joueur(String nom, String prenom) {
-		this.nom = nom;
+	public Joueur(String prenom) {
 		this.prenom = prenom;
 		this.main = new Main();
 		this.jest = new Jest();
@@ -39,6 +37,12 @@ public class Joueur {
 		// Change the faceCachee value of the card, this one is face-up
 		this.main.listCarte.get(posCarteFaceCachee).faceCachee = false;
 		// Shows the newly made offer, can also offer insight on the number of cards.
+		for (int i = 0; i < this.main.listCarte.size(); i++) {
+			System.out.println(i + 1 + ". " + this.main.listCarte.get(i).montrer());
+		}
+	}
+	
+	public void montrerOffre() {
 		for (int i = 0; i < this.main.listCarte.size(); i++) {
 			System.out.println(i + 1 + ". " + this.main.listCarte.get(i).montrer());
 		}
