@@ -12,6 +12,7 @@ public class Joueur {
 		this.prenom = prenom;
 		this.main = new Main();
 		this.jest = new Jest();
+		this.estEnTour = false;
 	}
 
 	public Joueur() {
