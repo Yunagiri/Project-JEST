@@ -183,6 +183,8 @@ public class Partie {
 		this.choisirJoueur();
 		int tours = 0;
 		while (tours < this.joueurs.size()) {
+			ArrayList<Joueur> temp1 = new ArrayList<Joueur>();
+			temp1.addAll(this.joueurs);
 			// Actions to take in a single turn of a player: Choose a player, take a card in
 			// their hand and put it in jest.
 			for (int i = 0; i < this.joueurs.size(); i++) {
@@ -233,9 +235,9 @@ public class Partie {
 					Joueur prochainJoueur = new Joueur();
 					System.out.println("Recherche du joueur en cours");
 					
-					for (int recherche = 0; recherche < this.joueurs.size(); recherche++) {
-						if (this.joueurs.get(recherche).getPrenom().equals(prenom) && this.joueurs.get(recherche).main.nombreDeCartes == 2) {
-							this.joueurs.get(i).prendreOffre(z, this.joueurs.get(recherche));
+					for (int recherche = 0; recherche < temp1.size(); recherche++) {
+						if (temp1.get(recherche).getPrenom().equals(prenom) && temp1.get(recherche).main.nombreDeCartes == 2) {
+							temp1.get(i).prendreOffre(z, this.joueurs.get(recherche));
 							prochainJoueur = this.joueurs.get(recherche);
 						} else {
 							
