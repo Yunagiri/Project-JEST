@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 	package fr.utt.lo02.jest;
 
 import java.util.ArrayList;
@@ -187,23 +189,32 @@ public class Partie {
 					do {
 						System.out.println("Veuillez choisir un joueur");
 						prenom = sc.nextLine();
+						Joueur d = new Joueur();
+						for (int recherche = 0; recherche < this.joueurs.size(); recherche++) {
+							if (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
+								d = this.joueurs.get(recherche);
+								System.out.println("hello");
+							}
+						}
 						if (this.joueurs.get(i).prenom.equals(prenom)) {
 							ArrayList<Joueur> temp = new ArrayList<Joueur>();
-							temp = joueurs;
+							temp.addAll(joueurs);
 							temp.remove(i);
-							System.out.println("hello");
 							for (Joueur j : temp) {
 								if (j.main.nombreDeCartes == 2) {
 									System.out.println(
 											"Vous ne pouvez pas prendre, il reste encore des gens ayant 2 cartes");
 								}
-
 							}
-
-						} else {
+						} 
+						else if (d.main.nombreDeCartes == 1) {
+							System.out.println("seulement une carte");
+						}
+						else {
 							differentPrenom = false;
 						}
-					} while (differentPrenom);
+					} 
+					while (differentPrenom);
 
 					String msg = String.format("%s a choisi %s", this.joueurs.get(i).prenom, prenom);
 					System.out.println(msg);
@@ -223,6 +234,7 @@ public class Partie {
 					tours++;
 				}
 			}
+			System.out.println("Fin du round");
 		}
 
 	}
