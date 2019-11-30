@@ -110,7 +110,7 @@ public class Partie {
 	public void donnerTour(Joueur joueur) {
 		if (joueur.estEnTour == false) {
 			joueur.estEnTour = true;
-			String msg = String.format("Au tour de %s de jouer.", joueur.prenom);
+			String msg = String.format("\nAu tour de %s de jouer.", joueur.prenom);
 			System.out.println(msg);
 		}
 	}
@@ -177,7 +177,7 @@ public class Partie {
 	public void terminer() {
 		this.partieEnCours = false;
 	}
-	
+
 	public void lancerRound() {
 		this.choisirJoueur();
 		int tours = 0;
@@ -185,15 +185,36 @@ public class Partie {
 			// Actions to take in a single turn of a player: Choose a player, take a card in
 			// their hand and put it in jest.
 			for (int i = 0; i < this.joueurs.size(); i++) {
-				if (this.joueurs.get(i).estEnTour) {
-					for (int j = 0; j < this.joueurs.size();j++) {
-						System.out.println("Main de " + this.joueurs.get(j).getPrenom() );
+				while (this.joueurs.get(i).estEnTour) {
+					for (int j = 0; j < this.joueurs.size(); j++) {
+						System.out.println("Main de " + this.joueurs.get(j).getPrenom());
 						this.joueurs.get(j).montrerOffre();
 					}
 					Scanner sc = new Scanner(System.in);
-					sc .nextLine();
-					System.out.println("Veuillez choisir un joueur");
-					String prenom = sc.nextLine();
+					sc.nextLine();
+					String prenom;
+					boolean differentPrenom = true;
+					do {
+						System.out.println("Veuillez choisir un joueur");
+						prenom = sc.nextLine();
+						if (this.joueurs.get(i).prenom.equals(prenom)) {
+							ArrayList<Joueur> temp = new ArrayList<Joueur>();
+							temp = joueurs;
+							temp.remove(i);
+							System.out.println("hello");
+							for (Joueur j : temp) {
+								if (j.main.nombreDeCartes == 2) {
+									System.out.println(
+											"Vous ne pouvez pas prendre, il reste encore des gens ayant 2 cartes");
+								}
+
+							}
+
+						} else {
+							differentPrenom = false;
+						}
+					} while (differentPrenom);
+
 					String msg = String.format("%s a choisi %s", this.joueurs.get(i).prenom, prenom);
 					System.out.println(msg);
 					System.out.println("Veuillez choisir le numero de sa carte");
@@ -213,6 +234,7 @@ public class Partie {
 				}
 			}
 		}
+
 	}
 
 	public void montrerPiocheGrand() {
@@ -222,7 +244,7 @@ public class Partie {
 			this.piocheGrand.listCarte.get(i).faceCachee = true;
 		}
 	}
-	
+
 	public void DisplayMain() {
 		for (int i = 0; i < this.joueurs.size(); i++) {
 			this.joueurs.get(i).regarderMain();
@@ -252,7 +274,7 @@ public class Partie {
 			this.joueurs.get(i).faireOffre(posCarteFaceCachee - 1);
 		}
 	}
-	
+
 	public static void main(String[] args) {
 
 		// Declaration
@@ -267,12 +289,11 @@ public class Partie {
 
 		// Players look at their hand
 		partie.DisplayMain();
-		
+
 		partie.faireOffreAll();
-		
+
 		partie.lancerRound();
-		
+
 	}
-	
 
 }
