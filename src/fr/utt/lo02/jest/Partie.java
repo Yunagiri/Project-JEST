@@ -202,6 +202,33 @@ public class Partie {
 						System.out.println("Main de " + this.joueurs.get(j).getPrenom());
 						this.joueurs.get(j).montrerOffre();
 					}
+					
+					if (a instanceof JoueurVirt) {
+						boolean diffPrenom = true;
+						
+						Scanner sc = new Scanner(System.in);
+						sc.nextLine();
+						String prenom;
+						boolean differentPrenom = true;
+						do {
+							ArrayList<Joueur> temp = new ArrayList<Joueur>();
+							temp.addAll(joueurs);
+							temp.remove(a);
+							Joueur d = ((JoueurVirt) a).choisirJoueur(joueurs);
+							if (a.prenom.equals(d.prenom)) {
+								for (Joueur j : temp1) {
+									if (j.main.nombreDeCartes == 2) {
+										System.out.println(
+												"Vous ne pouvez pas prendre, il reste encore des gens ayant 2 cartes");
+									}
+								}
+							} else if (d.main.nombreDeCartes == 1) {
+								System.out.println("seulement une carte");
+							} else {
+								differentPrenom = false;
+							}
+						} while (differentPrenom);
+					}
 					Scanner sc = new Scanner(System.in);
 					sc.nextLine();
 					String prenom;
@@ -213,22 +240,22 @@ public class Partie {
 						for (int recherche = 0; recherche < this.joueurs.size(); recherche++) {
 							if (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
 								d = this.joueurs.get(recherche);
-								System.out.println("hello");
 							}
 						}
 						if (a.prenom.equals(prenom)) {
-							//ArrayList<Joueur> temp = new ArrayList<Joueur>();
-							//temp.addAll(joueurs);
-							//temp.remove(a);
-							for (Joueur j : temp1) {
+							ArrayList<Joueur> temp = new ArrayList<Joueur>();
+							temp.addAll(joueurs);
+							temp.remove(a);
+							for (Joueur j : temp) {
 								if (j.main.nombreDeCartes == 2) {
-									System.out.println(
-											"Vous ne pouvez pas prendre, il reste encore des gens ayant 2 cartes");
+									System.out.println("Il reste encore des gens ayant 2 cartes");
 								}
 							}
-						} else if (d.main.nombreDeCartes == 1) {
+						} 
+						else if (d.main.nombreDeCartes == 1) {
 							System.out.println("seulement une carte");
-						} else {
+						} 
+						else {
 							differentPrenom = false;
 						}
 					} while (differentPrenom);
@@ -299,11 +326,24 @@ public class Partie {
 
 	public void commencer(int nbJoueurs) {
 		Scanner sc = new Scanner(System.in);
+		int verifJoueur; 
 		while (this.joueurs.size() < nbJoueurs) {
+			System.out.println("C'est un joueur: 1.Physique     2.Virtuel");
+			verifJoueur = sc.nextInt();
+			sc.nextLine();
 			System.out.println("Entrez le prenom du joueur");
-			String prenom = sc.nextLine();
-			Joueur j = new Joueur(prenom);
-			this.joueurs.add(j);
+			if (verifJoueur == 1) {
+				String prenom = sc.nextLine();
+				JoueurPhys j = new JoueurPhys(prenom);
+				this.joueurs.add(j);
+			}
+			else {
+				String prenom = sc.nextLine();
+				System.out.println("Choississez la difficulté");
+				int niveau = sc.nextInt();
+				JoueurVirt j = new JoueurVirt(niveau, prenom);
+				this.joueurs.add(j);
+			}
 		}
 		this.creerPioche();
 		this.piocheGrand.melanger();
@@ -312,12 +352,11 @@ public class Partie {
 
 	public void faireOffreAll() {
 		Scanner sc = new Scanner(System.in);
-		for (int i = 0; i < this.joueurs.size(); i++) {
-			String msg = String.format("%s, veuillez choisir une carte a mettre face recto, l'autre sera verso.",
-					this.joueurs.get(i).prenom);
+		for(Joueur j : joueurs) {
+			String msg = String.format("%s, veuillez choisir une carte a mettre face recto, l'autre sera verso.", j.prenom);
 			System.out.println(msg);
 			int posCarteFaceCachee = sc.nextInt();
-			this.joueurs.get(i).faireOffre(posCarteFaceCachee - 1);
+			j.faireOffre(posCarteFaceCachee - 1);
 		}
 	}
 

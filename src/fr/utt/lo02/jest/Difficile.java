@@ -1,5 +1,7 @@
 package fr.utt.lo02.jest;
 
+import java.util.ArrayList;
+
 public class Difficile implements Strategie {
 
 	@Override
@@ -7,12 +9,10 @@ public class Difficile implements Strategie {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
 	@Override
-	public Joueur choisirJoueur(int nbJoueurs) {
+	public Joueur choisirJoueur(ArrayList<Joueur> listJoueur) {
 		// TODO Auto-generated method stub
-		Joueur p = new Joueur();
-		return p;
+		return null;
 	}
 	
 	

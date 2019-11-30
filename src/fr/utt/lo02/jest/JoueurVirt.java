@@ -7,7 +7,8 @@ public class JoueurVirt extends Joueur {
 
     Strategie strat;
     
-    public JoueurVirt(int niveau) {
+    public JoueurVirt(int niveau, String prenom) {
+    	super(prenom);
     	this.niveau = niveau;
     	if (this.niveau == 1) {
     		this.strat = new Facile();
