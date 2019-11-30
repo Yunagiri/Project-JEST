@@ -1,4 +1,4 @@
-package fr.utt.lo02.jest;
+	package fr.utt.lo02.jest;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,17 +61,7 @@ public class Partie {
 		}
 	}
 
-	// add joueur
-	public void ajouterJoueur(Joueur joueur) {
-		if (this.partieEnCours == false) {
-			this.joueurs.add(joueur);
-		}
-	}
 
-	// delete joueur
-	public void retirerJoueur(Joueur joueur) {
-		this.joueurs.remove(joueur);
-	}
 
 	// public Visitor visitor;
 
