@@ -397,7 +397,7 @@ public class Partie {
 			i.regarderMain();
 		}
 	}
-
+	//commencer le jeu
 	public void commencer(int nbJoueurs) {
 		Scanner sc = new Scanner(System.in);
 		int verifJoueur;
