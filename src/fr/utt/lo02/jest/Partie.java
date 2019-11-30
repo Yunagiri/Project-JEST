@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 
-	package fr.utt.lo02.jest;
+package fr.utt.lo02.jest;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -50,8 +49,12 @@ public class Partie {
 				}
 			}
 		}
+		for (int i = 1; i <= this.piocheGrand.listCarte.size(); i++) {
+			this.piocheGrand.listCarte.get(i-1).valeur = i;
+		}
 		Joker joker = new Joker();
 		this.piocheGrand.listCarte.add(joker);
+		joker.valeur = 0;
 		this.piocheGrand.nombreDeCartes++;
 	}
 
@@ -63,7 +66,17 @@ public class Partie {
 		}
 	}
 
+	// add joueur
+	public void ajouterJoueur(Joueur joueur) {
+		if (this.partieEnCours == false) {
+			this.joueurs.add(joueur);
+		}
+	}
 
+	// delete joueur
+	public void retirerJoueur(Joueur joueur) {
+		this.joueurs.remove(joueur);
+	}
 
 	// public Visitor visitor;
 
@@ -131,26 +144,26 @@ public class Partie {
 			// value of the joueurMax
 			for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
 				// This condition allows the loop to only compare face-up cards.
-				if (!joueurActuel.main.listCarte.get(counter).faceCachee)
+				if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
 
 					// If face-up value of joueurActuel is higher than joueurMax' value, affect
 					// joueurActuel to joueurMax
-					if (joueurActuel.main.listCarte.get(counter).hauteur > joueurMax.main.listCarte
-							.get(counter).hauteur) {
+					if (joueurActuel.main.listCarte.get(counter).valeur > joueurMax.main.listCarte
+							.get(counter).valeur) {
 						joueurMax = joueurActuel;
 					}
-					// else if they're the same value, break ties following the values of the suits.
-					// Exclude the case where joueurActuel IS joueurMax.
-					else if (joueurActuel.main.listCarte.get(counter).hauteur == joueurMax.main.listCarte
-							.get(counter).hauteur
-							&& joueurActuel.main.listCarte.get(counter).enseigne
-									.getValeur() != joueurMax.main.listCarte.get(counter).enseigne.getValeur()) {
-						// Break ties accordingly
-						if (joueurActuel.main.listCarte.get(counter).enseigne
-								.getValeur() > joueurMax.main.listCarte.get(counter).enseigne.getValeur()) {
-							joueurMax = joueurActuel;
-						}
-					}
+					/*
+					 * else if they're the same value, break ties following the values of the suits.
+					 * // Exclude the case where joueurActuel IS joueurMax. else if
+					 * (joueurActuel.main.listCarte.get(counter).hauteur == joueurMax.main.listCarte
+					 * .get(counter).hauteur && joueurActuel.main.listCarte.get(counter).enseigne
+					 * .getValeur() != joueurMax.main.listCarte.get(counter).enseigne.getValeur()) {
+					 * // Break ties accordingly if
+					 * (joueurActuel.main.listCarte.get(counter).enseigne .getValeur() >
+					 * joueurMax.main.listCarte.get(counter).enseigne.getValeur()) { joueurMax =
+					 * joueurActuel; }
+					 */
+				}
 			}
 		}
 		// Once the iterator is done running through joueur, give the turn to joueurMax
@@ -173,11 +186,17 @@ public class Partie {
 	public void lancerRound() {
 		this.choisirJoueur();
 		int tours = 0;
+		ArrayList<Joueur> temp1 = new ArrayList<Joueur>(); 
+		temp1.addAll(joueurs);
 		while (tours < this.joueurs.size()) {
 			// Actions to take in a single turn of a player: Choose a player, take a card in
 			// their hand and put it in jest.
-			for (int i = 0; i < this.joueurs.size(); i++) {
-				while (this.joueurs.get(i).estEnTour) {
+			//for (int i = 0; i < this.joueurs.size(); i++) {
+			Iterator<Joueur> itJoueur = joueurs.iterator();
+			while (itJoueur.hasNext()) {
+				Joueur a = (Joueur) itJoueur.next();
+				while (a.estEnTour) {
+					temp1.remove(a);
 					for (int j = 0; j < this.joueurs.size(); j++) {
 						System.out.println("Main de " + this.joueurs.get(j).getPrenom());
 						this.joueurs.get(j).montrerOffre();
@@ -196,40 +215,64 @@ public class Partie {
 								System.out.println("hello");
 							}
 						}
-						if (this.joueurs.get(i).prenom.equals(prenom)) {
-							ArrayList<Joueur> temp = new ArrayList<Joueur>();
-							temp.addAll(joueurs);
-							temp.remove(i);
-							for (Joueur j : temp) {
+						if (a.prenom.equals(prenom)) {
+							//ArrayList<Joueur> temp = new ArrayList<Joueur>();
+							//temp.addAll(joueurs);
+							//temp.remove(a);
+							for (Joueur j : temp1) {
 								if (j.main.nombreDeCartes == 2) {
 									System.out.println(
 											"Vous ne pouvez pas prendre, il reste encore des gens ayant 2 cartes");
 								}
 							}
-						} 
-						else if (d.main.nombreDeCartes == 1) {
+						} else if (d.main.nombreDeCartes == 1) {
 							System.out.println("seulement une carte");
-						}
-						else {
+						} else {
 							differentPrenom = false;
 						}
-					} 
-					while (differentPrenom);
+					} while (differentPrenom);
 
-					String msg = String.format("%s a choisi %s", this.joueurs.get(i).prenom, prenom);
+					String msg = String.format("%s a choisi %s", a.prenom, prenom);
 					System.out.println(msg);
 					System.out.println("Veuillez choisir le numero de sa carte");
 					int z = sc.nextInt();
 					sc.nextLine();
 					Joueur prochainJoueur = new Joueur();
 					System.out.println("Recherche du joueur en cours");
-					for (int recherche = 0; recherche < this.joueurs.size(); recherche++) {
-						if (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
+					/*for (int recherche = 0; recherche < this.joueurs.size(); recherche++) {
+						if (this.joueurs.get(recherche).getPrenom().equals(prenom)) {					
 							this.joueurs.get(i).prendreOffre(z, this.joueurs.get(recherche));
 							prochainJoueur = this.joueurs.get(recherche);
 						}
+					}*/
+					Iterator<Joueur> it = joueurs.iterator();
+						while (it.hasNext()) {
+							Joueur o = (Joueur) it.next();
+							if ( o.getPrenom().equals(prenom)) {
+								a.prendreOffre(z, o);
+								if (temp1.indexOf(o) != -1) {
+								prochainJoueur = o;
+							} else {
+								Iterator<Joueur> it1 = temp1.iterator();
+								if (temp1.size() != 0) {
+									prochainJoueur = it1.next();
+									while (it1.hasNext()) {
+										Joueur joueurActuel = (Joueur) it1.next();
+										for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
+											if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
+												if (joueurActuel.main.listCarte
+														.get(counter).valeur > prochainJoueur.main.listCarte
+																.get(counter).valeur) {
+													prochainJoueur = joueurActuel;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
 					}
-					this.finirTour(this.joueurs.get(i));
+					this.finirTour(a);
 					this.donnerTour(prochainJoueur);
 					tours++;
 				}
@@ -238,7 +281,7 @@ public class Partie {
 		}
 
 	}
-
+	
 	public void montrerPiocheGrand() {
 		for (int i = 0; i < this.piocheGrand.listCarte.size(); i++) {
 			this.piocheGrand.listCarte.get(i).faceCachee = false;

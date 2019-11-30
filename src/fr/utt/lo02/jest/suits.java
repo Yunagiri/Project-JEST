@@ -4,18 +4,19 @@ import java.util.Random;
 
 public enum suits {
 
-	TREFLE(3),
-	CARREAU(2), 
-	COEUR(1), 
-	PIQUE(4);
-	private final int valeur;
+	COEUR,
+	CARREAU, 
+	TREFLE,
+	PIQUE;
+
+	//private final int valeur;
 	
-	private suits (int i) {
-		this.valeur = i;
-	}
-	public int getValeur() {
-		return this.valeur;
-	}
+	//private suits (int i) {
+	//	this.valeur = i;
+	//}
+	//public int getValeur() {
+	//	return this.valeur;
+	//}
 	
 	public static suits getRandomSuits() {
 		Random random = new Random();

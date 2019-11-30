@@ -9,6 +9,8 @@ public class Carte {
 	protected Conditions condi;
 	
 	protected suits enseigne;
+	
+	protected int valeur;
 
 	//Constructor for SuitCards
 	public Carte(int hauteur, boolean faceCachee, Conditions condi, suits enseigne) {
@@ -33,6 +35,7 @@ public class Carte {
 		}
 		else {
 			sb.append(this.condi.montrer());
+			sb.append(this.valeur);
 			return sb.toString();
 		}
 	}

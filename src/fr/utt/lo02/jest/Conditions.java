@@ -24,6 +24,7 @@ public class Conditions {
 			sb.append(" ");
 			sb.append(this.enseigne);
 			
+			
 			return sb.toString();
 		}
 		
