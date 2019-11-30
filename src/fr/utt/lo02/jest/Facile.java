@@ -1,17 +1,19 @@
 package fr.utt.lo02.jest;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Facile implements Strategie {
 	
 	public int faireOffre() {
-		int temp = (int) (2*Math.random() - 1);
-		return temp;
+		int nombreAleatoire = 0 +(int)(Math.random() * ((1 - 0) + 1));
+		return nombreAleatoire;
 	}
 
 
 	public Joueur choisirJoueur(ArrayList<Joueur> listJoueurs) {
-		int temp = (int) (listJoueurs.size()*Math.random() - listJoueurs.size());
+		Random random = new Random();
+		int temp = random.nextInt(listJoueurs.size());
 		return listJoueurs.get(temp);
 	}
 }
