@@ -93,24 +93,24 @@ public class Partie {
 
 		// Fucking hell it was a while when it should have been an if, lost like an hour
 		// looking for a problem in the other classes XD
-		if (piocheGrand.estVide() == false) {
+		
 			while (it.hasNext()) {
 				Joueur j = (Joueur) it.next();
 				if (this.numeroRound == 1) {
 					String msg = String.format("Distribution en cours au joueur %s", j.prenom);
 					System.out.println(msg);
 					for (int i = 0; i < 2; i++) {
-						j.prendreCartes(piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1), piocheGrand);
+						j.prendreCartes(piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1), this.piocheGrand);
 
 					}
 				} else {
 					for (int i = 0; i < 2; i++) {
-						j.prendreCartes(piochePetite.listCarte.get(piochePetite.nombreDeCartes - 1), piocheGrand);
+						j.prendreCartes(piochePetite.listCarte.get(piochePetite.nombreDeCartes - 1), this.piochePetite);
 
 					}
 				}
 			}
-		}
+		
 	}
 
 	public void donnerTour(Joueur joueur) {
@@ -243,15 +243,21 @@ public class Partie {
 							}
 						}
 						if (a.prenom.equals(prenom)) {
+							//ArrayList<Joueur> temp = new ArrayList<Joueur>();
+							//temp.addAll(joueurs);
+							//temp.remove(a);
+							differentPrenom = false;
 							ArrayList<Joueur> temp = new ArrayList<Joueur>();
 							temp.addAll(joueurs);
 							temp.remove(a);
 							for (Joueur j : temp) {
 								if (j.main.nombreDeCartes == 2) {
 									System.out.println("Il reste encore des gens ayant 2 cartes");
+									differentPrenom = true;
 								}
+
+								} 
 							}
-						} 
 						else if (d.main.nombreDeCartes == 1) {
 							System.out.println("seulement une carte");
 						} 
@@ -309,6 +315,30 @@ public class Partie {
 		}
 
 	}
+
+	public void creerPiochePetit() {
+		if (this.piocheGrand.nombreDeCartes >= this.joueurs.size()) {
+			Iterator<Joueur> it = joueurs.iterator();
+			while (it.hasNext()) {
+				Joueur o = (Joueur) it.next();
+				this.piochePetite.listCarte.addAll(o.main.listCarte);
+				o.main.listCarte.clear();
+				this.piochePetite.nombreDeCartes++;
+			}
+
+			for (int i = 0; i < this.joueurs.size(); i++) {
+				this.piocheGrand.distribuer(piochePetite);
+				this.piochePetite.nombreDeCartes++;
+			}
+		} else {
+			System.out.println("no more cards,joueur prends sa propre carte");
+			Iterator<Joueur> it = joueurs.iterator();
+			while (it.hasNext()) {
+				Joueur o = (Joueur) it.next();
+				o.prendreOffre(0, o);
+				}
+			}
+		}
 	
 	public void montrerPiocheGrand() {
 		for (int i = 0; i < this.piocheGrand.listCarte.size(); i++) {
@@ -365,20 +395,29 @@ public class Partie {
 		// Declaration
 		Scanner sc = new Scanner(System.in);
 		Partie partie = new Partie();
-
+		
 		System.out.println("Entrez le nombre de joueurs");
 		int nbJoueurs = sc.nextInt();
 		partie.commencer(nbJoueurs);
-
-		partie.distribuerCartes();
+		
+		
 
 		// Players look at their hand
-		partie.DisplayMain();
+		while (partie.piocheGrand.nombreDeCartes >= partie.joueurs.size()) {
+			partie.distribuerCartes();
+			
+			partie.DisplayMain();
 
-		partie.faireOffreAll();
+			partie.faireOffreAll();
 
-		partie.lancerRound();
+			partie.lancerRound();
+			
+			partie.numeroRound ++;
+			
+			partie.creerPiochePetit();
 
+		}
+		
 	}
 
 }
