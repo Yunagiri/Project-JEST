@@ -177,6 +177,43 @@ public class Partie {
 	public void terminer() {
 		this.partieEnCours = false;
 	}
+	
+	public void lancerRound() {
+		this.choisirJoueur();
+		int tours = 0;
+		while (tours < this.joueurs.size()) {
+			// Actions to take in a single turn of a player: Choose a player, take a card in
+			// their hand and put it in jest.
+			for (int i = 0; i < this.joueurs.size(); i++) {
+				if (this.joueurs.get(i).estEnTour) {
+					for (int j = 0; j < this.joueurs.size();j++) {
+						System.out.println("Main de " + this.joueurs.get(j).getPrenom() );
+						this.joueurs.get(j).montrerOffre();
+					}
+					Scanner sc = new Scanner(System.in);
+					sc .nextLine();
+					System.out.println("Veuillez choisir un joueur");
+					String prenom = sc.nextLine();
+					String msg = String.format("%s a choisi %s", this.joueurs.get(i).prenom, prenom);
+					System.out.println(msg);
+					System.out.println("Veuillez choisir le numero de sa carte");
+					int z = sc.nextInt();
+					sc.nextLine();
+					Joueur prochainJoueur = new Joueur();
+					System.out.println("Recherche du joueur en cours");
+					for (int recherche = 0; recherche < this.joueurs.size(); recherche++) {
+						if (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
+							this.joueurs.get(i).prendreOffre(z, this.joueurs.get(recherche));
+							prochainJoueur = this.joueurs.get(recherche);
+						}
+					}
+					this.finirTour(this.joueurs.get(i));
+					this.donnerTour(prochainJoueur);
+					tours++;
+				}
+			}
+		}
+	}
 
 	public void montrerPiocheGrand() {
 		for (int i = 0; i < this.piocheGrand.listCarte.size(); i++) {
@@ -205,6 +242,17 @@ public class Partie {
 		this.preparer();
 	}
 
+	public void faireOffreAll() {
+		Scanner sc = new Scanner(System.in);
+		for (int i = 0; i < this.joueurs.size(); i++) {
+			String msg = String.format("%s, veuillez choisir une carte a mettre face recto, l'autre sera verso.",
+					this.joueurs.get(i).prenom);
+			System.out.println(msg);
+			int posCarteFaceCachee = sc.nextInt();
+			this.joueurs.get(i).faireOffre(posCarteFaceCachee - 1);
+		}
+	}
+	
 	public static void main(String[] args) {
 
 		// Declaration
@@ -215,56 +263,16 @@ public class Partie {
 		int nbJoueurs = sc.nextInt();
 		partie.commencer(nbJoueurs);
 
-		System.out.println(partie.piocheGrand.nombreDeCartes);
-
 		partie.distribuerCartes();
 
 		// Players look at their hand
 		partie.DisplayMain();
 		
-		for (int i = 0; i < partie.joueurs.size(); i++) {
-			String msg = String.format("%s, veuillez choisir une carte à mettre face recto, l'autre sera verso.",
-					partie.joueurs.get(i).prenom);
-			System.out.println(msg);
-			int posCarteFaceCachee = sc.nextInt();
-			partie.joueurs.get(i).faireOffre(posCarteFaceCachee - 1);
-		}
-
-		partie.choisirJoueur();
-		int tours = 0;
-		while (tours < partie.joueurs.size()) {
-			// Actions to take in a single turn of a player: Choose a player, take a card in
-			// their hand and put it in jest.
-			for (int i = 0; i < partie.joueurs.size(); i++) {
-				if (partie.joueurs.get(i).estEnTour) {
-					for (int j = 0; j < partie.joueurs.size();j++) {
-						System.out.println("Main de " + partie.joueurs.get(j).getPrenom() );
-						partie.joueurs.get(j).montrerOffre();
-					}
-					sc.nextLine();
-					System.out.println("Veuillez choisir un joueur");
-					String prenom = sc.nextLine();
-					String msg = String.format("%s a choisi %s", partie.joueurs.get(i).prenom, prenom);
-					System.out.println(msg);
-					System.out.println("Veuillez choisir le numero de sa carte");
-					int z = sc.nextInt();
-					sc.nextLine();
-					Joueur prochainJoueur = new Joueur();
-					System.out.println("Recherche du joueur en cours");
-					for (int recherche = 0; recherche < partie.joueurs.size(); recherche++) {
-						if (partie.joueurs.get(recherche).getPrenom().equals(prenom)) {
-							partie.joueurs.get(i).prendreOffre(z, partie.joueurs.get(recherche));
-							prochainJoueur = partie.joueurs.get(recherche);
-						}
-					}
-					partie.finirTour(partie.joueurs.get(i));
-					partie.donnerTour(prochainJoueur);
-					tours++;
-				}
-			}
-		}
-		System.out.println("Fin du round");
-		partie.rounds++;
-
+		partie.faireOffreAll();
+		
+		partie.lancerRound();
+		
 	}
+	
+
 }
