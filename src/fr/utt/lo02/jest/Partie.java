@@ -1,4 +1,4 @@
-	package fr.utt.lo02.jest;
+package fr.utt.lo02.jest;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,7 +61,17 @@ public class Partie {
 		}
 	}
 
+	// add joueur
+	public void ajouterJoueur(Joueur joueur) {
+		if (this.partieEnCours == false) {
+			this.joueurs.add(joueur);
+		}
+	}
 
+	// delete joueur
+	public void retirerJoueur(Joueur joueur) {
+		this.joueurs.remove(joueur);
+	}
 
 	// public Visitor visitor;
 
@@ -195,10 +205,10 @@ public class Partie {
 							}
 						}
 						if (this.joueurs.get(i).prenom.equals(prenom)) {
-							ArrayList<Joueur> temp = new ArrayList<Joueur>();
-							temp.addAll(joueurs);
-							temp.remove(i);
-							for (Joueur j : temp) {
+							ArrayList<Joueur> temp2 = new ArrayList<Joueur>();
+							temp2.addAll(joueurs);
+							temp2.remove(i);
+							for (Joueur j : temp2) {
 								if (j.main.nombreDeCartes == 2) {
 									System.out.println(
 											"Vous ne pouvez pas prendre, il reste encore des gens ayant 2 cartes");
@@ -221,10 +231,13 @@ public class Partie {
 					sc.nextLine();
 					Joueur prochainJoueur = new Joueur();
 					System.out.println("Recherche du joueur en cours");
+					
 					for (int recherche = 0; recherche < this.joueurs.size(); recherche++) {
-						if (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
+						if (this.joueurs.get(recherche).getPrenom().equals(prenom) && this.joueurs.get(recherche).main.nombreDeCartes == 2) {
 							this.joueurs.get(i).prendreOffre(z, this.joueurs.get(recherche));
 							prochainJoueur = this.joueurs.get(recherche);
+						} else {
+							
 						}
 					}
 					this.finirTour(this.joueurs.get(i));
