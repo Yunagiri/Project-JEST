@@ -1,7 +1,5 @@
 package fr.utt.lo02.jest;
 
-import java.util.Iterator;
-
 public class Jest extends Tas implements Score {
     private int valeur;
 
@@ -9,14 +7,17 @@ public class Jest extends Tas implements Score {
     
     public Jest() {
     	super();
-    	this.valeur =0;
     }
     
+    public void setValeur(int valeur) {
+    	this.valeur = valeur;
+    }
     
+    public int getValeur() {
+    	return this.valeur;
+    }
     public void accepte(VisitorDeJest j) {
     	j.visiter(this);
     }
-    
-    
     
 }

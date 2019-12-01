@@ -10,6 +10,15 @@ public class Joker extends Carte {
 		super(0, true, jokeCond);
 	}
 	
+	public void setJoker(int valeur) {
+		this.hauteur = valeur;
+	}
+	
+	public int getJoker() {
+		return this.hauteur;
+	}
+	
+	
     public String montrer() {
     	StringBuffer sb = new StringBuffer();
     	if (!this.faceCachee) {
