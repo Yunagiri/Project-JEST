@@ -3,11 +3,11 @@ A game of cards in Java
 
 To-do list:
 
--Define all methods of Partie.java
+-Define all methods of Partie.java 
 
--Implement a strategy design pattern
+-Implement a strategy design pattern //DONE
 
--implement the main method in Partie.java
+-implement the main method in Partie.java //DONE
 
 -Implement a visitor design pattern 
 
