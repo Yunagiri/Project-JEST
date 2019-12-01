@@ -452,27 +452,26 @@ public class Partie {
 		// Players look at their hand
 		boolean condition = true;
 		
-		CompteurDeScore compteur = new CompteurDeScore();
-		partie.joueurs.get(0).jest.accepte(compteur);
-//		while (condition) {
-//			System.out.println(partie.piocheGrand.nombreDeCartes);
-//			partie.distribuerCartes();
-//
-//			partie.DisplayMain();
-//
-//			partie.faireOffreAll();
-//
-//			partie.lancerRound();
-//			
-//			partie.numeroRound ++;
-//			
-//			if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
-//				condition = false;
-//			}
-//			partie.creerPiochePetit();
-//			
-//			partie.piochePetite.melanger();
-//		}
+		
+		while (condition) {
+		System.out.println(partie.piocheGrand.nombreDeCartes);
+			partie.distribuerCartes();
+
+			partie.DisplayMain();
+
+			partie.faireOffreAll();
+
+			partie.lancerRound();
+					
+			partie.numeroRound ++;
+			
+			if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
+				condition = false;
+			}
+			partie.creerPiochePetit();
+			
+			partie.piochePetite.melanger();
+		}
 
 //	}
 //

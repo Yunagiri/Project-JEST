@@ -7,5 +7,5 @@ public class Regle1 extends Regle implements VisitorDeJest {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }

@@ -17,6 +17,8 @@ public class CompteurDeScore implements VisitorDeJest{
 	public void visiter(Jest j) {
 		// TODO Auto-generated method stub
 		System.out.println("En visite");
+		
+		
 	}
 
 }
