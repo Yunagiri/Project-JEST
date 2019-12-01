@@ -451,9 +451,7 @@ public class Partie {
 
 		// Players look at their hand
 		boolean condition = true;
-		
-		CompteurDeScore compteur = new CompteurDeScore();
-		partie.joueurs.get(0).jest.accepte(compteur);
+
 //		while (condition) {
 //			System.out.println(partie.piocheGrand.nombreDeCartes);
 //			partie.distribuerCartes();

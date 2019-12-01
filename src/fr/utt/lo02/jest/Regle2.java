@@ -1,11 +1,6 @@
 package fr.utt.lo02.jest;
 
-public class Regle2 extends Regle implements VisitorDeJest {
+public class Regle2 extends Regle  {
 
-	@Override
-	public void visiter(Jest j) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

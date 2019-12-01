@@ -9,6 +9,13 @@ public class Jest extends Tas implements Score {
     	super();
     }
     
+    public void setValeur(int valeur) {
+    	this.valeur = valeur;
+    }
+    
+    public int getValeur() {
+    	return this.valeur;
+    }
     public void accepte(VisitorDeJest j) {
     	j.visiter(this);
     }
