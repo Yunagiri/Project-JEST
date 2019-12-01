@@ -13,6 +13,6 @@ To-do list:
 
 -A few methods in Tas.java aren't working as intended //DONE
 
--Distribuer Cartes chỉ áp dụng cho lần đầu, lần sau chưa ok ? 
+-Distribuer Cartes chỉ áp dụng cho lần đầu, lần sau chưa ok ? //DONE
 
 
