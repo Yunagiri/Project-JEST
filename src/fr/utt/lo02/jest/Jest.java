@@ -4,8 +4,13 @@ public class Jest extends Tas implements Score {
     private int valeur;
 
     public Joueur joueur;
-
-    public void permetCompteScore(Visitor v) {
+    
+    public Jest() {
+    	super();
     }
-
+    
+    public void accepte(VisitorDeJest j) {
+    	j.visiter(this);
+    }
+    
 }
