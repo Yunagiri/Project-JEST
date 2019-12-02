@@ -1,6 +1,6 @@
 package fr.utt.lo02.jest;
 
-public class Jest extends Tas implements Score {
+public class Jest extends Tas{
     private int valeur;
 
     public Joueur joueur;
@@ -16,10 +16,12 @@ public class Jest extends Tas implements Score {
     public int getValeur() {
     	return this.valeur;
     }
+    
     public void accepte(VisitorDeJest j) {
     	j.compter(this);
     }
-    public boolean hasJoker() {
+    
+	public boolean hasJoker() {
 		for (Carte c : this.listCarte) {
 			if (c instanceof Joker) {
 				return true;
@@ -27,4 +29,7 @@ public class Jest extends Tas implements Score {
 		}
 		return false;
 	}
+
+
+    
 }

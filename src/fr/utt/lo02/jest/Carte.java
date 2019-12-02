@@ -27,6 +27,13 @@ public class Carte {
 		this.condi = condi;
 	}
 	
+	public int getHauteur() {
+		return this.hauteur;
+	}
+	
+	public void setHauteur(int hauteur) {
+		this.hauteur = hauteur;
+	}
 
 	public String montrer() {
 		StringBuffer sb = new StringBuffer();
