@@ -17,7 +17,14 @@ public class Jest extends Tas implements Score {
     	return this.valeur;
     }
     public void accepte(VisitorDeJest j) {
-    	j.visiter(this);
+    	j.compter(this);
     }
-    
+    public boolean hasJoker() {
+		for (Carte c : this.listCarte) {
+			if (c instanceof Joker) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

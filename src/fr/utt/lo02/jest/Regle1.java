@@ -2,14 +2,7 @@ package fr.utt.lo02.jest;
 
 public class Regle1 extends Regle {
 
-	public boolean hasJoker(Jest j) {
-		for (Carte c : j.listCarte) {
-			if (c instanceof Joker) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 
 	public int CompterNbCoeur(Jest j) {
 		int nbCoeurs = 0;
@@ -21,7 +14,7 @@ public class Regle1 extends Regle {
 		return nbCoeurs;
 	}
 
-	public int compter(Jest j) {
+	/*public int compter(Jest j) {
 		for (Carte c : j.listCarte) {
 			if (c instanceof SuitCards) {
 				if (c.enseigne == suits.PIQUE || c.enseigne == suits.TREFLE) {
@@ -31,10 +24,10 @@ public class Regle1 extends Regle {
 				j.setValeur(j.getValeur() - c.hauteur);
 			}
 		}
-	}
+	}*/
 
 	public int trouverJoker(Jest j) {
-		if (this.hasJoker(j)) {
+		if (j.hasJoker()) {
 			for (Carte c : j.listCarte) {
 				if (c instanceof Joker) {
 					return j.listCarte.indexOf(c);
@@ -51,6 +44,11 @@ public class Regle1 extends Regle {
 			}
 		} else {
 			return 0;
+		}
+	}
+	public int compter(Jest j) {
+		if (j.hasJoker()) {
+			
 		}
 	}
 }
