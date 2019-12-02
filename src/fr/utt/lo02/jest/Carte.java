@@ -42,6 +42,7 @@ public class Carte {
 		}
 		else {
 			sb.append(this.condi.montrer());
+			sb.append(". Valeur: ");
 			sb.append(this.valeur);
 			return sb.toString();
 		}

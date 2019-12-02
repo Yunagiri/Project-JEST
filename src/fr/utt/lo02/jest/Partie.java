@@ -87,8 +87,16 @@ public class Partie {
 		for (int i = 0; i < 2; i++) {
 			this.piocheGrand.distribuer(this.trophee);
 		}
+		this.montrerTrophee();
 	}
 
+	public void montrerTrophee() {
+		System.out.println("Les trophees sont: ");
+		for (Carte c: this.trophee.listCarte) {
+			c.faceCachee = false;
+			System.out.println(c.montrer() +"     ");
+		}
+	}
 	// add joueur
 	public void ajouterJoueur(Joueur joueur) {
 		if (this.partieEnCours == false) {
@@ -412,7 +420,7 @@ public class Partie {
 				this.joueurs.add(j);
 			} else {
 				String prenom = sc.nextLine();
-				System.out.println("Choississez la difficulté");
+				System.out.println("Choississez la difficulte");
 				int niveau = sc.nextInt();
 				JoueurVirt j = new JoueurVirt(niveau, prenom);
 				this.joueurs.add(j);
@@ -421,6 +429,7 @@ public class Partie {
 		this.creerPioche();
 		this.piocheGrand.melanger();
 		this.preparer();
+		
 	}
 
 	public void faireOffreAll() {
@@ -448,31 +457,30 @@ public class Partie {
 		System.out.println("Entrez le nombre de joueurs");
 		int nbJoueurs = sc.nextInt();
 		partie.commencer(nbJoueurs);
-
+		
 		// Players look at their hand
 		boolean condition = true;
 
-//		while (condition) {
-//			System.out.println(partie.piocheGrand.nombreDeCartes);
-//			partie.distribuerCartes();
-//
-//			partie.DisplayMain();
-//
-//			partie.faireOffreAll();
-//
-//			partie.lancerRound();
-//			
-//			partie.numeroRound ++;
-//			
-//			if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
-//				condition = false;
-//			}
-//			partie.creerPiochePetit();
-//			
-//			partie.piochePetite.melanger();
-//		}
+		while (condition) {
+			System.out.println(partie.piocheGrand.nombreDeCartes);
+			partie.distribuerCartes();
 
-//	}
-//
-}
+			partie.DisplayMain();
+
+			partie.faireOffreAll();
+
+			partie.lancerRound();
+			
+			partie.numeroRound ++;
+			
+			if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
+				condition = false;
+			}
+			partie.creerPiochePetit();
+			
+			partie.piochePetite.melanger();
+		}
+
+	}
+
 }
