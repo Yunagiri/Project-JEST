@@ -171,8 +171,6 @@ public class Regle1 extends Regle  {
 		for ( Carte i : temp) {
 			this.score = this.score + i.hauteur;
 		}
-		
-		System.out.println("score est " + this.score);
 		return this.score;
 	}
 }

@@ -481,7 +481,7 @@ public class Partie {
 			else if ( carteT.condi.cond == action.LOWEST) {
 				Joueur JoueurMin = new Joueur();
 				JoueurMin = joueurs.get(0);
-				int index =0 ;
+				int index = 0 ;
 				for (Joueur joueur : joueurs) {
 					for (int i = 0; i < joueur.jest.listCarte.size(); i++) {
 						if (joueur.jest.listCarte.get(i).enseigne == carteT.condi.enseigne
@@ -528,20 +528,53 @@ public class Partie {
 			}
 			else if (carteT.condi.cond == action.BEST) {
 				Joueur jMax = new Joueur();
+				jMax = this.joueurs.get(0);
 				for (Joueur i : joueurs) {
 					CompteurDeScore compteur = new CompteurDeScore(1);
-					System.out.println(i.prenom);
 					if (compteur.compter(i.jest) > compteur.compter(jMax.jest)) {
 						jMax = i;
 					}
+					else if (compteur.compter(i.jest) == compteur.compter(jMax.jest)) {
+						int highestVal1 = 0;
+						int posc = 0;
+						int highestVal2 = 0;
+						int posd = 0;
+						for (Carte c : i.jest.listCarte) {
+							if (c.hauteur > highestVal1) {
+								highestVal1 = c.hauteur;
+								posc = i.jest.listCarte.indexOf(c);
+							}
+						for (Carte d : jMax.jest.listCarte) {
+							if (d.hauteur > highestVal2) {
+								highestVal2 = d.hauteur;
+								posd = i.jest.listCarte.indexOf(d);
+
+							}
+						}
+						if (highestVal2 > highestVal1) {
+							jMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+						}
+						else if (highestVal1 > highestVal2) {
+							i.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+						}
+						else {
+							if (i.jest.listCarte.get(posc).valeur > jMax.jest.listCarte.get(posd).valeur) {
+								i.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+
+							}
+							else {
+								jMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+							}
+						}
+						}
+					}
 				}
-				jMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
 			}
 			else if (carteT.condi.cond == action.BEST_NOJOKER) {
 				Joueur jMax = new Joueur();
+				jMax = this.joueurs.get(0);
 				for (Joueur i : joueurs) {
 					CompteurDeScore compteur = new CompteurDeScore(1);
-					System.out.println(i.prenom);
 					if (compteur.compter(i.jest) > compteur.compter(jMax.jest) && !i.jest.hasJoker()) {
 						jMax = i;
 					}

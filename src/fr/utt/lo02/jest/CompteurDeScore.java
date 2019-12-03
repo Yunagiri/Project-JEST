@@ -16,7 +16,6 @@ public class CompteurDeScore implements VisitorDeJest{
 	@Override
 	public int compter(Jest j) {
 		// TODO Auto-generated method stub
-		System.out.println("En visite");
 		return this.regle.compter(j);
 	}
 
