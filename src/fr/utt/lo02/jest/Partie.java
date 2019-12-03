@@ -471,7 +471,6 @@ public class Partie {
 					}
 				}
 				JoueurMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
-				break;
 			}
 			if ( carteT.condi.cond == action.LOWEST) {
 				Joueur JoueurMin = new Joueur();
@@ -485,7 +484,6 @@ public class Partie {
 					}
 				}
 				JoueurMin.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
-				break;
 			}
 		}
 	}
