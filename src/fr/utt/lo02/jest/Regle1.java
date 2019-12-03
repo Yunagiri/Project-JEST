@@ -162,7 +162,7 @@ public class Regle1 extends Regle  {
 			}
 		}
 	}
-	public void compter(Jest j) {
+	public int compter(Jest j) {
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(j.listCarte);
 		this.compterAce(temp);
@@ -173,5 +173,6 @@ public class Regle1 extends Regle  {
 		}
 		
 		System.out.println("score est " + this.score);
+		return this.score;
 	}
 }

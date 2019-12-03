@@ -5,17 +5,17 @@ public class Conditions {
 	protected suits enseigne;
 	protected action cond;
 	protected boolean hasEnseigne;
-	protected int valeur;
+	protected int hauteur;
 	
 	public Conditions(action cond , suits enseigne) {
 		this.enseigne = enseigne;
 		this.cond = cond;
 		this.hasEnseigne = true;
 	}
-	public Conditions(action cond, int valeur) {
+	public Conditions(action cond, int hauteur) {
 		this.cond = cond;
 		this.hasEnseigne = false;
-		this.valeur = valeur;
+		this.hauteur = hauteur;
 	}
 	
 	public Conditions(action cond) {
@@ -37,8 +37,8 @@ public class Conditions {
 		else {
 			sb.append(". La condition pour gagner est: ");
 			sb.append(this.cond);
-			if ( this.valeur !=0) {
-			sb.append(this.valeur);
+			if ( this.hauteur !=0) {
+			sb.append(this.hauteur);
 			}
 			return sb.toString();
 		}

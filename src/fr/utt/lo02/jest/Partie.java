@@ -4,11 +4,10 @@ package fr.utt.lo02.jest;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class Partie {
-	//private int rounds;
+	// private int rounds;
 	private boolean partieEnCours;
 	private int numeroRound;
 
@@ -33,7 +32,7 @@ public class Partie {
 		for (int i = 1; i < 5; i++) {
 			for (suits s : suits.values()) {
 				action temp = action.getRandomAction();
-				if (temp == action.HIGHEST || temp == action.LOWEST ) {
+				if (temp == action.HIGHEST || temp == action.LOWEST) {
 					// System.out.println(action.getRandomAction());
 					Conditions cond = new Conditions(temp, suits.getRandomSuits());
 					// System.out.println("Creation d'une condition a 2 parametres");
@@ -42,12 +41,11 @@ public class Partie {
 					this.piocheGrand.nombreDeCartes++;
 				} else if (temp == action.MAJORITY) {
 					Random r = new Random();
-					Conditions cond = new Conditions(temp,1 + r.nextInt(4) );
-					SuitCards carte = new SuitCards(i,true,cond,s);
+					Conditions cond = new Conditions(temp, 1 + r.nextInt(4));
+					SuitCards carte = new SuitCards(i, true, cond, s);
 					this.piocheGrand.listCarte.add(carte);
 					this.piocheGrand.nombreDeCartes++;
-				}
-				else {
+				} else {
 					// System.out.println(temp);
 					Conditions cond = new Conditions(temp);
 					// System.out.println("Creation d'une condition a 1 parametre");
@@ -65,7 +63,8 @@ public class Partie {
 		joker.valeur = 0;
 		this.piocheGrand.nombreDeCartes++;
 	}
-	//creer pioche petite
+
+	// creer pioche petite
 	public void creerPiochePetit() {
 		if (this.piocheGrand.nombreDeCartes >= this.joueurs.size()) {
 			Iterator<Joueur> it = joueurs.iterator();
@@ -86,9 +85,10 @@ public class Partie {
 			while (it.hasNext()) {
 				Joueur o = (Joueur) it.next();
 				o.prendreOffre(1, o);
-				}
 			}
 		}
+	}
+
 	// shuffles piocheGrand AND distribute 2 cards to the trophy.
 	public void preparer() {
 		this.piocheGrand.melanger();
@@ -100,11 +100,12 @@ public class Partie {
 
 	public void montrerTrophee() {
 		System.out.println("Les trophees sont: ");
-		for (Carte c: this.trophee.listCarte) {
+		for (Carte c : this.trophee.listCarte) {
 			c.faceCachee = false;
-			System.out.println(c.montrer() +"     ");
+			System.out.println(c.montrer() + "     ");
 		}
 	}
+
 	// add joueur
 	public void ajouterJoueur(Joueur joueur) {
 		if (this.partieEnCours == false) {
@@ -131,21 +132,22 @@ public class Partie {
 
 		// Fucking hell it was a while when it should have been an if, lost like an hour
 		// looking for a problem in the other classes XD
-		
-			while (it.hasNext()) {
-				Joueur j = (Joueur) it.next();
-				if (this.numeroRound == 1) {
-					String msg = String.format("Distribution en cours au joueur %s", j.prenom);
-					System.out.println(msg);
-					for (int i = 0; i < 2; i++) {
-						j.prendreCartes(this.piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1), this.piocheGrand);
 
-					}
-				} else {
-					String msg = String.format("Distribution en cours au joueur %s", j.prenom);
-					System.out.println(msg);
-					for (int i = 0; i < 2; i++) {
-						j.prendreCartes(this.piochePetite.listCarte.get(piochePetite.nombreDeCartes - 1), this.piochePetite);
+		while (it.hasNext()) {
+			Joueur j = (Joueur) it.next();
+			if (this.numeroRound == 1) {
+				String msg = String.format("Distribution en cours au joueur %s", j.prenom);
+				System.out.println(msg);
+				for (int i = 0; i < 2; i++) {
+					j.prendreCartes(this.piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1), this.piocheGrand);
+
+				}
+			} else {
+				String msg = String.format("Distribution en cours au joueur %s", j.prenom);
+				System.out.println(msg);
+				for (int i = 0; i < 2; i++) {
+					j.prendreCartes(this.piochePetite.listCarte.get(piochePetite.nombreDeCartes - 1),
+							this.piochePetite);
 
 				}
 			}
@@ -188,7 +190,7 @@ public class Partie {
 							.get(counter).valeur) {
 						joueurMax = joueurActuel;
 					}
-			
+
 				}
 			}
 		}
@@ -365,13 +367,11 @@ public class Partie {
 				}
 
 			}
-			
+
 		}
 		System.out.println("Fin du round");
 	}
 
-
-	
 	public void montrerPiocheGrand() {
 		for (int i = 0; i < this.piocheGrand.listCarte.size(); i++) {
 			this.piocheGrand.listCarte.get(i).faceCachee = false;
@@ -379,6 +379,7 @@ public class Partie {
 			this.piocheGrand.listCarte.get(i).faceCachee = true;
 		}
 	}
+
 	public void montrerPiochePetite() {
 		for (int i = 0; i < this.piochePetite.listCarte.size(); i++) {
 			this.piochePetite.listCarte.get(i).faceCachee = false;
@@ -387,18 +388,18 @@ public class Partie {
 		}
 	}
 
-
 	public void DisplayMain() {
-		//for (int i = 0; i < this.joueurs.size(); i++) {
-			
-		//}
+		// for (int i = 0; i < this.joueurs.size(); i++) {
+
+		// }
 		Iterator<Joueur> it = joueurs.iterator();
 		while (it.hasNext()) {
 			Joueur i = (Joueur) it.next();
 			i.regarderMain();
 		}
 	}
-	//commencer le jeu
+
+	// commencer le jeu
 	public void commencer(int nbJoueurs) {
 		Scanner sc = new Scanner(System.in);
 		int verifJoueur;
@@ -422,7 +423,7 @@ public class Partie {
 		this.creerPioche();
 		this.piocheGrand.melanger();
 		this.preparer();
-		
+
 	}
 
 	public void faireOffreAll() {
@@ -440,63 +441,92 @@ public class Partie {
 
 		}
 	}
+
 	public void compterScore() {
-		for(Joueur i : joueurs) {
+		for (Joueur i : joueurs) {
 			CompteurDeScore compteur = new CompteurDeScore(1);
 			System.out.println(i.prenom);
 			compteur.compter(i.jest);
 		}
 	}
+
 	public void afficherJest() {
-		for(Joueur i : joueurs) {
-			System.out.println("Le jest de "+ i.prenom);
-			for(int j=0; j< i.jest.nombreDeCartes;j++) {
+		for (Joueur i : joueurs) {
+			System.out.println("Le jest de " + i.prenom);
+			for (int j = 0; j < i.jest.nombreDeCartes; j++) {
 				i.jest.listCarte.get(j).faceCachee = false;
 				System.out.println(i.jest.listCarte.get(j).montrer());
 				i.jest.listCarte.get(j).faceCachee = false;
 			}
-			
+
 		}
 	}
-	public void afficherTrophee() {
-		System.out.println("La carte de trophee est :");
-			for (int i = 0; i < this.trophee.listCarte.size(); i++) {
-				this.trophee.listCarte.get(i).faceCachee = false;
-				System.out.println(this.trophee.listCarte.get(i).montrer());
-				
-			}
-	}
+
 	public void distribuerTrophee() {
 		for (Carte carteT : this.trophee.listCarte) {
-			if ( carteT.condi.cond == action.HIGHEST) {
+			if (carteT.condi.cond == action.HIGHEST) {
 				Joueur JoueurMax = new Joueur();
-				int index =0 ;
+				JoueurMax = joueurs.get(0);
+				int index = 0;
 				for (Joueur joueur : joueurs) {
-					for(int i =0; i< joueur.jest.listCarte.size();i++) {
-						if(joueur.jest.listCarte.get(i).enseigne == carteT.condi.enseigne && joueur.jest.listCarte.get(i).hauteur > JoueurMax.jest.listCarte.get(index).hauteur ) {
-							index=i;
+					for (int i = 0; i < joueur.jest.listCarte.size(); i++) {
+						if (joueur.jest.listCarte.get(i).enseigne == carteT.condi.enseigne
+								&& joueur.jest.listCarte.get(i).hauteur > JoueurMax.jest.listCarte.get(index).hauteur) {
+							index = i;
 							JoueurMax = joueur;
 						}
 					}
 				}
 				JoueurMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
 			}
-			if ( carteT.condi.cond == action.LOWEST) {
+			else if (carteT.condi.cond == action.LOWEST) {
 				Joueur JoueurMin = new Joueur();
-				int index =0 ;
+				int index = 0;
+				JoueurMin = joueurs.get(0);
 				for (Joueur joueur : joueurs) {
-					for(int i =0; i< joueur.jest.listCarte.size();i++) {
-						if(joueur.jest.listCarte.get(i).enseigne == carteT.condi.enseigne && joueur.jest.listCarte.get(i).hauteur < JoueurMin.jest.listCarte.get(index).hauteur ) {
-							index=i;
+					for (int i = 0; i < joueur.jest.listCarte.size(); i++) {
+						if (joueur.jest.listCarte.get(i).enseigne == carteT.condi.enseigne
+								&& joueur.jest.listCarte.get(i).hauteur < JoueurMin.jest.listCarte.get(index).hauteur) {
+							index = i;
 							JoueurMin = joueur;
 						}
 					}
 				}
 				JoueurMin.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
 			}
+			else if (carteT.condi.cond == action.JOKER) {
+				for (Joueur j : this.joueurs) {
+					if (j.jest.hasJoker()) {
+						j.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+					}
+				}
+			}
+			else if (carteT.condi.cond == action.BEST) {
+				Joueur jMax = new Joueur();
+				for (Joueur i : joueurs) {
+					CompteurDeScore compteur = new CompteurDeScore(1);
+					System.out.println(i.prenom);
+					if (compteur.compter(i.jest) > compteur.compter(jMax.jest)) {
+						jMax = i;
+					}
+				}
+				jMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+			}
+			else if (carteT.condi.cond == action.BEST_NOJOKER) {
+				Joueur jMax = new Joueur();
+				for (Joueur i : joueurs) {
+					CompteurDeScore compteur = new CompteurDeScore(1);
+					System.out.println(i.prenom);
+					if (compteur.compter(i.jest) > compteur.compter(jMax.jest) && !i.jest.hasJoker()) {
+						jMax = i;
+					}
+				}
+				jMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+			}
+			
 		}
 	}
-	
+
 
 	public static void main(String[] args) {
 
@@ -507,13 +537,12 @@ public class Partie {
 		System.out.println("Entrez le nombre de joueurs");
 		int nbJoueurs = sc.nextInt();
 		partie.commencer(nbJoueurs);
-		
+
 		// Players look at their hand
 		boolean condition = true;
-		partie.afficherTrophee();
-		
+
 		while (condition) {
-		System.out.println(partie.piocheGrand.nombreDeCartes);
+			System.out.println(partie.piocheGrand.nombreDeCartes);
 			partie.distribuerCartes();
 
 			partie.DisplayMain();
@@ -521,19 +550,19 @@ public class Partie {
 			partie.faireOffreAll();
 
 			partie.lancerRound();
-					
-			partie.numeroRound ++;
-			
+
+			partie.numeroRound++;
+
 			if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
 				condition = false;
 			}
 			partie.creerPiochePetit();
-			
+
 			partie.piochePetite.melanger();
 		}
 		partie.afficherJest();
 		partie.distribuerTrophee();
 		partie.compterScore();
-		
 
+	}
 }

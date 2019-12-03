@@ -14,10 +14,10 @@ public class CompteurDeScore implements VisitorDeJest{
 	}
 	
 	@Override
-	public void compter(Jest j) {
+	public int compter(Jest j) {
 		// TODO Auto-generated method stub
 		System.out.println("En visite");
-		this.regle.compter(j);
+		return this.regle.compter(j);
 	}
 
 }
