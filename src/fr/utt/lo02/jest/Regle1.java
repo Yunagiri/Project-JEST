@@ -2,12 +2,16 @@ package fr.utt.lo02.jest;
 
 import java.util.ArrayList;
 
-public class Regle1 extends Regle {
+public class Regle1 extends Regle  {
+	protected int score ;
+	public Regle1() {
+		this.score = 0;
+	}
 
 
-	public int CompterNbCoeur(Jest j) {
+	public int CompterNbCoeur(ArrayList<Carte> j) {
 		int nbCoeurs = 0;
-		for (Carte c : j.listCarte) {
+		for (Carte c : j) {
 			if (c.enseigne == suits.COEUR) {
 				nbCoeurs++;
 			}
@@ -15,96 +19,159 @@ public class Regle1 extends Regle {
 		return nbCoeurs;
 	}
 
-	public void compterTrefleCarreauPique(Jest j) {
-		for (Carte c : j.listCarte) {
+	public void compterTrefleCarreauPique(ArrayList<Carte> j) {
+		ArrayList<Carte> temps = new ArrayList<Carte>();
+		temps.addAll(j);
+		for (Carte c : j) {
 			if (c instanceof SuitCards) {
 				if (c.enseigne == suits.PIQUE || c.enseigne == suits.TREFLE) {
-					j.setValeur(j.getValeur() + c.hauteur);
-					ArrayList<Carte> temps = new ArrayList<Carte>();
+					//j.setValeur(j.getValeur() + c.hauteur);
 					temps.remove(c);
 					for (Carte l : temps) {
 						if (c.hauteur == l.hauteur) {
-							if (c.enseigne == suits.PIQUE || c.enseigne == suits.TREFLE) {
-								j.setValeur(j.getValeur() + 2);
+							if ((l.enseigne == suits.PIQUE || l.enseigne == suits.TREFLE) && l.enseigne != c.enseigne) {
+								//j.setValeur(j.getValeur() + 2);
+								c.hauteur += 2;
+								j.get(j.indexOf(l)).hauteur +=2;
+								
 							}
 						}
 					}
 					
+				} 
+				else if (c.enseigne == suits.CARREAU) {
+					//j.setValeur(j.getValeur() - c.hauteur);
+					c.hauteur = -c.hauteur;
 				}
-			} else if (c.enseigne == suits.CARREAU) {
-				j.setValeur(j.getValeur() - c.hauteur);
-			}
+			} 
 		}
-	}*/
+	}
 
-	public int trouverJoker(Jest j) {
-		if (j.hasJoker()) {
-			for (Carte c : j.listCarte) {
+	public int trouverJoker(ArrayList<Carte> j) {
+		if (hasJoker(j)) {
+			for (Carte c : j) {
 				if (c instanceof Joker) {
-					return j.listCarte.indexOf(c);
+					return j.indexOf(c);
 				}
 			}
 		}
 		return -1;
 	}
+	public boolean hasJoker(ArrayList<Carte> j) {
+		for (Carte c : j) {
+			if (c instanceof Joker) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-	public void compterScoreCoeur(Jest j) {
-		if (j.hasJoker()) {
+	public void compterScoreCoeur(ArrayList<Carte> j ) {
+		if (this.hasJoker(j)) {
 			int pos = this.trouverJoker(j);
 			if (this.CompterNbCoeur(j) == 0) {
-				j.listCarte.get(pos).setHauteur(4);
+				j.get(pos).setHauteur(4);
 			}
 			else if(this.CompterNbCoeur(j) <= 3) {
-				for (Carte c : j.listCarte) {
+				for (Carte c : j) {
 					if (c.enseigne == suits.COEUR){
-						j.setValeur(j.getValeur() - c.hauteur);
+						c.hauteur = -c.hauteur;
+						j.get(pos).setHauteur(0);
 					}
 				}
 			}
 			else {
-				j.listCarte.get(pos).setHauteur(0);
-				for (Carte c : j.listCarte) {
-					if (c.enseigne == suits.COEUR) {
-						j.setValeur(j.getValeur() + c.hauteur);
-					}
-				}
+				j.get(pos).setHauteur(0);
 			}
 		}
 		else {
 			System.out.println("Pas de joker");
+			for ( Carte i : j) {
+				if( i.enseigne == suits.COEUR ) {
+					i.setHauteur(0);
+				}
+			}
 		}
 	}
 	
-	public void compterAce(Jest j) {
+	public void compterAce(ArrayList<Carte> j) {
 		int nbCarreau = 0;
+		int nbCarreauAce =0;
 		int nbTrefle = 0;
+		int nbTrefleAce = 0;
 		int nbPique = 0;
+		int nbPiqueAce = 0;
 		int nbCoeur = 0;
-		for (Carte c : j.listCarte) {
-			if (c.enseigne == suits.CARREAU){
-				nbCarreau++; 
+		int nbCoeurAce = 0;
+		for (Carte c : j) {
+			if (c.enseigne == suits.CARREAU  ){
+				if (c.hauteur==1) {
+					nbCarreauAce++; 
+				} else {
+					nbCarreau++;
+				}
 			}
-			else if (c.enseigne == suits.COEUR) {
-				nbCoeur++;
+			else if (c.enseigne == suits.COEUR  ){
+				if (c.hauteur==1) {
+					nbCoeurAce++; 
+				} else {
+					nbCoeur++;
+				}
 			}
-			else if (c.enseigne == suits.PIQUE) {
-				nbPique ++;
+			else if (c.enseigne == suits.PIQUE  ){
+				if (c.hauteur==1) {
+					nbPiqueAce++; 
+				} else {
+					nbPique++;
+				}
 			}
-			else {
-				nbTrefle++;
+			else if (c.enseigne == suits.TREFLE  ){
+				if (c.hauteur==1) {
+					nbTrefleAce++; 
+				} else {
+					nbTrefle++;
+				}
 			}
 		}
-		if (nbCarreau != 0 || nbTrefle != 0 && nbCoeur != 0 || nbPique != 0) {
-			for (Carte c : j.listCarte) {
-				if (c.hauteur == 1) {
+		if (nbCarreauAce == 1 && nbCarreau ==0) {
+			for (Carte c : j) {
+				if (c.hauteur == 1 && c.enseigne == suits.CARREAU) {
+					c.setHauteur(5);
+				}
+			}
+		}
+		if (nbCoeurAce == 1 && nbCoeur ==0) {
+			for (Carte c : j) {
+				if (c.hauteur == 1 && c.enseigne == suits.COEUR) {
+					c.setHauteur(5);
+				}
+			}
+		}
+		if (nbPiqueAce == 1 && nbPique ==0) {
+			for (Carte c : j) {
+				if (c.hauteur == 1 && c.enseigne == suits.PIQUE) {
+					c.setHauteur(5);
+				}
+			}
+		}
+		if (nbTrefleAce == 1 && nbTrefle ==0) {
+			for (Carte c : j) {
+				if (c.hauteur == 1 && c.enseigne == suits.TREFLE) {
 					c.setHauteur(5);
 				}
 			}
 		}
 	}
-	public int compter(Jest j) {
-		if (j.hasJoker()) {
-			
+	public void compter(Jest j) {
+		ArrayList<Carte> temp = new ArrayList<Carte>();
+		temp.addAll(j.listCarte);
+		this.compterAce(temp);
+		this.compterTrefleCarreauPique(temp);
+		this.compterScoreCoeur(temp);
+		for ( Carte i : temp) {
+			this.score = this.score + i.hauteur;
 		}
+		
+		System.out.println("score est " + this.score);
 	}
 }
