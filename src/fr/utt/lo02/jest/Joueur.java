@@ -72,7 +72,7 @@ public class Joueur {
 		j.main.nombreDeCartes--;
 	}
 	public void prendreOffre(int i, Trophee t) {
-		String msg = String.format("%s prend la carte %d de trophee et le met dans son jest.", this.prenom, i);
+		String msg = String.format("%s prend la carte %d de trophee et le met dans son jest.", this.prenom, i+1);
 		System.out.println(msg);
 		this.jest.ajouterCartes(t.listCarte.get(i));
 		t.listCarte.remove(i);

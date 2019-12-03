@@ -458,18 +458,19 @@ public class Partie {
 			
 		}
 	}
-	public void afficherTrophee() {
+	/*public void afficherTrophee() {
 		System.out.println("La carte de trophee est :");
 			for (int i = 0; i < this.trophee.listCarte.size(); i++) {
 				this.trophee.listCarte.get(i).faceCachee = false;
 				System.out.println(this.trophee.listCarte.get(i).montrer());
 				
 			}
-	}
+	}*/
 	public void distribuerTrophee() {
 		for (Carte carteT : this.trophee.listCarte) {
 			if ( carteT.condi.cond == action.HIGHEST) {
 				Joueur JoueurMax = new Joueur();
+				JoueurMax = joueurs.get(0);
 				int index =0 ;
 				for (Joueur joueur : joueurs) {
 					for(int i =0; i< joueur.jest.listCarte.size();i++) {
@@ -481,8 +482,9 @@ public class Partie {
 				}
 				JoueurMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
 			}
-			if ( carteT.condi.cond == action.LOWEST) {
+			else if ( carteT.condi.cond == action.LOWEST) {
 				Joueur JoueurMin = new Joueur();
+				JoueurMin = joueurs.get(0);
 				int index =0 ;
 				for (Joueur joueur : joueurs) {
 					for(int i =0; i< joueur.jest.listCarte.size();i++) {
@@ -493,6 +495,32 @@ public class Partie {
 					}
 				}
 				JoueurMin.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+			}
+			else if( carteT.condi.cond == action.MAJORITY) {
+				Joueur JoueurMax = new Joueur();
+				JoueurMax = joueurs.get(0);
+				int highestMajority = 0;
+				int highestValeur = 0;
+				for(Joueur joueur : joueurs) {
+					int majority = 0;
+					int valeur =0;
+					for(Carte carte : joueur.jest.listCarte) {
+						if(carte.hauteur == carteT.condi.hauteur ) {
+							majority++;
+							if (carte.valeur > highestValeur) {
+								highestValeur = carte.valeur;
+							}
+						}
+					}
+					if (majority > highestMajority) {
+						JoueurMax = joueur;
+					}
+					if ( majority ==  highestMajority && valeur > highestValeur) {
+						JoueurMax = joueur;
+					}
+						
+				}
+				JoueurMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
 			}
 		}
 	}
@@ -510,7 +538,7 @@ public class Partie {
 		
 		// Players look at their hand
 		boolean condition = true;
-		partie.afficherTrophee();
+	//	partie.afficherTrophee();
 		
 		while (condition) {
 		System.out.println(partie.piocheGrand.nombreDeCartes);
@@ -535,5 +563,5 @@ public class Partie {
 		partie.distribuerTrophee();
 		partie.compterScore();
 		
-
+	}
 }
