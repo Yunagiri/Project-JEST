@@ -551,6 +551,40 @@ public class Partie {
 						jMax = i;
 						highestValeur = Valeur;
 					}
+					else if (compteur.compter(i.jest) == compteur.compter(jMax.jest)) {
+						int highestVal1 = 0;
+						int posc = 0;
+						int highestVal2 = 0;
+						int posd = 0;
+						for (Carte c : i.jest.listCarte) {
+							if (c.hauteur > highestVal1) {
+								highestVal1 = c.hauteur;
+								posc = i.jest.listCarte.indexOf(c);
+							}
+						for (Carte d : jMax.jest.listCarte) {
+							if (d.hauteur > highestVal2) {
+								highestVal2 = d.hauteur;
+								posd = i.jest.listCarte.indexOf(d);
+
+							}
+						}
+						if (highestVal2 > highestVal1) {
+							jMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+						}
+						else if (highestVal1 > highestVal2) {
+							i.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+						}
+						else {
+							if (i.jest.listCarte.get(posc).valeur > jMax.jest.listCarte.get(posd).valeur) {
+								i.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+
+							}
+							else {
+								jMax.prendreOffre(trophee.listCarte.indexOf(carteT), trophee);
+							}
+						}
+						}
+					}
 				}
 				this.compterScore();
 				jMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
