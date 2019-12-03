@@ -85,7 +85,7 @@ public class Regle1 extends Regle  {
 			}
 		}
 		else {
-			System.out.println("Pas de joker");
+			//System.out.println("Pas de joker");
 			for ( Carte i : j) {
 				if( i.enseigne == suits.COEUR ) {
 					i.setHauteur(0);
@@ -171,8 +171,6 @@ public class Regle1 extends Regle  {
 		for ( Carte i : temp) {
 			this.score = this.score + i.hauteur;
 		}
-		
-		System.out.println("score est " + this.score);
 		return this.score;
 	}
 }
