@@ -465,7 +465,10 @@ public class Partie {
 	public void distribuerTrophee() {
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(this.trophee.listCarte);
+		Joueur Joueur1 = new Joueur();
+		Joueur Joueur2 = new Joueur();
 		for (Carte carteT : temp) {
+			
 			if (carteT.condi.cond == action.HIGHEST) {
 				Joueur JoueurMax = new Joueur();
 				JoueurMax = this.joueurs.get(0);
@@ -639,7 +642,7 @@ public class Partie {
 			partie.piochePetite.melanger();
 		}
 		partie.afficherJest();
-		partie.distribuerTrophee();
+		//partie.distribuerTrophee();
 		partie.compterScore();
 		
 	}

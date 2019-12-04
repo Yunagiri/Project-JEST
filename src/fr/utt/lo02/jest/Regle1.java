@@ -26,13 +26,15 @@ public class Regle1 extends Regle  {
 			if (c instanceof SuitCards) {
 				if (c.enseigne == suits.PIQUE || c.enseigne == suits.TREFLE) {
 					//j.setValeur(j.getValeur() + c.hauteur);
+					this.score=this.score + c.hauteur;
 					temps.remove(c);
 					for (Carte l : temps) {
 						if (c.hauteur == l.hauteur) {
 							if ((l.enseigne == suits.PIQUE || l.enseigne == suits.TREFLE) && l.enseigne != c.enseigne) {
 								//j.setValeur(j.getValeur() + 2);
-								c.hauteur += 2;
-								j.get(j.indexOf(l)).hauteur +=2;
+								//c.hauteur += 2;
+								//j.get(j.indexOf(l)).hauteur +=2;
+								this.score = this.score + 4;
 								
 							}
 						}
@@ -41,7 +43,7 @@ public class Regle1 extends Regle  {
 				} 
 				else if (c.enseigne == suits.CARREAU) {
 					//j.setValeur(j.getValeur() - c.hauteur);
-					c.hauteur = -c.hauteur;
+					this.score = this.score-c.hauteur;
 				}
 			} 
 		}
@@ -68,27 +70,22 @@ public class Regle1 extends Regle  {
 
 	public void compterScoreCoeur(ArrayList<Carte> j ) {
 		if (this.hasJoker(j)) {
-			int pos = this.trouverJoker(j);
+			//int pos = this.trouverJoker(j);
 			if (this.CompterNbCoeur(j) == 0) {
-				j.get(pos).setHauteur(4);
+				this.score =this.score + 4;
 			}
 			else if(this.CompterNbCoeur(j) <= 3) {
 				for (Carte c : j) {
 					if (c.enseigne == suits.COEUR){
-						c.hauteur = -c.hauteur;
-						j.get(pos).setHauteur(0);
+						this.score = this.score-c.hauteur;
 					}
 				}
 			}
 			else {
-				j.get(pos).setHauteur(0);
-			}
-		}
-		else {
-			//System.out.println("Pas de joker");
-			for ( Carte i : j) {
-				if( i.enseigne == suits.COEUR ) {
-					i.setHauteur(0);
+				for (Carte c : j) {
+					if (c.enseigne == suits.COEUR){
+						this.score = this.score+c.hauteur;
+					}
 				}
 			}
 		}
@@ -136,28 +133,32 @@ public class Regle1 extends Regle  {
 		if (nbCarreauAce == 1 && nbCarreau ==0) {
 			for (Carte c : j) {
 				if (c.hauteur == 1 && c.enseigne == suits.CARREAU) {
-					c.setHauteur(5);
+					//c.setHauteur(5);
+					this.score = this.score - 4;
 				}
 			}
 		}
 		if (nbCoeurAce == 1 && nbCoeur ==0) {
-			for (Carte c : j) {
-				if (c.hauteur == 1 && c.enseigne == suits.COEUR) {
-					c.setHauteur(5);
-				}
-			}
+					if (this.hasJoker(j)) {
+						 if(this.CompterNbCoeur(j) <= 3 ) {
+							this.score = this.score - 4;
+						}
+						else if (this.CompterNbCoeur(j)==4) {
+							this.score = this.score +4;
+						}
+					}
 		}
 		if (nbPiqueAce == 1 && nbPique ==0) {
 			for (Carte c : j) {
 				if (c.hauteur == 1 && c.enseigne == suits.PIQUE) {
-					c.setHauteur(5);
+					this.score= this.score+4;
 				}
 			}
 		}
 		if (nbTrefleAce == 1 && nbTrefle ==0) {
 			for (Carte c : j) {
 				if (c.hauteur == 1 && c.enseigne == suits.TREFLE) {
-					c.setHauteur(5);
+					this.score=this.score+4;
 				}
 			}
 		}
@@ -168,9 +169,6 @@ public class Regle1 extends Regle  {
 		this.compterAce(temp);
 		this.compterTrefleCarreauPique(temp);
 		this.compterScoreCoeur(temp);
-		for ( Carte i : temp) {
-			this.score = this.score + i.hauteur;
-		}
 		return this.score;
 	}
 }
