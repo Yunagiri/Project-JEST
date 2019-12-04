@@ -634,7 +634,7 @@ public class Partie {
 			partie.piochePetite.melanger();
 		}
 		partie.afficherJest();
-		//partie.distribuerTrophee();
+		partie.distribuerTrophee();
 		partie.compterScore();
 
 	}
