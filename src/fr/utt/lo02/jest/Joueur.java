@@ -75,8 +75,8 @@ public class Joueur {
 		String msg = String.format("%s prend une carte de trophee et le met dans son jest.", this.prenom);
 		System.out.println(msg);
 		this.jest.ajouterCartes(t.listCarte.get(i));
-		t.listCarte.remove(i);
-		t.nombreDeCartes--;
+		//t.listCarte.remove(i);
+		//t.nombreDeCartes--;
 	}
 
 	public void montrerCarte() {
