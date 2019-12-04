@@ -34,7 +34,7 @@ public class Regle1 extends Regle  {
 								//j.setValeur(j.getValeur() + 2);
 								//c.hauteur += 2;
 								//j.get(j.indexOf(l)).hauteur +=2;
-								this.score = this.score + 4;
+								this.score = this.score + 2;
 								
 							}
 						}
