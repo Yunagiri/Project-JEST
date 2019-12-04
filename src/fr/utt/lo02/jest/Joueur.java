@@ -4,6 +4,7 @@ public class Joueur {
 
 	protected String prenom;
 	protected boolean estEnTour;
+	protected int Score;
 
 	protected Main main;
 	protected Jest jest;
@@ -13,12 +14,18 @@ public class Joueur {
 		this.main = new Main();
 		this.jest = new Jest();
 		this.estEnTour = false;
+		this.Score = 0;
 	}
 
 	public Joueur() {
 
 	}
-
+	public void setScore(int i) {
+		this.Score = i;
+	}
+	public int getScore() {
+		return this.Score;
+	}
 	public String getPrenom() {
 		return this.prenom;
 	}

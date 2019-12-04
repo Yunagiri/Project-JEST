@@ -164,6 +164,7 @@ public class Regle1 extends Regle  {
 		}
 	}
 	public int compter(Jest j) {
+		this.score =0;
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(j.listCarte);
 		this.compterAce(temp);
