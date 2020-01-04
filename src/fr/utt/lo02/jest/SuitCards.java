@@ -19,6 +19,6 @@ public class SuitCards extends Carte {
 			return sb.toString();
 		}
 		
-		return sb.append("La carte est face cachee").toString();
+		//return sb.append("La carte est face cachee").toString();
 	}
 }
