@@ -10,9 +10,10 @@ public class Trophee extends Tas {
 	/*Award the trophy card to the player fulfilling the condition of the trophy card
 	* posTrophee indicates which card to give, and jestGagnant indicates who to give to
 	 */
-	public void distribuerTrophee(ArrayList<Joueur> joueurs) {
+	public void distribuerTrophee(ArrayList<Joueur> joueurs, VisitorDeJest compteur) {
 		boolean cantakecard1 = true;
 		boolean cantakecard2 = true;
+		
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(this.listCarte);
 		Joueur joueur1 = new Joueur();
@@ -129,28 +130,27 @@ public class Trophee extends Tas {
 				int highestValeur = 0;
 				for (Joueur i : joueurs) {
 					int Valeur = 0;
-					CompteurDeScore compteur = new CompteurDeScore(1);
+					
 					for (Carte c : i.jest.listCarte) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
 						}
 					}
-					if (compteur.compter(i.jest) > compteur.compter(jMax.jest)) {
+					if (compteur.visiter(i.jest) > compteur.visiter(jMax.jest)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if (compteur.compter(i.jest) == compteur.compter(jMax.jest) && highestValeur <= Valeur) {
+					} else if (compteur.visiter(i.jest) == compteur.visiter(jMax.jest) && highestValeur <= Valeur) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.compter(i.jest) == compteur.compter(jMax.jest)) && (highestValeur > Valeur)) {
+					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur > Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
 					} else {
 					}
 				}
 				for (Joueur i : joueurs) {
-					CompteurDeScore compteur = new CompteurDeScore(1);
 					System.out.println("Score de " + i.prenom);
-					System.out.println(compteur.compter(i.jest));
+					System.out.println(compteur.visiter(i.jest));
 				}
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = jMax;
@@ -170,19 +170,18 @@ public class Trophee extends Tas {
 				jMax = temp3.get(0);
 				for (Joueur i : temp3) {
 					int Valeur = 0;
-					CompteurDeScore compteur = new CompteurDeScore(1);
 					for (Carte c : i.jest.listCarte) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
 						}
 					}
-					if (compteur.compter(i.jest) > compteur.compter(jMax.jest)) {
+					if (compteur.visiter(i.jest) > compteur.visiter(jMax.jest)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.compter(i.jest) == compteur.compter(jMax.jest)) && (highestValeur <= Valeur)) {
+					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur <= Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.compter(i.jest) == compteur.compter(jMax.jest)) && (highestValeur > Valeur)) {
+					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur > Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
 					} else {
@@ -190,9 +189,9 @@ public class Trophee extends Tas {
 					// jMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 				}
 				for (Joueur i : joueurs) {
-					CompteurDeScore compteur = new CompteurDeScore(1);
+					
 					System.out.println("Score de " + i.prenom);
-					System.out.println(compteur.compter(i.jest));
+					System.out.println(compteur.visiter(i.jest));
 				}
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = jMax;

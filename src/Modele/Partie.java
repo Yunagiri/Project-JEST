@@ -14,6 +14,7 @@ public class Partie {
 	private Pioche piocheGrand;
 	private Trophee trophee;
 	private Tas piochePetite;
+	private int nbJoueurs;
 
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
@@ -384,8 +385,20 @@ public class Partie {
 	}
 
 	// commencer le jeu
-	public void commencer(int nbJoueurs) {
+	public void commencer() {
 		Scanner sc = new Scanner(System.in);
+		boolean okJoueur = false;
+		do {
+			System.out.println("Entrez le nombre de joueurs");
+			nbJoueurs = sc.nextInt();
+			if (nbJoueurs > 4) {
+				System.out.println("Trop de joueurs!");
+				okJoueur = true;
+			}
+			else {
+				okJoueur = false;
+			}
+		} while(okJoueur);
 		int verifJoueur;
 		while (this.joueurs.size() < nbJoueurs) {
 			System.out.println("C'est un joueur: 1.Physique     2.Virtuel");
@@ -408,6 +421,33 @@ public class Partie {
 		this.piocheGrand.melanger();
 		this.preparer();
 
+	}
+	
+	public VisitorDeJest choisirCompteur() {
+		Scanner sc = new Scanner(System.in);
+		boolean okVariante = true;
+		do {
+			System.out.println("Choisissez la règle: 1.Original     2.DLC Season Pass");
+			int variante = sc.nextInt();
+			if (variante == 1) {
+				CompteurDeScore1 compteur1 = new CompteurDeScore1();
+				okVariante = false;
+				return (VisitorDeJest)compteur1;
+				
+			}
+			else if (variante == 2) {
+				CompteurDeScore2 compteur2 = new CompteurDeScore2();
+				okVariante = false;
+				return (VisitorDeJest)compteur2;
+				
+			}
+			else {
+				System.out.println("Veuillez choisir une option valide");
+				okVariante = true;
+			}
+		} while(okVariante);
+		return null;
+		
 	}
 
 	public void faireOffreAll() {
@@ -466,11 +506,9 @@ public class Partie {
 		// Declaration
 		Scanner sc = new Scanner(System.in);
 		Partie partie = new Partie();
-
-		System.out.println("Entrez le nombre de joueurs");
-		int nbJoueurs = sc.nextInt();
-		partie.commencer(nbJoueurs);
-
+		
+		VisitorDeJest compteur = partie.choisirCompteur();
+		partie.commencer();
 		// Players look at their hand
 		boolean condition = true;
 		while (condition) {
@@ -494,7 +532,8 @@ public class Partie {
 		}
 		partie.afficherJest();
 		partie.montrerTrophee();
-		partie.trophee.distribuerTrophee(partie.joueurs);
+		
+		partie.trophee.distribuerTrophee(partie.joueurs, compteur);
 		partie.afficherJest();
 		partie.compterScore();
 		partie.choisirVainqueur();
