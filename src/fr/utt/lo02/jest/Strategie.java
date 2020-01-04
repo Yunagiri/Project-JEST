@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface Strategie {
 	
-	public int faireOffre();
+	public int faireOffre(ArrayList<Carte> listCarte);
 	
 	public Joueur choisirJoueur(ArrayList<Joueur> listJoueur);
 	

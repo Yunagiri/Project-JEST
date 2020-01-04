@@ -9,7 +9,11 @@ public class JoueurVirt extends Joueur {
     Strategie strat;
     
     public JoueurVirt(int niveau, String prenom) {
-    	super(prenom);
+		this.prenom = prenom;
+		this.main = new Main();
+		this.jest = new Jest();
+		this.estEnTour = false;
+		this.Score = 0;
     	this.niveau = niveau;
     	if (this.niveau == 1) {
     		this.strat = new Facile();
@@ -20,7 +24,7 @@ public class JoueurVirt extends Joueur {
     }
     
     public void faireOffre() {
-    	int temp = strat.faireOffre();
+    	int temp = strat.faireOffre(this.main.listCarte);
     	super.faireOffre(temp);
     	
     }

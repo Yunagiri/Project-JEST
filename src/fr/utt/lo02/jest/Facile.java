@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Facile implements Strategie {
 	
-	public int faireOffre() {
+	public int faireOffre(ArrayList<Carte> listCarte) {
 		int nombreAleatoire = 0 +(int)(Math.random() * ((1 - 0) + 1));
 		return nombreAleatoire;
 	}

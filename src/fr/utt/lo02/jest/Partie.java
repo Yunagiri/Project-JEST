@@ -17,8 +17,6 @@ public class Partie {
 
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
-	// Can't use melanger() on piocheGrand, there's nothing in its listCarte yet,
-	// hence it also cannot distribuer(trophee), there's nothing to distribute.
 	public Partie() {
 		numeroRound = 1;
 		piocheGrand = new Pioche();
@@ -117,12 +115,6 @@ public class Partie {
 	public void retirerJoueur(Joueur joueur) {
 		this.joueurs.remove(joueur);
 	}
-
-	// public Visitor visitor;
-
-	// ??? What's finished? the round? the game? myself? I fucking wish
-	// public boolean estTerminee() {
-//	}
 
 	// Each player takes 2 cards from the piocheGrand in the 1st round and 2 cards
 	// from the piochePetit from the 2nd round onwards
@@ -382,9 +374,6 @@ public class Partie {
 	}
 
 	public void DisplayMain() {
-		// for (int i = 0; i < this.joueurs.size(); i++) {
-
-		// }
 		Iterator<Joueur> it = joueurs.iterator();
 		while (it.hasNext()) {
 			Joueur i = (Joueur) it.next();
@@ -436,24 +425,26 @@ public class Partie {
 	}
 
 	public void compterScore() {
+
 		for (Joueur i : joueurs) {
-			CompteurDeScore compteur = new CompteurDeScore(1);
+			CompteurDeScore1 compteur = new CompteurDeScore1();
 			System.out.println("Score de " + i.prenom);
-			System.out.println(compteur.compter(i.jest));
+			System.out.println(compteur.visiter(i.jest));
 		}
 	}
-	public void choisirVainqueur () {
+
+	public void choisirVainqueur() {
 		Joueur JoueurMax = new Joueur();
 		JoueurMax = this.joueurs.get(0);
 		for (Joueur i : joueurs) {
-			CompteurDeScore compteur = new CompteurDeScore(1);
-			i.setScore(compteur.compter(i.jest)); 
-			if(i.getScore() > JoueurMax.getScore()) {
+			CompteurDeScore1 compteur = new CompteurDeScore1();
+			i.setScore(compteur.visiter(i.jest));
+			if (i.getScore() > JoueurMax.getScore()) {
 				JoueurMax = i;
 			}
 		}
 		System.out.println("Le vainqueur est " + JoueurMax.prenom);
-		
+
 	}
 
 	public void afficherJest() {
