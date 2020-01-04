@@ -14,6 +14,7 @@ public class Partie {
 	private Pioche piocheGrand;
 	private Trophee trophee;
 	private Tas piochePetite;
+	private int nbJoueurs;
 
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
@@ -382,8 +383,20 @@ public class Partie {
 	}
 
 	// commencer le jeu
-	public void commencer(int nbJoueurs) {
+	public void commencer() {
 		Scanner sc = new Scanner(System.in);
+		boolean okJoueur = false;
+		do {
+			System.out.println("Entrez le nombre de joueurs");
+			nbJoueurs = sc.nextInt();
+			if (nbJoueurs > 4) {
+				System.out.println("Trop de joueurs!");
+				okJoueur = true;
+			}
+			else {
+				okJoueur = false;
+			}
+		} while(okJoueur);
 		int verifJoueur;
 		while (this.joueurs.size() < nbJoueurs) {
 			System.out.println("C'est un joueur: 1.Physique     2.Virtuel");
@@ -491,11 +504,9 @@ public class Partie {
 		// Declaration
 		Scanner sc = new Scanner(System.in);
 		Partie partie = new Partie();
-
-		System.out.println("Entrez le nombre de joueurs");
-		int nbJoueurs = sc.nextInt();
+		
 		VisitorDeJest compteur = partie.choisirCompteur();
-		partie.commencer(nbJoueurs);
+		partie.commencer();
 		// Players look at their hand
 		boolean condition = true;
 		while (condition) {
