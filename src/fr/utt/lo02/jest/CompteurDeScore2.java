@@ -31,9 +31,6 @@ public class CompteurDeScore2 implements VisitorDeJest {
 					for (Carte l : temps) {
 						if (c.hauteur == l.hauteur) {
 							if ((l.enseigne == suits.PIQUE || l.enseigne == suits.TREFLE) && l.enseigne != c.enseigne) {
-								// j.setValeur(j.getValeur() + 2);
-								// c.hauteur += 2;
-								// j.get(j.indexOf(l)).hauteur +=2;
 								this.score = this.score + 2;
 
 							}
@@ -41,7 +38,6 @@ public class CompteurDeScore2 implements VisitorDeJest {
 					}
 
 				} else if (c.enseigne == suits.CARREAU) {
-					// j.setValeur(j.getValeur() - c.hauteur);
 					this.score = this.score - c.hauteur;
 				}
 			}
