@@ -1,4 +1,4 @@
-package fr.utt.lo02.jest;
+package Modele;
 
 public interface Score {
 	void accepter(VisitorDeJest v);

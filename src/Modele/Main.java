@@ -1,4 +1,4 @@
-package fr.utt.lo02.jest;
+package Modele;
 
 public class Main extends Tas {
     public Joueur joueur;

@@ -1,4 +1,4 @@
-package fr.utt.lo02.jest;
+package Modele;
 import java.util.Random;
 
 /* Condition of each card in the game will be defined by an enum class which will link each condition to a 

@@ -1,4 +1,4 @@
-package fr.utt.lo02.jest;
+package Modele;
 
 //The variable hauteur IS NOT VALUE! Value is influenced by the hauteur of the card when it's in the Jest
 public class SuitCards extends Carte {
@@ -19,6 +19,6 @@ public class SuitCards extends Carte {
 			return sb.toString();
 		}
 		
-		//return sb.append("La carte est face cachee").toString();
+		return sb.append("La carte est face cachee").toString();
 	}
 }

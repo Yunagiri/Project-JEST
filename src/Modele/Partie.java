@@ -1,5 +1,5 @@
 
-package fr.utt.lo02.jest;
+package Modele;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package fr.utt.lo02.jest;
+package Modele;
 
 public class Jest extends Tas implements Score {
     private int valeur;
