@@ -73,9 +73,9 @@ public class PanelJeu extends JPanel implements Observer{
 		tour.setFont(new Font("Tahoma", Font.BOLD, 19));
 		tour.setForeground(new Color(255, 255, 255));
 		this.add(tour);
-		partie.getTour().addObserver(this);
+		partie.getNumeroRounds().addObserver(this);
 		partie.addObserver(this);
-		for(Trick t: jeu.getTrick()) {
+		for( t: partie.getTrick()) {
 			t.addObserver(tdj);
 		}
 		
