@@ -407,6 +407,33 @@ public class Partie {
 		this.preparer();
 
 	}
+	
+	public VisitorDeJest choisirCompteur() {
+		Scanner sc = new Scanner(System.in);
+		boolean okVariante = true;
+		do {
+			System.out.println("Choisissez la règle: 1.Original     2.DLC Season Pass");
+			int variante = sc.nextInt();
+			if (variante == 1) {
+				CompteurDeScore1 compteur1 = new CompteurDeScore1();
+				okVariante = false;
+				return (VisitorDeJest)compteur1;
+				
+			}
+			else if (variante == 2) {
+				CompteurDeScore2 compteur2 = new CompteurDeScore2();
+				okVariante = false;
+				return (VisitorDeJest)compteur2;
+				
+			}
+			else {
+				System.out.println("Veuillez choisir une option valide");
+				okVariante = true;
+			}
+		} while(okVariante);
+		return null;
+		
+	}
 
 	public void faireOffreAll() {
 		Scanner sc = new Scanner(System.in);
@@ -467,8 +494,8 @@ public class Partie {
 
 		System.out.println("Entrez le nombre de joueurs");
 		int nbJoueurs = sc.nextInt();
+		VisitorDeJest compteur = partie.choisirCompteur();
 		partie.commencer(nbJoueurs);
-
 		// Players look at their hand
 		boolean condition = true;
 		while (condition) {
@@ -492,7 +519,8 @@ public class Partie {
 		}
 		partie.afficherJest();
 		partie.montrerTrophee();
-		partie.trophee.distribuerTrophee(partie.joueurs);
+		
+		partie.trophee.distribuerTrophee(partie.joueurs, compteur);
 		partie.afficherJest();
 		partie.compterScore();
 		partie.choisirVainqueur();

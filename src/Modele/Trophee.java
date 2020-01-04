@@ -10,9 +10,10 @@ public class Trophee extends Tas {
 	/*Award the trophy card to the player fulfilling the condition of the trophy card
 	* posTrophee indicates which card to give, and jestGagnant indicates who to give to
 	 */
-	public void distribuerTrophee(ArrayList<Joueur> joueurs) {
+	public void distribuerTrophee(ArrayList<Joueur> joueurs, VisitorDeJest compteur) {
 		boolean cantakecard1 = true;
 		boolean cantakecard2 = true;
+		
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(this.listCarte);
 		Joueur joueur1 = new Joueur();
@@ -130,7 +131,6 @@ public class Trophee extends Tas {
 				for (Joueur i : joueurs) {
 					int Valeur = 0;
 					
-					CompteurDeScore1 compteur = new CompteurDeScore1();
 					for (Carte c : i.jest.listCarte) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
@@ -149,7 +149,6 @@ public class Trophee extends Tas {
 					}
 				}
 				for (Joueur i : joueurs) {
-					CompteurDeScore1 compteur = new CompteurDeScore1();
 					System.out.println("Score de " + i.prenom);
 					System.out.println(compteur.visiter(i.jest));
 				}
@@ -171,7 +170,6 @@ public class Trophee extends Tas {
 				jMax = temp3.get(0);
 				for (Joueur i : temp3) {
 					int Valeur = 0;
-					CompteurDeScore1 compteur = new CompteurDeScore1();
 					for (Carte c : i.jest.listCarte) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
@@ -191,7 +189,7 @@ public class Trophee extends Tas {
 					// jMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 				}
 				for (Joueur i : joueurs) {
-					CompteurDeScore1 compteur = new CompteurDeScore1();
+					
 					System.out.println("Score de " + i.prenom);
 					System.out.println(compteur.visiter(i.jest));
 				}

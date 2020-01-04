@@ -26,19 +26,19 @@ public class CompteurDeScore2 implements VisitorDeJest {
 			if (c instanceof SuitCards) {
 				if (c.enseigne == suits.PIQUE || c.enseigne == suits.TREFLE) {
 					// j.setValeur(j.getValeur() + c.hauteur);
-					this.score = this.score + c.hauteur;
+					this.score = this.score - c.hauteur;
 					temps.remove(c);
 					for (Carte l : temps) {
 						if (c.hauteur == l.hauteur) {
 							if ((l.enseigne == suits.PIQUE || l.enseigne == suits.TREFLE) && l.enseigne != c.enseigne) {
-								this.score = this.score + 2;
+								this.score = this.score - 2;
 
 							}
 						}
 					}
 
 				} else if (c.enseigne == suits.CARREAU) {
-					this.score = this.score - c.hauteur;
+					this.score = this.score + c.hauteur;
 				}
 			}
 		}
@@ -72,7 +72,7 @@ public class CompteurDeScore2 implements VisitorDeJest {
 			} else if (this.CompterNbCoeur(j) <= 3) {
 				for (Carte c : j) {
 					if (c.enseigne == suits.COEUR) {
-						this.score = this.score - c.hauteur;
+						this.score = this.score + c.hauteur;
 					}
 				}
 			} else {
