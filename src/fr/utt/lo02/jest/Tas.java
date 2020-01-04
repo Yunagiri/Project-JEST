@@ -8,7 +8,7 @@ public class Tas {
 	protected int nombreDeCartes;
 
 	// The array used to stock the cards
-	public List<Carte> listCarte = new ArrayList<Carte>();
+	public ArrayList<Carte> listCarte = new ArrayList<Carte>();
 
 	// Constructors
 	public Tas() {

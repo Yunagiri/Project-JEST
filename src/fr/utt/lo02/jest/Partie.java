@@ -17,8 +17,6 @@ public class Partie {
 
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
-	// Can't use melanger() on piocheGrand, there's nothing in its listCarte yet,
-	// hence it also cannot distribuer(trophee), there's nothing to distribute.
 	public Partie() {
 		numeroRound = 1;
 		piocheGrand = new Pioche();
@@ -117,12 +115,6 @@ public class Partie {
 	public void retirerJoueur(Joueur joueur) {
 		this.joueurs.remove(joueur);
 	}
-
-	// public Visitor visitor;
-
-	// ??? What's finished? the round? the game? myself? I fucking wish
-	// public boolean estTerminee() {
-//	}
 
 	// Each player takes 2 cards from the piocheGrand in the 1st round and 2 cards
 	// from the piochePetit from the 2nd round onwards
@@ -389,9 +381,6 @@ public class Partie {
 	}
 
 	public void DisplayMain() {
-		// for (int i = 0; i < this.joueurs.size(); i++) {
-
-		// }
 		Iterator<Joueur> it = joueurs.iterator();
 		while (it.hasNext()) {
 			Joueur i = (Joueur) it.next();
@@ -443,24 +432,26 @@ public class Partie {
 	}
 
 	public void compterScore() {
+
 		for (Joueur i : joueurs) {
-			CompteurDeScore compteur = new CompteurDeScore(1);
+			CompteurDeScore1 compteur = new CompteurDeScore1();
 			System.out.println("Score de " + i.prenom);
-			System.out.println(compteur.compter(i.jest));
+			System.out.println(compteur.visiter(i.jest));
 		}
 	}
-	public void choisirVainqueur () {
+
+	public void choisirVainqueur() {
 		Joueur JoueurMax = new Joueur();
 		JoueurMax = this.joueurs.get(0);
 		for (Joueur i : joueurs) {
-			CompteurDeScore compteur = new CompteurDeScore(1);
-			i.setScore(compteur.compter(i.jest)); 
-			if(i.getScore() > JoueurMax.getScore()) {
+			CompteurDeScore1 compteur = new CompteurDeScore1();
+			i.setScore(compteur.visiter(i.jest));
+			if (i.getScore() > JoueurMax.getScore()) {
 				JoueurMax = i;
 			}
 		}
 		System.out.println("Le vainqueur est " + JoueurMax.prenom);
-		
+
 	}
 
 	public void afficherJest() {
@@ -476,7 +467,7 @@ public class Partie {
 	}
 
 	public void distribuerTrophee() {
-		boolean cantakecard1= true;
+		boolean cantakecard1 = true;
 		boolean cantakecard2 = true;
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(this.trophee.listCarte);
@@ -496,7 +487,6 @@ public class Partie {
 						}
 					}
 				}
-				// JoueurMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = JoueurMax;
 				} else if (temp.indexOf(carteT) == 1) {
@@ -520,7 +510,6 @@ public class Partie {
 				} else if (temp.indexOf(carteT) == 1) {
 					joueur2 = JoueurMin;
 				}
-				// JoueurMin.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 			} else if (carteT.condi.cond == action.MAJORITY) {
 				Joueur JoueurMax = new Joueur();
 				JoueurMax = this.joueurs.get(0);
@@ -547,7 +536,6 @@ public class Partie {
 						highestValeur = valeur;
 					}
 				}
-				//JoueurMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = JoueurMax;
 				} else if (temp.indexOf(carteT) == 1) {
@@ -576,19 +564,19 @@ public class Partie {
 				int highestValeur = 0;
 				for (Joueur i : this.joueurs) {
 					int Valeur = 0;
-					CompteurDeScore compteur = new CompteurDeScore(1);
+					CompteurDeScore1 compteur = new CompteurDeScore1();
 					for (Carte c : i.jest.listCarte) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
 						}
 					}
-					if (compteur.compter(i.jest) > compteur.compter(jMax.jest)) {
+					if (compteur.visiter(i.jest) > compteur.visiter(jMax.jest)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if (compteur.compter(i.jest) == compteur.compter(jMax.jest) && highestValeur <= Valeur) {
+					} else if (compteur.visiter(i.jest) == compteur.visiter(jMax.jest) && highestValeur <= Valeur) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.compter(i.jest) == compteur.compter(jMax.jest)) && (highestValeur > Valeur)) {
+					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur > Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
 					} else {
@@ -606,26 +594,26 @@ public class Partie {
 				int highestValeur = 0;
 				ArrayList<Joueur> temp3 = new ArrayList<Joueur>();
 				for (Joueur i : joueurs) {
-					if(!i.jest.hasJoker()) {
+					if (!i.jest.hasJoker()) {
 						temp3.add(i);
 					}
 				}
 				jMax = temp3.get(0);
 				for (Joueur i : temp3) {
 					int Valeur = 0;
-					CompteurDeScore compteur = new CompteurDeScore(1);
+					CompteurDeScore1 compteur = new CompteurDeScore1();
 					for (Carte c : i.jest.listCarte) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
 						}
 					}
-					if (compteur.compter(i.jest) > compteur.compter(jMax.jest)) {
+					if (compteur.visiter(i.jest) > compteur.visiter(jMax.jest)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.compter(i.jest) == compteur.compter(jMax.jest)) && (highestValeur <= Valeur)) {
+					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur <= Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.compter(i.jest) == compteur.compter(jMax.jest)) && (highestValeur > Valeur)) {
+					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur > Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
 					} else {
@@ -640,20 +628,17 @@ public class Partie {
 				}
 
 			}
-			
-			
-			
 		}
-		if ( cantakecard1 = true) { 
-		joueur1.prendreOffre(0, trophee);
+		if (cantakecard1 = true) {
+			joueur1.prendreOffre(0, trophee);
 		}
-		if ( cantakecard2 = true) {
-		joueur2.prendreOffre(1, trophee);
+		if (cantakecard2 = true) {
+			joueur2.prendreOffre(1, trophee);
 		}
 		this.afficherJest();
 		this.trophee.listCarte.clear();
 		this.trophee.nombreDeCartes = 0;
-		
+
 	}
 
 	public static void main(String[] args) {

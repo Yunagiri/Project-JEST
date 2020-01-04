@@ -31,7 +31,7 @@ public class Jest extends Tas implements Score {
 	@Override
 	public void accepter(VisitorDeJest v) {
 		// TODO Auto-generated method stub
-		v.compter(this);
+		v.visiter(this);
 	}
 
 	

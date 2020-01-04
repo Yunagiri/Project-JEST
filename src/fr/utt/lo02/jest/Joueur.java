@@ -9,14 +9,6 @@ public class Joueur {
 	protected Main main;
 	protected Jest jest;
 
-	public Joueur(String prenom) {
-		this.prenom = prenom;
-		this.main = new Main();
-		this.jest = new Jest();
-		this.estEnTour = false;
-		this.Score = 0;
-	}
-
 	public Joueur() {
 
 	}
