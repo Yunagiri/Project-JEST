@@ -26,7 +26,18 @@ public class Carte {
 		this.faceCachee = faceCachee;
 		this.condi = condi;
 	}
-	
+	public boolean getFaceCachee() {
+		return this.faceCachee;
+	}
+	public Conditions getCondi () {
+		return this.condi;
+	}
+	public suits getEnseigne() {
+		return this.enseigne;
+	}
+	public int getValeur() {
+		return this.valeur;
+	}
 	public int getHauteur() {
 		return this.hauteur;
 	}

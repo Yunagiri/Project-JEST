@@ -17,6 +17,25 @@ public class Partie {
 	private int nbJoueurs;
 
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+	
+	public boolean getPartieEnCours() {
+		return this.partieEnCours;
+	}
+	public int getNumeroRound() {
+		return this.numeroRound;
+	}
+	public Pioche getPiocheGrand() {
+		return this.piocheGrand;
+	}
+	public Trophee getTrophee() {
+		return this.trophee;
+	}
+	public int getnbJoueurs() {
+		return this.nbJoueurs;
+	}
+	public Tas getpiochePetite() {
+		return this.piochePetite;
+	}
 
 	public Partie() {
 		numeroRound = 1;
@@ -27,41 +46,106 @@ public class Partie {
 	}
 
 	// create cartes and add to pioche
+	
 	public void creerPioche() {
-		for (int i = 1; i < 5; i++) {
-			for (suits s : suits.values()) {
-				action temp = action.getRandomAction();
-				if (temp == action.HIGHEST || temp == action.LOWEST) {
-					// System.out.println(action.getRandomAction());
-					Conditions cond = new Conditions(temp, suits.getRandomSuits());
-					// System.out.println("Creation d'une condition a 2 parametres");
-					SuitCards carte = new SuitCards(i, true, cond, s);
-					this.piocheGrand.listCarte.add(carte);
-					this.piocheGrand.nombreDeCartes++;
-				} else if (temp == action.MAJORITY) {
-					Random r = new Random();
-					Conditions cond = new Conditions(temp, 1 + r.nextInt(4));
-					SuitCards carte = new SuitCards(i, true, cond, s);
-					this.piocheGrand.listCarte.add(carte);
-					this.piocheGrand.nombreDeCartes++;
-				} else {
-					// System.out.println(temp);
-					Conditions cond = new Conditions(temp);
-					// System.out.println("Creation d'une condition a 1 parametre");
-					SuitCards carte = new SuitCards(i, true, cond, s);
-					this.piocheGrand.listCarte.add(carte);
-					this.piocheGrand.nombreDeCartes++;
-				}
-			}
-		}
-		for (int i = 1; i <= this.piocheGrand.listCarte.size(); i++) {
-			this.piocheGrand.listCarte.get(i - 1).valeur = i;
-		}
+		ArrayList<Carte> deck = this.piocheGrand.listCarte;
 		Joker joker = new Joker();
-		this.piocheGrand.listCarte.add(joker);
-		joker.valeur = 0;
-		this.piocheGrand.nombreDeCartes++;
+		deck.add(joker);
+		
+		Conditions lowest_trefle = new Conditions(action.LOWEST, suits.TREFLE);
+		Carte PIQUE_4 = new Carte(4,true,lowest_trefle);
+		deck.add(PIQUE_4);
+		
+		Conditions lowest_pique = new Conditions(action.LOWEST, suits.PIQUE);
+		Carte TREFLE_4 = new Carte(4,true,lowest_pique);
+		deck.add(TREFLE_4);
+		
+		Conditions Joker = new Conditions(action.JOKER);
+		Carte COEUR_4 = new Carte(4,true,Joker);
+		deck.add(COEUR_4);
+		
+		Conditions best_nojoker = new Conditions(action.BEST_NOJOKER);
+		Carte CARREAU_4 = new Carte(4,true,best_nojoker);
+		deck.add(CARREAU_4);
+		
+		Conditions lowest_coeur = new Conditions(action.LOWEST, suits.COEUR);
+		Carte TREFLE_3 = new Carte(4,true,lowest_coeur);
+		deck.add(TREFLE_3);
+		
+		Conditions maj_2 = new Conditions(action.MAJORITY, 2);
+		Carte PIQUE_3 = new Carte(4,true,maj_2);
+		deck.add(PIQUE_3);
+		
+		Conditions lowest_carreau = new Conditions(action.LOWEST, suits.CARREAU);
+		Carte CARREAU_3 = new Carte(4,true,lowest_carreau);
+		deck.add(CARREAU_3);
+		
+		Carte COEUR_3 = new Carte(3,true, Joker);
+		deck.add(COEUR_3);
+		
+		Carte TREFLE_2 = new Carte(4,true,lowest_coeur);
+		deck.add(TREFLE_2);
+		
+		Conditions maj_3 = new Conditions(action.MAJORITY, 3);
+		Carte PIQUE_2 = new Carte(4,true,maj_3);
+		deck.add(PIQUE_2);
+		
+		Conditions highest_carreau = new Conditions(action.HIGHEST, suits.CARREAU);
+		Carte CARREAU_2 = new Carte(4,true,highest_carreau);
+		deck.add(CARREAU_2);
+		
+		Carte COEUR_2 = new Carte(2,true,Joker);
+		deck.add(COEUR_2);
+		
+		Carte COEUR_1 = new Carte(1,true,Joker);
+		deck.add(COEUR_1);
+		
+		Carte PIQUE_1 = new Carte(1,true, lowest_trefle);
+		deck.add(PIQUE_1);
+		
+		Conditions highest_pique = new Conditions(action.HIGHEST, suits.PIQUE );
+		Carte TREFLE_1 = new Carte(4,true,highest_pique);
+		deck.add(TREFLE_1);
+		
+		Conditions maj_4 = new Conditions(action.MAJORITY, 4);
+		Carte CARREAU_1 = new Carte(4,true,maj_4);
+		deck.add(CARREAU_1);
 	}
+//	public void creerPioche() {
+//		for (int i = 1; i < 5; i++) {
+//			for (suits s : suits.values()) {
+//				action temp = action.getRandomAction();
+//				if (temp == action.HIGHEST || temp == action.LOWEST) {
+//					// System.out.println(action.getRandomAction());
+//					Conditions cond = new Conditions(temp, suits.getRandomSuits());
+//					// System.out.println("Creation d'une condition a 2 parametres");
+//					SuitCards carte = new SuitCards(i, true, cond, s);
+//					this.piocheGrand.listCarte.add(carte);
+//					this.piocheGrand.nombreDeCartes++;
+//				} else if (temp == action.MAJORITY) {
+//					Random r = new Random();
+//					Conditions cond = new Conditions(temp, 1 + r.nextInt(4));
+//					SuitCards carte = new SuitCards(i, true, cond, s);
+//					this.piocheGrand.listCarte.add(carte);
+//					this.piocheGrand.nombreDeCartes++;
+//				} else {
+//					// System.out.println(temp);
+//					Conditions cond = new Conditions(temp);
+//					// System.out.println("Creation d'une condition a 1 parametre");
+//					SuitCards carte = new SuitCards(i, true, cond, s);
+//					this.piocheGrand.listCarte.add(carte);
+//					this.piocheGrand.nombreDeCartes++;
+//				}
+//			}
+//		}
+//		for (int i = 1; i <= this.piocheGrand.listCarte.size(); i++) {
+//			this.piocheGrand.listCarte.get(i - 1).valeur = i;
+//		}
+//		Joker joker = new Joker();
+//		this.piocheGrand.listCarte.add(joker);
+//		joker.valeur = 0;
+//		this.piocheGrand.nombreDeCartes++;
+//	}
 
 	// creer pioche petite
 	public void creerPiochePetit() {
@@ -512,7 +596,7 @@ public class Partie {
 		while (condition) {
 			System.out.println(partie.piocheGrand.nombreDeCartes);
 			partie.distribuerCartes();
-
+			System.out.println();
 			partie.DisplayMain();
 
 			partie.faireOffreAll();

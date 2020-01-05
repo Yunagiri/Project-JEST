@@ -12,6 +12,15 @@ public class Joueur {
 	public Joueur() {
 
 	}
+	public boolean getEstEnTour() {
+		return this.estEnTour;
+	}
+	public Main getMain() {
+		return this.main;
+	}
+	public Jest getJest() {
+		return this.jest;
+	}
 	public void setScore(int i) {
 		this.Score = i;
 	}
