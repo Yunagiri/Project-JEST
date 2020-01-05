@@ -21,6 +21,9 @@ public class JoueurVirt extends Joueur {
     	else {
     		this.strat = new Difficile();
     	}
+    	Joueur.numero = numero +1;
+		this.id = numero;
+		
     }
     
     public void faireOffre() {

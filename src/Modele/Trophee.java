@@ -203,9 +203,13 @@ public class Trophee extends Tas {
 		}
 		if ( cantakecard1 = true) { 
 		joueur1.prendreOffre(0, this);
+		this.setChanged();
+		this.notifyObservers(0);
 		}
 		if ( cantakecard2 = true) {
 		joueur2.prendreOffre(1, this);
+		this.setChanged();
+		this.notifyObservers(1);
 		}
 		this.listCarte.clear();
 		this.nombreDeCartes = 0;

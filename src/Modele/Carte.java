@@ -4,13 +4,13 @@ public class Carte {
 
 	protected int hauteur;
 
-	protected boolean faceCachee;
+	public boolean faceCachee;
 	
 	protected Conditions condi;
 	
 	protected suits enseigne;
 	
-	protected int valeur;
+	public int valeur;
 
 	//Constructor for SuitCards
 	public Carte(int hauteur, boolean faceCachee, Conditions condi, suits enseigne) {
@@ -41,9 +41,14 @@ public class Carte {
 	public int getHauteur() {
 		return this.hauteur;
 	}
-	
+	public boolean getEtat() {
+		return this.faceCachee;
+	}
 	public void setHauteur(int hauteur) {
 		this.hauteur = hauteur;
+	}
+	public  int getValeur() {
+		return valeur;
 	}
 
 	public String montrer() {

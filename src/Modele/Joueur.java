@@ -1,12 +1,14 @@
 package Modele;
 
-public class Joueur {
+public class Joueur extends Observable {
 
-	protected String prenom;
-	protected boolean estEnTour;
+	public String prenom;
+	public boolean estEnTour;
 	protected int Score;
+	public static int numero =0;
+	protected int id;
 
-	protected Main main;
+	public Main main;
 	protected Jest jest;
 
 	public Joueur() {
@@ -30,12 +32,20 @@ public class Joueur {
 	public String getPrenom() {
 		return this.prenom;
 	}
+	public int getId() {
+		return this.id;
+	}
+	public Main getMain() {
+		return this.main;
+	}
 	// Take a card from another Tas, then remove it from the said Tas and decrease
 	// it's nombreDeCartes accordingly.
 	public void prendreCartes(Carte carte, Tas autreTas) {
 		this.main.ajouterCartes(carte);
 		autreTas.listCarte.remove(autreTas.nombreDeCartes - 1);
 		autreTas.nombreDeCartes--;
+		this.setChanged();
+		this.notifyObservers(null);
 	}
 
 	// This method allows a player to make an offer, choosing a card to show face
@@ -75,9 +85,11 @@ public class Joueur {
 	public void prendreOffre(int posCarte, Joueur j) {
 		String msg = String.format("%s prend la carte %d de %s et le met dans son jest.", this.prenom, posCarte, j.prenom);
 		System.out.println(msg);
-		this.jest.ajouterCartes(j.main.listCarte.get(posCarte-1));
-		j.main.listCarte.remove(posCarte-1);
+		this.jest.ajouterCartes(j.main.listCarte.get(posCarte));
+		j.main.listCarte.remove(posCarte);
 		j.main.nombreDeCartes--;
+		j.setChanged();
+		j.notifyObservers("CartePrise");
 	}
 	public void prendreOffre(int i, Trophee t) {
 		String msg = String.format("%s prend une carte de trophee et le met dans son jest.", this.prenom);
@@ -85,6 +97,8 @@ public class Joueur {
 		this.jest.ajouterCartes(t.listCarte.get(i));
 		//t.listCarte.remove(i);
 		//t.nombreDeCartes--;
+		this.setChanged();
+		this.notifyObservers(i);
 	}
 
 	public void montrerCarte() {

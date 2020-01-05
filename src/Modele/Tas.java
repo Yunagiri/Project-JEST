@@ -3,9 +3,9 @@ package Modele;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tas {
+public class Tas extends Observable {
 
-	protected int nombreDeCartes;
+	public int nombreDeCartes;
 
 	// The array used to stock the cards
 	public ArrayList<Carte> listCarte = new ArrayList<Carte>();
