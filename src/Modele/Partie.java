@@ -6,17 +6,24 @@ import java.util.Random;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class Partie {
+import javax.swing.JOptionPane;
+
+public class Partie extends Observable {
 	// private int rounds;
 	private boolean partieEnCours;
-	private int numeroRound;
+	public int numeroRound;
 
-	private Pioche piocheGrand;
-	private Trophee trophee;
-	private Tas piochePetite;
+	public Pioche piocheGrand;
+	public Trophee trophee;
+	public Tas piochePetite;
 	private int nbJoueurs;
+	private int nbJoueursPhysic;
 
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+	
+	private boolean waitForIt;
+	
+	public Joueur joueurActuel;
 
 	public Partie() {
 		numeroRound = 1;
@@ -25,7 +32,18 @@ public class Partie {
 		trophee = new Trophee();
 		System.out.println("Commence une partie de Jest...");
 	}
-
+	public Trophee getTrophee() {
+		return this.trophee;
+	}
+	public void setNbJoueurs(int a) {
+		this.nbJoueurs = a;
+	}
+	public void setNbJoueursPhysic(int a) {
+		this.nbJoueursPhysic = a;
+	}
+	public int getNbJoueurs() {
+		return this.nbJoueurs;
+	}
 	// create cartes and add to pioche
 	public void creerPioche() {
 		for (int i = 1; i < 5; i++) {
@@ -85,7 +103,7 @@ public class Partie {
 			Iterator<Joueur> it = joueurs.iterator();
 			while (it.hasNext()) {
 				Joueur o = (Joueur) it.next();
-				o.prendreOffre(1, o);
+				o.prendreOffre(0, o);
 			}
 		}
 	}
@@ -95,6 +113,7 @@ public class Partie {
 		this.piocheGrand.melanger();
 		for (int i = 0; i < 2; i++) {
 			this.piocheGrand.distribuer(this.trophee);
+			System.out.println(trophee.listCarte.size());
 		}
 		this.montrerTrophee();
 	}
@@ -141,7 +160,7 @@ public class Partie {
 				String msg = String.format("Distribution en cours au joueur %s", j.prenom);
 				System.out.println(msg);
 				for (int i = 0; i < 2; i++) {
-					j.prendreCartes(this.piochePetite.listCarte.get(piochePetite.nombreDeCartes - 1),
+					j.prendreCartes(this.piochePetite.listCarte.get(piochePetite.nombreDeCartes-1),
 							this.piochePetite);
 
 				}
@@ -486,7 +505,18 @@ public class Partie {
 			}
 		}
 		System.out.println("Le vainqueur est " + JoueurMax.prenom);
+		JOptionPane.showMessageDialog(null,"1er: " + JoueurMax.prenom+ " avec " + JoueurMax.getScore()+"\n");
 
+	}
+	public synchronized void pause() throws InterruptedException{
+		this.waitForIt=true;
+		while(this.waitForIt) {
+			this.wait();
+		}
+	}
+	public synchronized void continu() {
+		this.waitForIt=false;
+		this.notifyAll();
 	}
 
 	public void afficherJest() {

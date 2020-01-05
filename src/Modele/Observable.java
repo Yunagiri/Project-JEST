@@ -3,7 +3,7 @@ package Modele;
 import Modele.Observable;
 
 public class Observable {
-	public final static int MAX_OBSERVES =10;
+	public final static int MAX_OBSERVES =100;
 	private Observer[] observers;
 	private int numberOfObservers;
 	private boolean hasChanged;
@@ -39,14 +39,14 @@ public class Observable {
 			numberOfObservers--;
 		}
 	}
-	/*public void notifyObservers(Object o) {
+	public void notifyObservers(Object o) {
 		if (hasChanged == true) {
 			for (int i=0; i< numberOfObservers; i++) {
-				observers[i].update( Observable a , Object o);
+				observers[i].update(this,o);
 			}
 			hasChanged = false;
 		}
-	}*/
+	}
 	public void setChanged() {
 		hasChanged = true;
 	}

@@ -90,10 +90,16 @@ public class PanelJoueur extends JPanel implements Observer{
 	}
 	
 	public void renouvellerImageCarte(Joueur joueur) throws IOException {
-		for(int i=0;i<2;i++) {
+		for(int i=0;i<joueur.getMain().listCarte.size();i++) {
 			if(joueur.getMain().listCarte.get(i)!=null) {
 				this.cartes[i].renouvellerEtatDeCarte(joueur.getMain().listCarte.get(i).getEtat(),joueur.getMain().listCarte.get(i));
 			}
+		}
+		if(joueur.getMain().listCarte.size()<2) {
+			this.cartes[1].setVisible(false);
+		}
+		else {
+			this.cartes[1].setVisible(true);
 		}
 	}
 	public void setNomJoueur(Joueur joueur) {
@@ -114,6 +120,7 @@ public class PanelJoueur extends JPanel implements Observer{
 	}
 	
 	public void update(Observable o, Object a) {
+		System.out.println("OKKKKKKKKKKKKKK");
 		if(o instanceof Joueur) {
 			Joueur joueur = (Joueur) o;
 			try {

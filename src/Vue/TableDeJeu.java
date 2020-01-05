@@ -43,27 +43,29 @@ public class TableDeJeu extends JPanel implements Observer{
 		this.setBorder(BorderFactory.createLineBorder(Color.GREEN));
 		
 		trophee[0]= new ButtonCard();
-		trophee[0].setBounds(this.getWidth()*370/600,this.getHeight()*120/400,this.getWidth()*190/600,this.getHeight()*272/400);
+		trophee[0].setSize(90,119);
+		trophee[0].setLocation(230,90);
 		this.add(trophee[0]);
 		
 		trophee[1]= new ButtonCard();
-		trophee[1].setSize(this.getWidth()*190/600,this.getHeight()*272/400);
-		trophee[1].setLocation(this.getWidth()*160/600,this.getHeight()*120/400);
+		trophee[1].setSize(90,119);
+		trophee[1].setLocation(60,90);
 		this.add(trophee[1]);
 		
 
 	}
+	public ButtonCard[] getButtonCard() {
+		return trophee;
+	}
+	
 	@Override
 	public void update(Observable o, Object arg1) {
-		if(o instanceof Trick) {
-			this.getButtonTrick().setEnabled(false);
-			this.afficherTrickRetourne((Trick)o);
+		if(o instanceof Trophee) {
+//			if(arg1.equals(1)||arg1.equals(0)) {
+				trophee[(Integer) arg1].setVisible(false);
+//			}
+		
+		
 		}
-		if(o instanceof Jeu) {
-			t.setText("Trick: "+((Jeu) o).getTrick().size());
-			this.afficherTrickRetourne(((Jeu)o).prendreTrick());
-		}
-		this.repaint();
-		this.validate();
 	}
 }
