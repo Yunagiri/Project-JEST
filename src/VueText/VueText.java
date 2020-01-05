@@ -54,7 +54,6 @@ public class VueText extends Thread implements Observer {
 			if(st.equals("oui")) {partie.console=true;}
 			if(partie.console) {
 				partie.faireOffreAll();
-				partie.console=true;
 				partie.continu();
 				System.out.println("concho");
 				try {

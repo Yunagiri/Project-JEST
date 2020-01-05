@@ -34,8 +34,7 @@ public class InterfaceTest {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfaceTest window;
-					window = new InterfaceTest();
+					InterfaceTest window = new InterfaceTest();
 					window.fp.setVisible(true);
 //					JOptionPane.showMessageDialog(null, "Choisir une carte a faire offre");
 //					Thread t= new Thread() {
