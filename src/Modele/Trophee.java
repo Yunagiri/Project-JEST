@@ -29,6 +29,7 @@ public class Trophee extends Tas {
 						}
 					}
 				}
+				
 					JoueurMax = joueurHighest.get(0);
 					int index = 0;
 					for (Joueur joueur21 : joueurHighest) {
@@ -55,7 +56,9 @@ public class Trophee extends Tas {
 						}
 					}
 				}
-				JoueurMin = joueurLowest.get(0);
+				if(joueurLowest.size()>0) {
+					JoueurMin = joueurLowest.get(0);
+				}
 				int index = 0;
 				for (Joueur joueur : joueurLowest) {
 					for (int i = 0; i < joueur.jest.listCarte.size(); i++) {

@@ -57,6 +57,8 @@ public class Joueur extends Observable {
 		for (int i = 0; i < this.main.listCarte.size(); i++) {
 			System.out.println(i + 1 + ". " + this.main.listCarte.get(i).montrer());
 		}
+		this.setChanged();
+		this.notifyObservers(null);
 	}
 	
 	public void montrerOffre() {

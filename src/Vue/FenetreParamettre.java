@@ -13,6 +13,7 @@ import Modele.Joueur;
 import Modele.JoueurPhys;
 import Modele.JoueurVirt;
 import Modele.Partie;
+import VueText.VueText;
 
 import java.awt.Font;
 import javax.swing.JCheckBox;
@@ -113,80 +114,87 @@ public class FenetreParamettre extends JFrame {
 					}
 					FenetreParamettre.this.setVisible(false);
 //					partie.continu();
+					VueText vue = new VueText(partie);
 					partie.creerPioche();
 					partie.piocheGrand.melanger();
 					partie.preparer();
 					JestInterface jf= new JestInterface(partie);
 					jf.setVisible(true);
-					JOptionPane.showMessageDialog(null, "Choisir une carte a faire offre");
+					System.out.println("Choisir une carte a faire offre");
+					vue.start();
 					Thread t= new Thread() {
 						public void run() {
 							try {
 								boolean condition =true;
 								while(condition) {
 									partie.distribuerCartes();
+									partie.continu();
+									JOptionPane.showMessageDialog(null, "Choisir une carte a faire offre");
 									partie.pause();
-									partie.choisirJoueur();
-									int tours = 0;
-									ArrayList<Joueur> temp1 = new ArrayList<Joueur>();
-									ArrayList<Joueur> joueurs= partie.joueurs;
-									temp1.addAll(joueurs);
-									while (tours < joueurs.size()) {
-										// Actions to take in a single turn of a player: Choose a player, take a card in
-										// their hand and put it in jest.
-										// for (int i = 0; i < this.joueurs.size(); i++) {
-										Iterator<Joueur> itJoueur = joueurs.iterator();
-										while (itJoueur.hasNext()) {
-											Joueur a = (Joueur) itJoueur.next();
-											while (a.estEnTour) {
-												temp1.remove(a);
-												boolean differentPrenom = true;
-												if (a instanceof JoueurVirt) {
-													Thread.sleep(500);
-													Joueur d;
-													do {
-														d = ((JoueurVirt) a).choisirJoueur(joueurs);
-														differentPrenom = true;
-														if (a.prenom.equals(d.prenom)) {
-															differentPrenom = false;
-															ArrayList<Joueur> temp = new ArrayList<Joueur>();
-															temp.addAll(joueurs);
-															temp.remove(a);
-															for (Joueur j : temp) {
-																if (j.main.nombreDeCartes == 2) {
-																	System.out.println("Il reste encore des gens ayant 2 cartes!");
-																	differentPrenom = true;
+									System.out.println("shdfkjashglkagj");
+									if(!partie.console) {
+										partie.choisirJoueur();
+										int tours = 0;
+										ArrayList<Joueur> temp1 = new ArrayList<Joueur>();
+										ArrayList<Joueur> joueurs= partie.joueurs;
+										temp1.addAll(joueurs);
+										while (tours < joueurs.size()) {
+											// Actions to take in a single turn of a player: Choose a player, take a card in
+											// their hand and put it in jest.
+											// for (int i = 0; i < this.joueurs.size(); i++) {
+											Iterator<Joueur> itJoueur = joueurs.iterator();
+											while (itJoueur.hasNext()) {
+												Joueur a = (Joueur) itJoueur.next();
+												while (a.estEnTour) {
+													temp1.remove(a);
+													boolean differentPrenom = true;
+													if (a instanceof JoueurVirt) {
+														Thread.sleep(500);
+														Joueur d;
+														do {
+															d = ((JoueurVirt) a).choisirJoueur(joueurs);
+															differentPrenom = true;
+															if (a.prenom.equals(d.prenom)) {
+																differentPrenom = false;
+																ArrayList<Joueur> temp = new ArrayList<Joueur>();
+																temp.addAll(joueurs);
+																temp.remove(a);
+																for (Joueur j : temp) {
+																	if (j.main.nombreDeCartes == 2) {
+																		System.out.println("Il reste encore des gens ayant 2 cartes!");
+																		differentPrenom = true;
+																	}
 																}
-															}
-														} else if (d.main.nombreDeCartes == 1) {
-															String msg = String.format("%s n'a seulement qu'une carte", d.prenom);
-															System.out.println(msg);
-														} else {
-															differentPrenom = false;
-														}
-													} while (differentPrenom);
-	
-													Joueur prochainJoueur = new Joueur();
-													Iterator<Joueur> it = joueurs.iterator();
-													while (it.hasNext()) {
-														Joueur o = (Joueur) it.next();
-														if (o.getPrenom().equals(d.prenom)) {
-															Thread.sleep(1000);
-															a.prendreOffre(0, o);
-															if (temp1.indexOf(o) != -1) {
-																prochainJoueur = o;
+															} else if (d.main.nombreDeCartes == 1) {
+																String msg = String.format("%s n'a seulement qu'une carte", d.prenom);
+																System.out.println(msg);
 															} else {
-																Iterator<Joueur> it1 = temp1.iterator();
-																if (temp1.size() != 0) {
-																	prochainJoueur = it1.next();
-																	while (it1.hasNext()) {
-																		Joueur joueurActuel = (Joueur) it1.next();
-																		for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-																			if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
-																				if (joueurActuel.main.listCarte
-																						.get(counter).valeur > prochainJoueur.main.listCarte
-																								.get(counter).valeur) {
-																					prochainJoueur = joueurActuel;
+																differentPrenom = false;
+															}
+														} while (differentPrenom);
+		
+														Joueur prochainJoueur = new Joueur();
+														Iterator<Joueur> it = joueurs.iterator();
+														while (it.hasNext()) {
+															Joueur o = (Joueur) it.next();
+															if (o.getPrenom().equals(d.prenom)) {
+																Thread.sleep(1000);
+																a.prendreOffre(0, o);
+																if (temp1.indexOf(o) != -1) {
+																	prochainJoueur = o;
+																} else {
+																	Iterator<Joueur> it1 = temp1.iterator();
+																	if (temp1.size() != 0) {
+																		prochainJoueur = it1.next();
+																		while (it1.hasNext()) {
+																			Joueur joueurActuel = (Joueur) it1.next();
+																			for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
+																				if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
+																					if (joueurActuel.main.listCarte
+																							.get(counter).valeur > prochainJoueur.main.listCarte
+																									.get(counter).valeur) {
+																						prochainJoueur = joueurActuel;
+																					}
 																				}
 																			}
 																		}
@@ -194,66 +202,79 @@ public class FenetreParamettre extends JFrame {
 																}
 															}
 														}
+														partie.finirTour(a);
+														partie.donnerTour(prochainJoueur);
+														tours++;
+													}else {
+														System.out.println("A vous de jouer!");
+														partie.notifyObservers("prendreOffre");
+														JOptionPane.showMessageDialog(null, "A vous de jouer");
+														partie.pause();
+														Joueur prochainJoueur = new Joueur();
+														System.out.println("Recherche du joueur en cours");
+														/*
+														 * for (int recherche = 0; recherche < this.joueurs.size(); recherche++) { if
+														 * (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
+														 * this.joueurs.get(i).prendreOffre(z, this.joueurs.get(recherche));
+														 * prochainJoueur = this.joueurs.get(recherche); } }
+														 */
+		//												Iterator<Joueur> it = joueurs.iterator();
+		//												while (it.hasNext()) {
+		//													Joueur o = (Joueur) it.next();
+		//													if (o.getPrenom().equals(window.partie.joueurActuel.prenom)) {
+																if (temp1.indexOf(partie.joueurActuel) != -1) {
+																	prochainJoueur = partie.joueurActuel;
+																} else {
+																	Iterator<Joueur> it1 = temp1.iterator();
+																	if (temp1.size() != 0) {
+																		prochainJoueur = it1.next();
+																		while (it1.hasNext()) {
+																			Joueur joueurActuel1 = (Joueur) it1.next();
+																			for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
+																				if (!joueurActuel1.main.listCarte.get(counter).faceCachee) {
+																					if (joueurActuel1.main.listCarte
+																							.get(counter).valeur > prochainJoueur.main.listCarte
+																									.get(counter).valeur) {
+																						prochainJoueur = joueurActuel1;
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+		//													}
+		//												}
+														partie.finirTour(a);
+														partie.donnerTour(prochainJoueur);
+														tours++;
 													}
-													partie.finirTour(a);
-													partie.donnerTour(prochainJoueur);
-													tours++;
-												}else {
-													JOptionPane.showMessageDialog(null, "A vous de jouer");
-													partie.pause();
-													Joueur prochainJoueur = new Joueur();
-													System.out.println("Recherche du joueur en cours");
-													/*
-													 * for (int recherche = 0; recherche < this.joueurs.size(); recherche++) { if
-													 * (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
-													 * this.joueurs.get(i).prendreOffre(z, this.joueurs.get(recherche));
-													 * prochainJoueur = this.joueurs.get(recherche); } }
-													 */
-	//												Iterator<Joueur> it = joueurs.iterator();
-	//												while (it.hasNext()) {
-	//													Joueur o = (Joueur) it.next();
-	//													if (o.getPrenom().equals(window.partie.joueurActuel.prenom)) {
-															if (temp1.indexOf(partie.joueurActuel) != -1) {
-																prochainJoueur = partie.joueurActuel;
-															} else {
-																Iterator<Joueur> it1 = temp1.iterator();
-																if (temp1.size() != 0) {
-																	prochainJoueur = it1.next();
-																	while (it1.hasNext()) {
-																		Joueur joueurActuel1 = (Joueur) it1.next();
-																		for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
-																			if (!joueurActuel1.main.listCarte.get(counter).faceCachee) {
-																				if (joueurActuel1.main.listCarte
-																						.get(counter).valeur > prochainJoueur.main.listCarte
-																								.get(counter).valeur) {
-																					prochainJoueur = joueurActuel1;
-																				}
-																			}
-																		}
-																	}
-																}
-															}
-	//													}
-	//												}
-													partie.finirTour(a);
-													partie.donnerTour(prochainJoueur);
-													tours++;
+												
 												}
-											
 											}
 										}
+									}else {
+										System.out.println("jesuisla");
+										partie.continu();
+										System.out.println("haha");
+										System.out.println("haha");
+
+										partie.pause();
+										System.out.println("con cac");
 									}
 									partie.numeroRound++;
-
+									
 									if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
 										condition = false;
 									}
 									partie.creerPiochePetit();
-
+									
 									partie.piochePetite.melanger();
 								}
+								partie.notifyObservers("terminer");
+								partie.continu();
 								partie.trophee.distribuerTrophee(partie.joueurs, new CompteurDeScore1());
 								partie.compterScore();
+								partie.afficherJest();
 								partie.choisirVainqueur();
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block

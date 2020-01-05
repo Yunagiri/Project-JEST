@@ -33,7 +33,7 @@ public class ButtonCard extends JButton {
 	}
 	public void renouvellerEtatDeCarte(boolean b, Carte carte) throws IOException {
 		this.removeAll();
-		b=false; // nho doi 
+//		b=false; // nho doi 
 		if(b) {
 			BufferedImage image = ImageIO.read(new File("image/dos.jpg"));
 			ImageIcon icon = new ImageIcon(image.getScaledInstance(this.getWidth(),this.getHeight(), image.SCALE_SMOOTH));

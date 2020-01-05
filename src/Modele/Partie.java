@@ -40,6 +40,7 @@ public class Partie extends Observable {
 	private boolean waitForIt;
 	
 	public Joueur joueurActuel;
+	public boolean console=false;
 
 	public Partie() {
 		numeroRound = 1;
@@ -63,68 +64,96 @@ public class Partie extends Observable {
 	// create cartes and add to pioche
 	
 	public void creerPioche() {
-		ArrayList<Carte> deck = this.piocheGrand.listCarte;
+		
+		
 		Joker joker = new Joker();
-		deck.add(joker);
+		this.piocheGrand.listCarte.add(joker);
+		this.piocheGrand.listCarte.get(0).valeur = 0;
 		
 		Conditions lowest_trefle = new Conditions(action.LOWEST, suits.TREFLE);
-		Carte PIQUE_4 = new Carte(4,true,lowest_trefle);
-		deck.add(PIQUE_4);
+		SuitCards PIQUE_4 = new SuitCards(4,true,lowest_trefle, suits.PIQUE);
+		this.piocheGrand.listCarte.add(PIQUE_4);
+		this.piocheGrand.listCarte.get(1).valeur = 16;
 		
 		Conditions lowest_pique = new Conditions(action.LOWEST, suits.PIQUE);
-		Carte TREFLE_4 = new Carte(4,true,lowest_pique);
-		deck.add(TREFLE_4);
+		SuitCards TREFLE_4 = new SuitCards(4,true,lowest_pique, suits.TREFLE);
+		this.piocheGrand.listCarte.add(TREFLE_4);
+		this.piocheGrand.listCarte.get(2).valeur = 15;
 		
 		Conditions Joker = new Conditions(action.JOKER);
-		Carte COEUR_4 = new Carte(4,true,Joker);
-		deck.add(COEUR_4);
+		SuitCards COEUR_4 = new SuitCards(4,true,Joker, suits.COEUR);
+		this.piocheGrand.listCarte.add(COEUR_4);
+		this.piocheGrand.listCarte.get(3).valeur = 13;
 		
 		Conditions best_nojoker = new Conditions(action.BEST_NOJOKER);
-		Carte CARREAU_4 = new Carte(4,true,best_nojoker);
-		deck.add(CARREAU_4);
+		SuitCards CARREAU_4 = new SuitCards(4,true,best_nojoker, suits.CARREAU);
+		this.piocheGrand.listCarte.add(CARREAU_4);
+		this.piocheGrand.listCarte.get(4).valeur = 14;
+
 		
 		Conditions lowest_coeur = new Conditions(action.LOWEST, suits.COEUR);
-		Carte TREFLE_3 = new Carte(4,true,lowest_coeur);
-		deck.add(TREFLE_3);
-		
+		SuitCards TREFLE_3 = new SuitCards(3,true,lowest_coeur, suits.TREFLE);
+		this.piocheGrand.listCarte.add(TREFLE_3);
+		this.piocheGrand.listCarte.get(5).valeur = 11;
+
 		Conditions maj_2 = new Conditions(action.MAJORITY, 2);
-		Carte PIQUE_3 = new Carte(4,true,maj_2);
-		deck.add(PIQUE_3);
-		
+		SuitCards PIQUE_3 = new SuitCards(3,true,maj_2, suits.PIQUE);
+		this.piocheGrand.listCarte.add(PIQUE_3);
+		this.piocheGrand.listCarte.get(6).valeur = 12;
+
 		Conditions lowest_carreau = new Conditions(action.LOWEST, suits.CARREAU);
-		Carte CARREAU_3 = new Carte(4,true,lowest_carreau);
-		deck.add(CARREAU_3);
-		
-		Carte COEUR_3 = new Carte(3,true, Joker);
-		deck.add(COEUR_3);
-		
-		Carte TREFLE_2 = new Carte(4,true,lowest_coeur);
-		deck.add(TREFLE_2);
-		
+		SuitCards CARREAU_3 = new SuitCards(3,true,lowest_carreau, suits.CARREAU);
+		this.piocheGrand.listCarte.add(CARREAU_3);
+		this.piocheGrand.listCarte.get(7).valeur = 10;
+
+		SuitCards COEUR_3 = new SuitCards(3,true, Joker, suits.COEUR);
+		this.piocheGrand.listCarte.add(COEUR_3);
+		this.piocheGrand.listCarte.get(8).valeur = 9;
+
+		SuitCards TREFLE_2 = new SuitCards(2,true,lowest_coeur, suits.TREFLE);
+		this.piocheGrand.listCarte.add(TREFLE_2);
+		this.piocheGrand.listCarte.get(9).valeur = 7;
+
 		Conditions maj_3 = new Conditions(action.MAJORITY, 3);
-		Carte PIQUE_2 = new Carte(4,true,maj_3);
-		deck.add(PIQUE_2);
+		SuitCards PIQUE_2 = new SuitCards(2,true,maj_3,suits.PIQUE);
+		this.piocheGrand.listCarte.add(PIQUE_2);
+		this.piocheGrand.listCarte.get(10).valeur = 8;
+
 		
 		Conditions highest_carreau = new Conditions(action.HIGHEST, suits.CARREAU);
-		Carte CARREAU_2 = new Carte(4,true,highest_carreau);
-		deck.add(CARREAU_2);
+		SuitCards CARREAU_2 = new SuitCards(2,true,highest_carreau,suits.CARREAU);
+		this.piocheGrand.listCarte.add(CARREAU_2);
+		this.piocheGrand.listCarte.get(11).valeur = 6;
+
 		
-		Carte COEUR_2 = new Carte(2,true,Joker);
-		deck.add(COEUR_2);
+		SuitCards COEUR_2 = new SuitCards(2,true,Joker,suits.COEUR);
+		this.piocheGrand.listCarte.add(COEUR_2);
+		this.piocheGrand.listCarte.get(12).valeur =5 ;
+
 		
-		Carte COEUR_1 = new Carte(1,true,Joker);
-		deck.add(COEUR_1);
-		
-		Carte PIQUE_1 = new Carte(1,true, lowest_trefle);
-		deck.add(PIQUE_1);
+		SuitCards COEUR_1 = new SuitCards(1,true,Joker,suits.COEUR);
+		this.piocheGrand.listCarte.add(COEUR_1);
+		this.piocheGrand.listCarte.get(13).valeur = 1;
+
+		SuitCards PIQUE_1 = new SuitCards(1,true, lowest_trefle,suits.PIQUE);
+		this.piocheGrand.listCarte.add(PIQUE_1);
+		this.piocheGrand.listCarte.get(14).valeur = 4;
+
 		
 		Conditions highest_pique = new Conditions(action.HIGHEST, suits.PIQUE );
-		Carte TREFLE_1 = new Carte(4,true,highest_pique);
-		deck.add(TREFLE_1);
+		SuitCards TREFLE_1 = new SuitCards(1,true,highest_pique, suits.TREFLE);
+		this.piocheGrand.listCarte.add(TREFLE_1);
+		this.piocheGrand.listCarte.get(15).valeur = 3;
+
 		
 		Conditions maj_4 = new Conditions(action.MAJORITY, 4);
-		Carte CARREAU_1 = new Carte(4,true,maj_4);
-		deck.add(CARREAU_1);
+		SuitCards CARREAU_1 = new SuitCards(1,true,maj_4,suits.CARREAU);
+		this.piocheGrand.listCarte.add(CARREAU_1);
+		this.piocheGrand.listCarte.get(16).valeur = 2;
+
+		
+		this.piocheGrand.nombreDeCartes=17;
+		
 	}
 //	public void creerPioche() {
 //		for (int i = 1; i < 5; i++) {
@@ -171,6 +200,7 @@ public class Partie extends Observable {
 			Iterator<Joueur> it = joueurs.iterator();
 			while (it.hasNext()) {
 				Joueur o = (Joueur) it.next();
+				o.main.listCarte.get(0).faceCachee=true;
 				this.piochePetite.listCarte.add(o.main.listCarte.get(0));
 				o.main.listCarte.remove(0);
 				o.main.nombreDeCartes--;
@@ -236,6 +266,7 @@ public class Partie extends Observable {
 				System.out.println(msg);
 				for (int i = 0; i < 2; i++) {
 					j.prendreCartes(this.piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1), this.piocheGrand);
+//					this.piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1).faceCachee=true;
 
 				}
 			} else {
@@ -375,8 +406,9 @@ public class Partie extends Observable {
 						this.donnerTour(prochainJoueur);
 						tours++;
 					} else {
+//						System.out.println("choisir ");
 						Scanner sc = new Scanner(System.in);
-						sc.nextLine();
+//						sc.nextLine();
 						String prenom;
 						do {
 							System.out.println("Veuillez choisir un joueur");
@@ -572,7 +604,8 @@ public class Partie extends Observable {
 		for (Joueur i : joueurs) {
 			CompteurDeScore1 compteur = new CompteurDeScore1();
 			System.out.println("Score de " + i.prenom);
-			System.out.println(compteur.visiter(i.jest));
+			System.out.println(compteur.visiter(i.getJest()));
+			
 		}
 	}
 	

@@ -120,7 +120,6 @@ public class PanelJoueur extends JPanel implements Observer{
 	}
 	
 	public void update(Observable o, Object a) {
-		System.out.println("OKKKKKKKKKKKKKK");
 		if(o instanceof Joueur) {
 			Joueur joueur = (Joueur) o;
 			try {

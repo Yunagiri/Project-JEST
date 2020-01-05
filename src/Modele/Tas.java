@@ -49,7 +49,7 @@ public class Tas extends Observable {
 	// Distribute a card from this Tas to another one, the card distributed is the
 	// last one to arrive (LIFO)
 	public void distribuer(Tas autreTas) {
-		autreTas.ajouterCartes(this.listCarte.get(this.nombreDeCartes - 1));
+		autreTas.ajouterCartes(this.listCarte.get(this.nombreDeCartes-1));
 		this.listCarte.remove(this.nombreDeCartes - 1);
 		this.nombreDeCartes--;
 

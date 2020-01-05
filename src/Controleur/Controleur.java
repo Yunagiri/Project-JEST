@@ -89,6 +89,11 @@ public class Controleur {
 							panelJoueur[i].getPanelCarte()[j].addActionListener(prendreOffre);
 						}
 					}
+					for (Joueur j : Controleur.this.partie.joueurs) {
+						if (j instanceof JoueurVirt) {
+							((JoueurVirt) j).faireOffre();
+						}
+					}
 					Controleur.this.partie.continu();
 				}
 				
