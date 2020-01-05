@@ -14,6 +14,12 @@ public class Joueur extends Observable {
 	public Joueur() {
 
 	}
+	public boolean getEstEnTour() {
+		return this.estEnTour;
+	}
+	public Main getMain() {
+		return this.main;
+	}
 	public Jest getJest() {
 		return this.jest;
 	}
@@ -29,9 +35,7 @@ public class Joueur extends Observable {
 	public int getId() {
 		return this.id;
 	}
-	public Main getMain() {
-		return this.main;
-	}
+
 	// Take a card from another Tas, then remove it from the said Tas and decrease
 	// it's nombreDeCartes accordingly.
 	public void prendreCartes(Carte carte, Tas autreTas) {
