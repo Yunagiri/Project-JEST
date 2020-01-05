@@ -30,9 +30,7 @@ public class Partie extends Observable {
 	public Pioche getPiocheGrand() {
 		return this.piocheGrand;
 	}
-	public Trophee getTrophee() {
-		return this.trophee;
-	}
+
 	public int getnbJoueurs() {
 		return this.nbJoueurs;
 	}

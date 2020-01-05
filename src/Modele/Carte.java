@@ -35,9 +35,7 @@ public class Carte {
 	public suits getEnseigne() {
 		return this.enseigne;
 	}
-	public int getValeur() {
-		return this.valeur;
-	}
+
 	public int getHauteur() {
 		return this.hauteur;
 	}
