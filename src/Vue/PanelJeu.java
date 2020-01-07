@@ -36,8 +36,8 @@ public class PanelJeu extends JPanel implements Observer{
 	public PanelJeu(Partie partie,JoueurPhys jp) {
 		this.joueurPhys=jp;
 		setLayout(null);
-		this.setBackground(new Color(128, 0, 0));
-		this.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+		this.setBackground(new Color(0, 0, 255));
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.setSize(960,540);
 		pj=new PanelJoueur[partie.joueurs.size()];
 		if(partie.joueurs.size()==2) {
@@ -79,11 +79,11 @@ public class PanelJeu extends JPanel implements Observer{
 		partie.addObserver(tdj);
 		this.add(tdj);
 		
-		tour = new JLabel("TOUR");
+		tour = new JLabel("ROUND" + partie.numeroRound);
 		tour.setBounds(this.getWidth()*780/1920,this.getHeight()*20/1080,this.getWidth()*330/1920,this.getHeight()*200/1080);
 		tour.setHorizontalAlignment(SwingConstants.CENTER);
-		tour.setFont(new Font("Tahoma", Font.BOLD, 19));
-		tour.setForeground(new Color(255, 255, 255));
+		tour.setFont(new Font("Tahoma", Font.ITALIC, 19));
+		tour.setForeground(new Color(0, 255, 255));
 		this.add(tour);
 		partie.addObserver(this);
 		
@@ -111,14 +111,7 @@ public class PanelJeu extends JPanel implements Observer{
 	}
 	@Override
 	public void update(Observable o, Object arg1) {
-//		if(o instanceof Tour) {
-//			tour.setText("Tour de joueur "+ ((Tour)o).getTour());
-//		}
-//		if(o instanceof Jeu) {
-//			if(joueurPhys.getId()==((Jeu)o).getTour().getTour() && ((Jeu)o).getDoIt()) {
-//				this.getTableDeJeu().getButtonTrick().setEnabled(true);
-//			}
-//		}
+
 		
 	}
 	public PanelJoueur[] getPanelJoueur() {
@@ -130,5 +123,7 @@ public class PanelJeu extends JPanel implements Observer{
 	public JoueurPhys getJoueurReel() {
 		return joueurPhys;
 	}
+	
+	
 	
 }

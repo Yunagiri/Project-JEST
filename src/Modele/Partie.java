@@ -499,6 +499,7 @@ public class Partie extends Observable {
 
 		}
 		System.out.println("Fin du round");
+		this.numeroRound++;
 	}
 
 	public void montrerPiocheGrand() {
@@ -672,7 +673,6 @@ public class Partie extends Observable {
 
 			partie.lancerRound();
 
-			partie.numeroRound++;
 
 			if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
 				condition = false;
