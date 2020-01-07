@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import Modele.CompteurDeScore1;
+import Modele.CompteurDeScore2;
 import Modele.Joueur;
 import Modele.JoueurPhys;
 import Modele.JoueurVirt;
@@ -32,12 +33,13 @@ public class FenetreParamettre extends JFrame {
 	private JCheckBox chckbxDifficile;
 	private JCheckBox chckbxFacile;
 	private JButton btnNewButton;
-	
+	private JCheckBox chckbxOrigin;
+	private JCheckBox chckbxVar;
 	
 	
 	
 	public FenetreParamettre(Partie partie) {
-		this.setBounds(100, 100, 450, 300);
+		this.setBounds(100, 100, 450, 380);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		this.setVisible(false);
@@ -71,6 +73,7 @@ public class FenetreParamettre extends JFrame {
 		chckbxFacile.setBounds(157, 175, 75, 25);
 		this.getContentPane().add(chckbxFacile);
 		
+		
 		chckbxDifficile = new JCheckBox("Difficile");
 		chckbxDifficile.setBounds(276, 175, 113, 25);
 		chckbxDifficile.addActionListener(new ActionListener() {
@@ -85,14 +88,48 @@ public class FenetreParamettre extends JFrame {
 		lblNiveau.setBounds(21, 178, 128, 16);
 		this.getContentPane().add(lblNiveau);
 		
+		JLabel lblRegle = new JLabel("Regle a suivre: ");
+		lblRegle.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRegle.setBounds(21, 230, 128, 16);
+		this.getContentPane().add(lblRegle);
+		
+		chckbxOrigin = new JCheckBox("Originale");
+		chckbxOrigin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				chckbxVar.setSelected(false);
+			}
+		});
+		chckbxOrigin.setBounds(157, 230, 128, 16);
+		this.getContentPane().add(chckbxOrigin);
+		
+		chckbxVar = new JCheckBox("DLC Season Pass");
+		chckbxVar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				chckbxOrigin.setSelected(false);
+			}
+		});
+		chckbxVar.setBounds(276, 230, 128, 16);
+		this.getContentPane().add(chckbxVar);
+		
 		btnNewButton = new JButton("Valider");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
 				int a =Integer.parseInt(comboBox.getSelectedItem().toString());
 				int b =Integer.parseInt(comboBox_1.getSelectedItem().toString());
-				if((chckbxFacile.isSelected() || chckbxDifficile.isSelected())& a>=b) {
+				if((chckbxFacile.isSelected() || chckbxDifficile.isSelected())& a>=b && (chckbxVar.isSelected() || chckbxOrigin.isSelected())) {
 					partie.setNbJoueurs(Integer.parseInt(comboBox.getSelectedItem().toString()));
 					partie.setNbJoueursPhysic(Integer.parseInt(comboBox_1.getSelectedItem().toString()));
+					if (chckbxVar.isSelected()) {
+						CompteurDeScore1 compteur1 = new CompteurDeScore1();
+						partie.setCompteur(compteur1);
+						System.out.println("Original");
+					}
+					else if(chckbxOrigin.isSelected()) {
+						CompteurDeScore2 compteur2 = new CompteurDeScore2();
+						partie.setCompteur(compteur2);
+						System.out.println("Variante");
+					}
+					
 					for(int j=0;j<a;j++) {
 						if(j<b) {
 							Joueur joueur= new JoueurPhys(Joueur.numero+"");
@@ -120,7 +157,7 @@ public class FenetreParamettre extends JFrame {
 					partie.preparer();
 					JestInterface jf= new JestInterface(partie);
 					jf.setVisible(true);
-					System.out.println("Choisir une carte a faire offre");
+					System.out.println("Faites une offre!");
 					vue.start();
 					Thread t= new Thread() {
 						public void run() {
@@ -287,7 +324,7 @@ public class FenetreParamettre extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(167, 215, 97, 25);
+		btnNewButton.setBounds(167, 270, 97, 25);
 		this.getContentPane().add(btnNewButton);
 
 		 

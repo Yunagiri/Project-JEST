@@ -78,7 +78,7 @@ public class CompteurDeScore2 implements VisitorDeJest {
 			} else {
 				for (Carte c : j) {
 					if (c.enseigne == suits.COEUR) {
-						this.score = this.score + c.hauteur;
+						this.score = this.score - c.hauteur;
 					}
 				}
 			}

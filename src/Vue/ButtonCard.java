@@ -35,12 +35,12 @@ public class ButtonCard extends JButton {
 		this.removeAll();
 //		b=false; // nho doi 
 		if(b) {
-			BufferedImage image = ImageIO.read(new File("image/dos.jpg"));
+			BufferedImage image = ImageIO.read(new File("src/image/dos.jpg"));
 			ImageIcon icon = new ImageIcon(image.getScaledInstance(this.getWidth(),this.getHeight(), image.SCALE_SMOOTH));
 			this.setIcon(icon);
 		}
 		else {
-			BufferedImage image = ImageIO.read(new File("image/"+ carte.getValeur()+".png"));
+			BufferedImage image = ImageIO.read(new File("src/image/"+ carte.getValeur()+".png"));
 			ImageIcon icon = new ImageIcon(image.getScaledInstance(this.getWidth(),this.getHeight(), image.SCALE_SMOOTH));
 			this.setIcon(icon);
 		}
