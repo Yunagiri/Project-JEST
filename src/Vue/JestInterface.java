@@ -36,7 +36,7 @@ public class JestInterface extends JFrame{
 		
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBackground(Color.BLUE);
+		panel.setBackground(Color.BLACK);
 		panel.setSize(960,540);
 		this.add(panel);
 
@@ -61,5 +61,6 @@ public class JestInterface extends JFrame{
 		return pjeu;
 	}
 //	public ControleurJeu getControleur() {
-
+//		return ctr;
+//	}
 }

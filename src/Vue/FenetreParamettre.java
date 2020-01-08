@@ -131,7 +131,7 @@ public class FenetreParamettre extends JFrame {
 									partie.continu();
 									JOptionPane.showMessageDialog(null, "Choisir une carte a faire offre");
 									partie.pause();
-									System.out.println("shdfkjashglkagj");
+									System.out.println("--------------------------------");
 									if(!partie.console) {
 										partie.choisirJoueur();
 										int tours = 0;
@@ -226,10 +226,14 @@ public class FenetreParamettre extends JFrame {
 																	prochainJoueur = partie.joueurActuel;
 																} else {
 																	Iterator<Joueur> it1 = temp1.iterator();
+																	
 																	if (temp1.size() != 0) {
 																		prochainJoueur = it1.next();
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel1 = (Joueur) it1.next();
+																			while (joueurActuel1.estEnTour) {
+																				temp1.remove(joueurActuel1);
+																				boolean differentPrenom = true;
 																			for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
 																				if (!joueurActuel1.main.listCarte.get(counter).getFaceCachee()) {
 																					if (joueurActuel1.main.listCarte
@@ -242,8 +246,8 @@ public class FenetreParamettre extends JFrame {
 																		}
 																	}
 																}
-		//													}
-		//												}
+														}
+													}
 														partie.finirTour(a);
 														partie.donnerTour(prochainJoueur);
 														tours++;
@@ -253,13 +257,13 @@ public class FenetreParamettre extends JFrame {
 											}
 										}
 									}else {
-										System.out.println("jesuisla");
+										System.out.println("---------------------");
 										partie.continu();
-										System.out.println("haha");
-										System.out.println("haha");
+										System.out.println("---------------------");
+										System.out.println("---------------------");
 
 										partie.pause();
-										System.out.println("con cac");
+										System.out.println("--------------------");
 									}
 									partie.numeroRound++;
 									

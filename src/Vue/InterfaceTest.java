@@ -36,7 +36,6 @@ public class InterfaceTest {
 				try {
 					InterfaceTest window = new InterfaceTest();
 					window.fp.setVisible(true);
-
 					
 				} catch (Exception e) {
 					e.printStackTrace();
