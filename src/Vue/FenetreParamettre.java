@@ -231,9 +231,6 @@ public class FenetreParamettre extends JFrame {
 																		prochainJoueur = it1.next();
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel1 = (Joueur) it1.next();
-																			while (joueurActuel1.estEnTour) {
-																				temp1.remove(joueurActuel1);
-																				boolean differentPrenom = true;
 																			for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
 																				if (!joueurActuel1.main.listCarte.get(counter).getFaceCachee()) {
 																					if (joueurActuel1.main.listCarte
@@ -246,8 +243,8 @@ public class FenetreParamettre extends JFrame {
 																		}
 																	}
 																}
-														}
-													}
+		//													}
+		//												}
 														partie.finirTour(a);
 														partie.donnerTour(prochainJoueur);
 														tours++;
