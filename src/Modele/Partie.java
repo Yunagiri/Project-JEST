@@ -13,9 +13,9 @@ public class Partie extends Observable {
 	private boolean partieEnCours;
 	public int numeroRound;
 
-	public Pioche piocheGrand;
-	public Trophee trophee;
-	public Tas piochePetite;
+	private Pioche piocheGrand;
+	private Trophee trophee;
+	private Tas piochePetite;
 	private int nbJoueurs;
 	private int nbJoueursPhysic;
 
@@ -153,6 +153,7 @@ public class Partie extends Observable {
 
 		
 		this.piocheGrand.nombreDeCartes=17;
+	
 		
 	}
 //	public void creerPioche() {
@@ -222,12 +223,14 @@ public class Partie extends Observable {
 
 	// shuffles piocheGrand AND distribute 2 cards to the trophy.
 	public void preparer() {
+
 		this.piocheGrand.melanger();
 		for (int i = 0; i < 2; i++) {
 			this.piocheGrand.distribuer(this.trophee);
 			System.out.println(trophee.listCarte.size());
 		}
-		this.montrerTrophee();
+		
+		
 	}
 
 	public void montrerTrophee() {
@@ -654,6 +657,7 @@ public class Partie extends Observable {
 		
 		VisitorDeJest compteur = partie.choisirCompteur();
 		partie.commencer();
+		
 		// Players look at their hand
 		boolean condition = true;
 		while (condition) {

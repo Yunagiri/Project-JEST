@@ -37,7 +37,7 @@ public class PanelJeu extends JPanel implements Observer{
 		this.joueurPhys=jp;
 		setLayout(null);
 		this.setBackground(new Color(128, 0, 0));
-		this.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+		this.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 		this.setSize(960,540);
 		pj=new PanelJoueur[partie.joueurs.size()];
 		if(partie.joueurs.size()==2) {
@@ -83,7 +83,7 @@ public class PanelJeu extends JPanel implements Observer{
 		tour.setBounds(this.getWidth()*780/1920,this.getHeight()*20/1080,this.getWidth()*330/1920,this.getHeight()*200/1080);
 		tour.setHorizontalAlignment(SwingConstants.CENTER);
 		tour.setFont(new Font("Tahoma", Font.BOLD, 19));
-		tour.setForeground(new Color(255, 255, 255));
+		tour.setForeground(new Color(0, 255, 127));
 		this.add(tour);
 		partie.addObserver(this);
 		

@@ -3,7 +3,7 @@ package Modele;
 public class Jest extends Tas implements Score {
     private int valeur;
 
-    public Joueur joueur;
+    private Joueur joueur;
     
     public Jest() {
     	super();

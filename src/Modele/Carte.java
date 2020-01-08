@@ -4,13 +4,13 @@ public class Carte {
 
 	protected int hauteur;
 
-	public boolean faceCachee;
+	protected boolean faceCachee;
 	
 	protected Conditions condi;
 	
 	protected suits enseigne;
 	
-	public int valeur;
+	protected int valeur;
 
 	//Constructor for SuitCards
 	public Carte(int hauteur, boolean faceCachee, Conditions condi, suits enseigne) {

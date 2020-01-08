@@ -13,7 +13,7 @@ public class Joker extends Carte {
 	
     public String montrer() {
     	StringBuffer sb = new StringBuffer();
-    	if (!this.faceCachee) {
+    	if (!this.getFaceCachee()) {
     		sb.append("Why so serious? ");
     		sb.append(super.montrer());
 

@@ -28,8 +28,9 @@ public class PanelJoueur extends JPanel implements Observer{
 	private JLabel point;
 	
 	public PanelJoueur() {
-		setBackground(Color.BLACK);
-		Border line = BorderFactory.createLineBorder(Color.RED);
+		setBackground(Color.BLUE);
+		Border line = BorderFactory.createLineBorder(Color.WHITE);
+		
 		setBorder(line);
 		setVisible(true);
 		this.setSize(290,175);
@@ -83,7 +84,7 @@ public class PanelJoueur extends JPanel implements Observer{
 		*/
 		point = new JLabel("point");
 		point.setHorizontalAlignment(SwingConstants.CENTER);
-		point.setForeground(Color.RED);
+		point.setForeground(Color.GREEN);
 		point.setBounds(this.getWidth()*20/600,this.getHeight()*100/400,this.getWidth()*130/600,this.getWidth()*50/600);;
 		this.add(point);
 		this.setEnableCarte(true);

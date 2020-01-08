@@ -116,7 +116,7 @@ public class FenetreParamettre extends JFrame {
 //					partie.continu();
 					VueText vue = new VueText(partie);
 					partie.creerPioche();
-					partie.piocheGrand.melanger();
+					partie.getPiocheGrand().melanger();
 					partie.preparer();
 					JestInterface jf= new JestInterface(partie);
 					jf.setVisible(true);
@@ -189,10 +189,10 @@ public class FenetreParamettre extends JFrame {
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel = (Joueur) it1.next();
 																			for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-																				if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
+																				if (!joueurActuel.main.listCarte.get(counter).getFaceCachee()) {
 																					if (joueurActuel.main.listCarte
-																							.get(counter).valeur > prochainJoueur.main.listCarte
-																									.get(counter).valeur) {
+																							.get(counter).getValeur() > prochainJoueur.main.listCarte
+																									.get(counter).getValeur()) {
 																						prochainJoueur = joueurActuel;
 																					}
 																				}
@@ -231,10 +231,10 @@ public class FenetreParamettre extends JFrame {
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel1 = (Joueur) it1.next();
 																			for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
-																				if (!joueurActuel1.main.listCarte.get(counter).faceCachee) {
+																				if (!joueurActuel1.main.listCarte.get(counter).getFaceCachee()) {
 																					if (joueurActuel1.main.listCarte
-																							.get(counter).valeur > prochainJoueur.main.listCarte
-																									.get(counter).valeur) {
+																							.get(counter).getValeur() > prochainJoueur.main.listCarte
+																									.get(counter).getValeur()) {
 																						prochainJoueur = joueurActuel1;
 																					}
 																				}
@@ -263,16 +263,16 @@ public class FenetreParamettre extends JFrame {
 									}
 									partie.numeroRound++;
 									
-									if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
+									if (partie.getPiocheGrand().nombreDeCartes < partie.joueurs.size()) {
 										condition = false;
 									}
 									partie.creerPiochePetit();
 									
-									partie.piochePetite.melanger();
+									partie.getpiochePetite().melanger();
 								}
 								partie.notifyObservers("terminer");
 								partie.continu();
-								partie.trophee.distribuerTrophee(partie.joueurs, new CompteurDeScore1());
+								partie.getTrophee().distribuerTrophee(partie.joueurs, new CompteurDeScore1());
 								partie.compterScore();
 								partie.afficherJest();
 								partie.choisirVainqueur();

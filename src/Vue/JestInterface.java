@@ -36,7 +36,7 @@ public class JestInterface extends JFrame{
 		
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBackground(Color.BLACK);
+		panel.setBackground(Color.BLUE);
 		panel.setSize(960,540);
 		this.add(panel);
 
@@ -53,30 +53,7 @@ public class JestInterface extends JFrame{
 		pjeu.setBounds(0,0,960,540);
 		panel.add(pjeu);
 		
-//		if(jeu.getNombreJoueurReel()>=2) {
-//			pjeu[1]= new PanelJeu(jeu, jr.get(1));
-//			pjeu[1].setBounds(960,0,960,540);
-//			panel.add(pjeu[1]);
-//		}
-//		if(jeu.getNombreJoueurReel()>=3) {
-//			pjeu[2]= new PanelJeu(jeu, jr.get(2));
-//			pjeu[2].setBounds(0,540,960,540);
-//			panel.add(pjeu[2]);
-//		}
-//		if(jeu.getNombreJoueurReel()==4) {
-//			pjeu[3]= new PanelJeu(jeu, jr.get(3));
-//			pjeu[3].setBounds(960,540,960,540);
-//			panel.add(pjeu[3]);
-//		}
-		
-//		ctr = new ControleurJeu(jeu,jr,this);
-		
-//		if(jeu.getNombreJoueurReel()>1) {
-//			this.setBounds(100, 100, 1920, 1080);
-//		}
-//		else {
-//			this.setBounds(100, 100, 980,590);
-//		}
+
 		this.add(panel);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -84,6 +61,5 @@ public class JestInterface extends JFrame{
 		return pjeu;
 	}
 //	public ControleurJeu getControleur() {
-//		return ctr;
-//	}
+
 }

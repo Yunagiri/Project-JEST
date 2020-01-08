@@ -40,7 +40,7 @@ public class TableDeJeu extends JPanel implements Observer{
 		this.setBackground(new Color(0, 128, 0));
 		this.setSize(800,700);
 		this.setLocation(0,0);
-		this.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+		this.setBorder(BorderFactory.createLineBorder(Color.RED));
 		
 		trophee[0]= new ButtonCard();
 		trophee[0].setSize(90,119);

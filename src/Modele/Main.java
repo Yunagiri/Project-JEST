@@ -1,7 +1,7 @@
 package Modele;
 
 public class Main extends Tas {
-    public Joueur joueur;
+   private Joueur joueur;
     public Main() {
     	super();
     }

@@ -112,19 +112,7 @@ public class FenetreJest extends JFrame {
 			b2.setEnabled(true);
 		}
 	}
-//	public void updateTrick(LinkedList<Trick> ts) {
-//		LinkedList<Trick> t = new LinkedList<Trick>();
-//		for(Trick trick:ts) {
-//			if(trick.getEtat()) {
-//				t.add(trick);
-//			}
-//		}
-//		jests=t;
-//		compteur=0;
-//		this.dessinerJests();
-//		this.repaint();
-//		this.validate();
-//	}
+
 	public void resetCompteur() {
 		compteur=0;
 	}
