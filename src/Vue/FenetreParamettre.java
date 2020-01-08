@@ -290,16 +290,13 @@ public class FenetreParamettre extends JFrame {
 											}
 										}
 									}else {
-										System.out.println("jesuisla");
+										System.out.println("--------------");
 										partie.continu();
-										System.out.println("haha");
-										System.out.println("haha");
+										System.out.println("--------------");
 
 										partie.pause();
-										System.out.println("con cac");
 									}
-									partie.numeroRound++;
-									
+									partie.augmenternumeroRound();
 									if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
 										condition = false;
 									}

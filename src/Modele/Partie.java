@@ -499,7 +499,12 @@ public class Partie extends Observable {
 
 		}
 		System.out.println("Fin du round");
+		this.augmenternumeroRound();
+	}
+	public void augmenternumeroRound() {
 		this.numeroRound++;
+		this.setChanged();
+		this.notifyObservers(this);
 	}
 
 	public void montrerPiocheGrand() {

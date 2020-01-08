@@ -79,7 +79,7 @@ public class PanelJeu extends JPanel implements Observer{
 		partie.addObserver(tdj);
 		this.add(tdj);
 		
-		tour = new JLabel("ROUND" + partie.numeroRound);
+		tour = new JLabel("Round " + partie.numeroRound);
 		tour.setBounds(this.getWidth()*780/1920,this.getHeight()*20/1080,this.getWidth()*330/1920,this.getHeight()*200/1080);
 		tour.setHorizontalAlignment(SwingConstants.CENTER);
 		tour.setFont(new Font("Tahoma", Font.ITALIC, 19));
@@ -111,7 +111,12 @@ public class PanelJeu extends JPanel implements Observer{
 	}
 	@Override
 	public void update(Observable o, Object arg1) {
-
+		System.out.println("feoifjsofijse");
+		if (o instanceof Partie) {
+			 Partie partie1 = (Partie) o;
+			System.out.println("hahahah");
+			this.tour.setText("Round " + partie1.getNumeroRound() );
+		}
 		
 	}
 	public PanelJoueur[] getPanelJoueur() {
