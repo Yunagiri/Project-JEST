@@ -18,9 +18,17 @@ public class Partie extends Observable {
 	private Tas piochePetite;
 	private int nbJoueurs;
 	private int nbJoueursPhysic;
-
+	private VisitorDeJest compteur;
+	
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 	
+	public VisitorDeJest getCompteur() {
+		return this.compteur;
+	}
+	public void setCompteur(VisitorDeJest compteur) {
+		this.compteur = compteur;
+	}
+
 	public boolean getPartieEnCours() {
 		return this.partieEnCours;
 	}
@@ -494,6 +502,12 @@ public class Partie extends Observable {
 
 		}
 		System.out.println("Fin du round");
+		this.augmenternumeroRound();
+	}
+	public void augmenternumeroRound() {
+		this.numeroRound++;
+		this.setChanged();
+		this.notifyObservers(this);
 	}
 
 	public void montrerPiocheGrand() {
@@ -559,22 +573,22 @@ public class Partie extends Observable {
 
 	}
 	
-	public VisitorDeJest choisirCompteur() {
+	public void choisirCompteur() {
 		Scanner sc = new Scanner(System.in);
 		boolean okVariante = true;
 		do {
-			System.out.println("Choisissez la r�gle: 1.Original     2.DLC Season Pass");
+			System.out.println("Choisissez la regle: 1.Original     2.DLC Season Pass");
 			int variante = sc.nextInt();
 			if (variante == 1) {
 				CompteurDeScore1 compteur1 = new CompteurDeScore1();
 				okVariante = false;
-				return (VisitorDeJest)compteur1;
+				this.compteur = compteur1;
 				
 			}
 			else if (variante == 2) {
 				CompteurDeScore2 compteur2 = new CompteurDeScore2();
 				okVariante = false;
-				return (VisitorDeJest)compteur2;
+				this.compteur = compteur2;
 				
 			}
 			else {
@@ -582,7 +596,6 @@ public class Partie extends Observable {
 				okVariante = true;
 			}
 		} while(okVariante);
-		return null;
 		
 	}
 
@@ -605,9 +618,9 @@ public class Partie extends Observable {
 	public void compterScore() {
 
 		for (Joueur i : joueurs) {
-			CompteurDeScore1 compteur = new CompteurDeScore1();
+			
 			System.out.println("Score de " + i.prenom);
-			System.out.println(compteur.visiter(i.getJest()));
+			System.out.println(this.compteur.visiter(i.getJest()));
 			
 		}
 	}
@@ -616,8 +629,7 @@ public class Partie extends Observable {
 		Joueur JoueurMax = new Joueur();
 		JoueurMax = this.joueurs.get(0);
 		for (Joueur i : joueurs) {
-			CompteurDeScore1 compteur = new CompteurDeScore1();
-			i.setScore(compteur.visiter(i.jest));
+			i.setScore(this.compteur.visiter(i.jest));
 			if (i.getScore() > JoueurMax.getScore()) {
 				JoueurMax = i;
 			}
@@ -655,7 +667,7 @@ public class Partie extends Observable {
 		Scanner sc = new Scanner(System.in);
 		Partie partie = new Partie();
 		
-		VisitorDeJest compteur = partie.choisirCompteur();
+		partie.choisirCompteur();
 		partie.commencer();
 		
 		// Players look at their hand
@@ -670,7 +682,6 @@ public class Partie extends Observable {
 
 			partie.lancerRound();
 
-			partie.numeroRound++;
 
 			if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
 				condition = false;
@@ -682,7 +693,7 @@ public class Partie extends Observable {
 		partie.afficherJest();
 		partie.montrerTrophee();
 		
-		partie.trophee.distribuerTrophee(partie.joueurs, compteur);
+		partie.trophee.distribuerTrophee(partie.joueurs, partie.compteur);
 		partie.afficherJest();
 		partie.compterScore();
 		partie.choisirVainqueur();

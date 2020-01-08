@@ -1,7 +1,6 @@
-/.classpath
-/.project
-/Modele/
-/exception/
-/Controleur/
 /Vue/
+/Modele/
+/Controleur/
+/VueText/
+/exception/
 /image/

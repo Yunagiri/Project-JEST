@@ -94,7 +94,7 @@ public class FenetreJest extends JFrame {
 			Carte carte= jests.listCarte.get(compteur);
 			try {
 				BufferedImage image;
-				image = ImageIO.read(new File("image/"+carte.getValeur()+".png"));
+				image = ImageIO.read(new File("src/image/"+carte.getValeur()+".png"));
 				ImageIcon icon = new ImageIcon(image.getScaledInstance(90,119, image.SCALE_SMOOTH));
 				this.image.setIcon(icon);
 			} catch (IOException e) {
