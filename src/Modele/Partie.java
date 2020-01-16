@@ -2,14 +2,12 @@
 package Modele;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
 public class Partie extends Observable {
-	// private int rounds;
 	private boolean partieEnCours;
 	public int numeroRound;
 
@@ -18,14 +16,14 @@ public class Partie extends Observable {
 	private Tas piochePetite;
 	private int nbJoueurs;
 	private int nbJoueursPhysic;
-	private VisitorDeJest compteur;
+	private Visitor compteur;
 	
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 	
-	public VisitorDeJest getCompteur() {
+	public Visitor getCompteur() {
 		return this.compteur;
 	}
-	public void setCompteur(VisitorDeJest compteur) {
+	public void setCompteur(Visitor compteur) {
 		this.compteur = compteur;
 	}
 
@@ -164,41 +162,7 @@ public class Partie extends Observable {
 	
 		
 	}
-//	public void creerPioche() {
-//		for (int i = 1; i < 5; i++) {
-//			for (suits s : suits.values()) {
-//				action temp = action.getRandomAction();
-//				if (temp == action.HIGHEST || temp == action.LOWEST) {
-//					// System.out.println(action.getRandomAction());
-//					Conditions cond = new Conditions(temp, suits.getRandomSuits());
-//					// System.out.println("Creation d'une condition a 2 parametres");
-//					SuitCards carte = new SuitCards(i, true, cond, s);
-//					this.piocheGrand.listCarte.add(carte);
-//					this.piocheGrand.nombreDeCartes++;
-//				} else if (temp == action.MAJORITY) {
-//					Random r = new Random();
-//					Conditions cond = new Conditions(temp, 1 + r.nextInt(4));
-//					SuitCards carte = new SuitCards(i, true, cond, s);
-//					this.piocheGrand.listCarte.add(carte);
-//					this.piocheGrand.nombreDeCartes++;
-//				} else {
-//					// System.out.println(temp);
-//					Conditions cond = new Conditions(temp);
-//					// System.out.println("Creation d'une condition a 1 parametre");
-//					SuitCards carte = new SuitCards(i, true, cond, s);
-//					this.piocheGrand.listCarte.add(carte);
-//					this.piocheGrand.nombreDeCartes++;
-//				}
-//			}
-//		}
-//		for (int i = 1; i <= this.piocheGrand.listCarte.size(); i++) {
-//			this.piocheGrand.listCarte.get(i - 1).valeur = i;
-//		}
-//		Joker joker = new Joker();
-//		this.piocheGrand.listCarte.add(joker);
-//		joker.valeur = 0;
-//		this.piocheGrand.nombreDeCartes++;
-//	}
+
 
 	public int getNumeroRounds() {
 		return this.numeroRound;
@@ -417,9 +381,7 @@ public class Partie extends Observable {
 						this.donnerTour(prochainJoueur);
 						tours++;
 					} else {
-//						System.out.println("choisir ");
 						Scanner sc = new Scanner(System.in);
-//						sc.nextLine();
 						String prenom;
 						do {
 							System.out.println("Veuillez choisir un joueur");
@@ -615,12 +577,12 @@ public class Partie extends Observable {
 		}
 	}
 
-	public void compterScore() {
+	public void compterScore(Visitor v) {
 
 		for (Joueur i : joueurs) {
 			
 			System.out.println("Score de " + i.prenom);
-			System.out.println(this.compteur.visiter(i.getJest()));
+			i.getJest().accept(v);
 			
 		}
 	}
@@ -629,7 +591,7 @@ public class Partie extends Observable {
 		Joueur JoueurMax = new Joueur();
 		JoueurMax = this.joueurs.get(0);
 		for (Joueur i : joueurs) {
-			i.setScore(this.compteur.visiter(i.jest));
+			i.setScore(this.compteur.visit(i.jest));
 			if (i.getScore() > JoueurMax.getScore()) {
 				JoueurMax = i;
 			}
@@ -695,7 +657,7 @@ public class Partie extends Observable {
 		
 		partie.trophee.distribuerTrophee(partie.joueurs, partie.compteur);
 		partie.afficherJest();
-		partie.compterScore();
+		partie.compterScore(partie.getCompteur());
 		partie.choisirVainqueur();
 
 	}

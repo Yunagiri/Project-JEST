@@ -2,7 +2,7 @@ package Modele;
 
 import java.util.ArrayList;
 
-public class CompteurDeScore1 implements VisitorDeJest {
+public class CompteurDeScore1 implements Visitor {
 	private int score;
 
 	public CompteurDeScore1() {
@@ -158,7 +158,7 @@ public class CompteurDeScore1 implements VisitorDeJest {
 		}
 	}
 
-	public int visiter(Jest j) {
+	public int visit(Jest j) {
 		this.score = 0;
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(j.listCarte);

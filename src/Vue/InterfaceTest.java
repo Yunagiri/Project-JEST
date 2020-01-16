@@ -14,7 +14,7 @@ import Modele.CompteurDeScore1;
 import Modele.Joueur;
 import Modele.JoueurVirt;
 import Modele.Partie;
-import Modele.VisitorDeJest;
+import Modele.Visitor;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;

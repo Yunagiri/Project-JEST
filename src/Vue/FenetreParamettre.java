@@ -298,7 +298,7 @@ public class FenetreParamettre extends JFrame {
 										partie.pause();
 									}
 									partie.augmenternumeroRound();
-									if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
+									if (partie.getPiocheGrand().nombreDeCartes < partie.joueurs.size()) {
 										condition = false;
 									}
 									partie.creerPiochePetit();
@@ -308,7 +308,7 @@ public class FenetreParamettre extends JFrame {
 								partie.notifyObservers("terminer");
 								partie.continu();
 								partie.getTrophee().distribuerTrophee(partie.joueurs, new CompteurDeScore1());
-								partie.compterScore();
+								partie.compterScore(partie.getCompteur());
 								partie.afficherJest();
 								partie.choisirVainqueur();
 							} catch (InterruptedException e) {

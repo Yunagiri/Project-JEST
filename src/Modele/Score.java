@@ -1,5 +1,5 @@
 package Modele;
 
 public interface Score {
-	void accepter(VisitorDeJest v);
+	void accept(Visitor v);
 }

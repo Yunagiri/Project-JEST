@@ -3,7 +3,6 @@ package Modele;
 public class Jest extends Tas implements Score {
     private int valeur;
 
-    private Joueur joueur;
     
     public Jest() {
     	super();
@@ -29,9 +28,9 @@ public class Jest extends Tas implements Score {
 	}
 
 	@Override
-	public void accepter(VisitorDeJest v) {
+	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		v.visiter(this);
+		v.visit(this);
 	}
 
 	
