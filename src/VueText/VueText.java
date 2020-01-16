@@ -6,15 +6,20 @@ import java.util.Scanner;
 import Modele.*;
 
 public class VueText extends Thread implements Observer {
-
+	/**
+	 * The game which is observed by this class
+	 */
 	private Partie partie;
-	private int[] cartesChoisies = new int[2];
-	private Joueur joueurChoisit;
+	/**
+	 * List of
+	 */
 	private boolean continu = true;
-	private String reponse;
 
 	private Thread t;
-
+	/**
+	 * 
+	 * @param partie
+	 */
 	public VueText(Partie partie) {
 		this.partie = partie;
 		partie.addObserver(this);
