@@ -9,7 +9,7 @@ import Modele.Partie;
 
 /**
  * This class is used to launch the GUI
- * @author dinh_
+ * @author dinh_,tran_
  *
  */
 public class InterfaceTest {

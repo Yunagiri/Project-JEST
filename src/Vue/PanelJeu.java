@@ -14,11 +14,15 @@ import javax.swing.SwingConstants;
 import Modele.*;
 import Controleur.*;
 
+/**
+ * This class is the observer in the Observer design pattern: it answers to a
+ * change in state of the Observable. This class represents the zone of the
+ * game, it contains the PanelJoueur, the TableDeJeu
+ * 
+ * @author dinh_,tran_
+ * @see PanelJoueur, TableDeJeu
+ */
 public class PanelJeu extends JPanel implements Observer {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Partie partie;
 	private JoueurPhys joueurPhys;
@@ -26,6 +30,12 @@ public class PanelJeu extends JPanel implements Observer {
 	private TableDeJeu tdj;
 	private JLabel tour;
 
+	/**
+	 * This constructor initialises most of the elements of the GUI
+	 * 
+	 * @param partie the game being player
+	 * @param jp     the physical player
+	 */
 	public PanelJeu(Partie partie, JoueurPhys jp) {
 		this.joueurPhys = jp;
 		setLayout(null);
@@ -60,8 +70,8 @@ public class PanelJeu extends JPanel implements Observer {
 		pj[jp.getId() - 1].getRegarderCarte().setVisible(true);
 		this.tdj = this.creerTableDeJeu();
 		try {
-			tdj.getButtonCard()[0].renouvellerEtatDeCarte(false, partie.getTrophee().listCarte.get(0));
-			tdj.getButtonCard()[1].renouvellerEtatDeCarte(false, partie.getTrophee().listCarte.get(1));
+			tdj.getButtonCard()[0].renouvellerEtatDeCarte(false, partie.getTrophee().getCarteTas().get(0));
+			tdj.getButtonCard()[1].renouvellerEtatDeCarte(false, partie.getTrophee().getCarteTas().get(1));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,6 +93,13 @@ public class PanelJeu extends JPanel implements Observer {
 
 	}
 
+	/**
+	 * create a JPanel for players
+	 * 
+	 * @param x dimensions
+	 * @param y dimensions
+	 * @return a JPanel for a player
+	 */
 	public PanelJoueur creerEspaceDeJoueur(int x, int y) {
 		PanelJoueur j = new PanelJoueur();
 		j.setBounds(x, y, this.getWidth() * 550 / 1920, this.getHeight() * 350 / 1080);
@@ -90,6 +107,11 @@ public class PanelJeu extends JPanel implements Observer {
 		return j;
 	}
 
+	/**
+	 * Create a TableDeJeu
+	 * 
+	 * @return a TableDeJeu
+	 */
 	public TableDeJeu creerTableDeJeu() {
 		TableDeJeu t = new TableDeJeu();
 		t.setBounds(this.getWidth() * 580 / 1920, this.getHeight() * 207 / 1080, this.getWidth() * 760 / 1920,
@@ -103,6 +125,10 @@ public class PanelJeu extends JPanel implements Observer {
 		return this.getTableDeJeu().getButtonCard();
 	}
 
+	/**
+	 * This is the method that implements the Observer design pattern, it updates
+	 * each time the round number changes.
+	 */
 	@Override
 	public void update(Observable o, Object arg1) {
 		if (o instanceof Partie) {

@@ -10,11 +10,13 @@ import javax.swing.BorderFactory;
 
 import javax.swing.JPanel;
 
+/**
+ * This class represents the table on which are the trophies
+ * 
+ * @author dinh_,tran_
+ * @see PanelJeu, JestInterface
+ */
 public class TableDeJeu extends JPanel implements Observer {
-
-	/**
-		 * 
-		 */
 	private static final long serialVersionUID = 1L;
 	private ButtonCard[] trophee = new ButtonCard[2];
 
@@ -41,6 +43,10 @@ public class TableDeJeu extends JPanel implements Observer {
 		return trophee;
 	}
 
+	/**
+	 * This method implements the Observer design pattern, it updates the position
+	 * of the trophy cards if they were taken.
+	 */
 	@Override
 	public void update(Observable o, Object arg1) {
 		if (o instanceof Trophee) {

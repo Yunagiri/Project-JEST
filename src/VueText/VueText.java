@@ -5,18 +5,24 @@ import java.util.Scanner;
 
 import Modele.*;
 
+/**
+ * This class allows for both console and GUI interactions, not at the same time
+ * but each round.
+ * 
+ * @author dinh_,tran_
+ */
 public class VueText extends Thread implements Observer {
 	/**
 	 * The game which is observed by this class
 	 */
 	private Partie partie;
-	/**
-	 * List of
-	 */
 	private boolean continu = true;
 
 	private Thread t;
+
 	/**
+	 * This constructor creates a new Thread to run in and implements itself as an
+	 * observer
 	 * 
 	 * @param partie
 	 */
@@ -45,6 +51,12 @@ public class VueText extends Thread implements Observer {
 	}
 
 	@Override
+	/**
+	 * The run method of the thread, it pauses itself if no players selects the
+	 * console option and executes lancerRound() if called.
+	 * 
+	 * @see Partie#lancerRound()
+	 */
 	public void run() {
 		while (continu) {
 			try {
@@ -62,17 +74,14 @@ public class VueText extends Thread implements Observer {
 			if (partie.console) {
 				partie.faireOffreAll();
 				partie.continu();
-				System.out.println("-----------");
 				try {
 					partie.pause();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("lancerRound");
 				partie.lancerRound();
 				partie.continu();
-				System.out.println("----------");
 			}
 		}
 		System.out.println("console terminee");

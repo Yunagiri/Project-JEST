@@ -3,18 +3,44 @@ package Modele;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is the superclass for all collections of cards, it contains a list
+ * of cards and is observable.
+ * 
+ * @author dinh_, tran_
+ * @see Observable, Pioche, Main, Jest
+ *
+ */
 public class Tas extends Observable {
 
+	/**
+	 * Number of cards in the array
+	 */
 	public int nombreDeCartes;
 
-	// The array used to stock the cards
-	public ArrayList<Carte> listCarte = new ArrayList<Carte>();
+	/**
+	 * 
+	 */
+	private ArrayList<Carte> listCarte = new ArrayList<Carte>();
 
-	// Constructors
+	public ArrayList<Carte> getCarteTas() {
+		return this.listCarte;
+	}
+
+	/**
+	 * This is the constructor of Tas, no arguments means it will start empty,
+	 * number of cards is 0
+	 */
 	public Tas() {
 		this.nombreDeCartes = 0;
 	}
 
+	/**
+	 * Put a certain number of cards from a Tas into this Tas
+	 * 
+	 * @param nombreDeCartes   number of cards added
+	 * @param listCarteAjoutee the Tas from which the cards were added
+	 */
 	public Tas(int nombreDeCartes, ArrayList<Carte> listCarteAjoutee) {
 		this.nombreDeCartes = nombreDeCartes;
 		// Take each card in the listCarte and put them into this Tas's listCarte
@@ -23,15 +49,19 @@ public class Tas extends Observable {
 		}
 	}
 
-	// Add 1 card, disregarding anything happening to the party whose card got
-	// taken.
-	// Must be used inside other more complete methods.
+	/**
+	 * Add cards to the Tas
+	 * 
+	 * @param carteAjoutee the card to add to the Tas
+	 */
 	public void ajouterCartes(Carte carteAjoutee) {
 		this.nombreDeCartes++;
 		this.listCarte.add(carteAjoutee);
 	}
 
-	// Shuffle Tas
+	/**
+	 * Shuffle the deck
+	 */
 	public void melanger() {
 		int nombreAleat;
 
@@ -46,10 +76,13 @@ public class Tas extends Observable {
 		}
 	}
 
-	// Distribute a card from this Tas to another one, the card distributed is the
-	// last one to arrive (LIFO)
+	/**
+	 * Distribute a card from this Tas to another one, follow the LIFO
+	 * 
+	 * @param autreTas the other Tas
+	 */
 	public void distribuer(Tas autreTas) {
-		autreTas.ajouterCartes(this.listCarte.get(this.nombreDeCartes-1));
+		autreTas.ajouterCartes(this.listCarte.get(this.nombreDeCartes - 1));
 		this.listCarte.remove(this.nombreDeCartes - 1);
 		this.nombreDeCartes--;
 

@@ -1,7 +1,7 @@
 package Modele;
 /**
  * This is the Observer interface implementing the Observer design pattern.
- * @author dinh_
+ * @author dinh_, tran_
  * @see Observable, Vue.PanelJeu,Vue.TableDeJeu,Vue.PanelJoueur,VueText.VueText
  */
 public interface Observer {

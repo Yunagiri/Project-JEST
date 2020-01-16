@@ -1,7 +1,11 @@
 package Modele;
 
 import java.util.Random;
-
+/**
+ * This enumeration contains all the suits used in the game
+ * @author dinh_, tran_
+ * @see action, Conditions, Trophee
+ */
 public enum suits {
 
 	COEUR,
@@ -9,19 +13,6 @@ public enum suits {
 	TREFLE,
 	PIQUE;
 
-	//private final int valeur;
-	
-	//private suits (int i) {
-	//	this.valeur = i;
-	//}
-	//public int getValeur() {
-	//	return this.valeur;
-	//}
-	
-	public static suits getRandomSuits() {
-		Random random = new Random();
-		return values()[random.nextInt(values().length)];
-		
-	}
+
 }
 	

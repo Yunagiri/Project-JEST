@@ -8,7 +8,11 @@ import javax.swing.JOptionPane;
 import Modele.*;
 import Vue.*;
 
-
+/**
+ * This class receives information from the Vue package and transmit it to the Modele package
+ * @author dinh_
+ *
+ */
 public class Controleur {
 	//Vue
 	private PanelJeu panelJeu;
@@ -25,7 +29,12 @@ public class Controleur {
 	private ActionListener prendreOffre;
 	
 	
-	
+	/**
+	 * This constructor defines all the actions possible on the GUI, each click on a button has a different function 
+	 * and this class is the one who defines those.
+	 * @param partie the game being played	
+	 * @param panelJeu the GUI 
+	 */
 	public Controleur(Partie partie,PanelJeu panelJeu) {
 		this.partie=partie;
 		this.panelJeu=panelJeu;
@@ -42,7 +51,7 @@ public class Controleur {
 				for(int i=0; i<panelJoueur.length;i++) {
 					for(int j=0;j<panelJoueur[i].getPanelCarte().length;j++) {
 						if((ButtonCard)e.getSource()==panelJoueur[i].getPanelCarte()[j]) {
-							if(partie.getListeJoueurs().get(i).getMain().listCarte.size()==2) {
+							if(partie.getListeJoueurs().get(i).getMain().getCarteTas().size()==2) {
 								joueurPhys.prendreOffre(j,partie.getListeJoueurs().get(i));
 								partie.joueurActuel=partie.getListeJoueurs().get(i);
 								reset=true;
@@ -113,9 +122,9 @@ public class Controleur {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					if(compteur==0) {
-						for(int i=0;i<joueurPhys.getMain().listCarte.size();i++) {
+						for(int i=0;i<joueurPhys.getMain().getCarteTas().size();i++) {
 							try {
-								panelJoueur[partie.getListeJoueurs().indexOf(joueurPhys)].getPanelCarte()[i].renouvellerEtatDeCarte(false, joueurPhys.getMain().listCarte.get(i));
+								panelJoueur[partie.getListeJoueurs().indexOf(joueurPhys)].getPanelCarte()[i].renouvellerEtatDeCarte(false, joueurPhys.getMain().getCarteTas().get(i));
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -123,9 +132,9 @@ public class Controleur {
 						}
 						compteur=1;
 					}else {
-						for(int i=0;i<joueurPhys.getMain().listCarte.size();i++) {
+						for(int i=0;i<joueurPhys.getMain().getCarteTas().size();i++) {
 							try {
-								panelJoueur[partie.getListeJoueurs().indexOf(joueurPhys)].getPanelCarte()[i].renouvellerEtatDeCarte(true, joueurPhys.getMain().listCarte.get(i));
+								panelJoueur[partie.getListeJoueurs().indexOf(joueurPhys)].getPanelCarte()[i].renouvellerEtatDeCarte(true, joueurPhys.getMain().getCarteTas().get(i));
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();

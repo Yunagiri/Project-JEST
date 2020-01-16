@@ -75,7 +75,7 @@ public class Joueur extends Observable {
 	 */
 	public void prendreCartes(Carte carte, Tas autreTas) {
 		this.main.ajouterCartes(carte);
-		autreTas.listCarte.remove(autreTas.nombreDeCartes - 1);
+		autreTas.getCarteTas().remove(autreTas.nombreDeCartes - 1);
 		autreTas.nombreDeCartes--;
 		this.setChanged();
 		this.notifyObservers(null);
@@ -91,10 +91,10 @@ public class Joueur extends Observable {
 		String msg = String.format("%s fait une offre", this.prenom);
 		System.out.println(msg);
 		// Change the faceCachee value of the card, this one is face-up
-		this.main.listCarte.get(posCarteFaceCachee).faceCachee = false;
+		this.main.getCarteTas().get(posCarteFaceCachee).faceCachee = false;
 		// Shows the newly made offer, can also offer insight on the number of cards.
-		for (int i = 0; i < this.main.listCarte.size(); i++) {
-			System.out.println(i + 1 + ". " + this.main.listCarte.get(i).montrer());
+		for (int i = 0; i < this.main.getCarteTas().size(); i++) {
+			System.out.println(i + 1 + ". " + this.main.getCarteTas().get(i).montrer());
 		}
 		this.setChanged();
 		this.notifyObservers(null);
@@ -104,8 +104,8 @@ public class Joueur extends Observable {
 	 * This method allows the player to show their offer as a string in the console.
 	 */
 	public void montrerOffre() {
-		for (int i = 0; i < this.main.listCarte.size(); i++) {
-			System.out.println(i + 1 + ". " + this.main.listCarte.get(i).montrer());
+		for (int i = 0; i < this.main.getCarteTas().size(); i++) {
+			System.out.println(i + 1 + ". " + this.main.getCarteTas().get(i).montrer());
 		}
 	}
 
@@ -118,9 +118,9 @@ public class Joueur extends Observable {
 		String msg = String.format("Le joueur %s regarde sa main", this.prenom);
 		System.out.println(msg);
 		for (int i = 0; i < this.main.nombreDeCartes; i++) {
-			this.main.listCarte.get(i).faceCachee = false;
-			System.out.println(this.main.listCarte.get(i).montrer());
-			this.main.listCarte.get(i).faceCachee = true;
+			this.main.getCarteTas().get(i).faceCachee = false;
+			System.out.println(this.main.getCarteTas().get(i).montrer());
+			this.main.getCarteTas().get(i).faceCachee = true;
 		}
 	}
 
@@ -136,8 +136,8 @@ public class Joueur extends Observable {
 		String msg = String.format("%s prend la carte %d de %s et le met dans son jest.", this.prenom, posCarte,
 				j.prenom);
 		System.out.println(msg);
-		this.jest.ajouterCartes(j.main.listCarte.get(posCarte));
-		j.main.listCarte.remove(posCarte);
+		this.jest.ajouterCartes(j.main.getCarteTas().get(posCarte));
+		j.main.getCarteTas().remove(posCarte);
 		j.main.nombreDeCartes--;
 		j.setChanged();
 		j.notifyObservers("CartePrise");
@@ -153,7 +153,7 @@ public class Joueur extends Observable {
 	public void prendreOffre(int pos, Trophee t) {
 		String msg = String.format("%s prend une carte de trophee et le met dans son jest.", this.prenom);
 		System.out.println(msg);
-		this.jest.ajouterCartes(t.listCarte.get(pos));
+		this.jest.ajouterCartes(t.getCarteTas().get(pos));
 		this.setChanged();
 		this.notifyObservers(pos);
 	}

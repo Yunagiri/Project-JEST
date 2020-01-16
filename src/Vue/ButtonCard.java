@@ -11,13 +11,19 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import Modele.*;
-
+/**
+ * This class is used for creating the cards
+ * @author dinh_,tran_
+ * @see PanelJeu, PanelJoueur
+ */
 public class ButtonCard extends JButton {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * This is the constructor for the card's UI.
+	 * Settings are defined.
+	 */
 	public ButtonCard() {
 		setLayout(null);
 		setSize(90, 119);
@@ -28,7 +34,14 @@ public class ButtonCard extends JButton {
 		add(jl);
 		this.setVisible(true);
 	}
-
+	
+	/**
+	 * This is used for the update method of the observers, once an action has been registered and the state of the observable has changed,
+	 * the cards must also change.
+	 * @param b the state of the card, face up or down
+	 * @param carte the card that needs to be updated
+	 * @throws IOException 
+	 */
 	public void renouvellerEtatDeCarte(boolean b, Carte carte) throws IOException {
 		this.removeAll();
 

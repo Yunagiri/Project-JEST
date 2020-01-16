@@ -17,10 +17,14 @@ import Modele.Joueur;
 import Modele.Observable;
 import Modele.Observer;
 
+/**
+ * This class represents the zone of a player with their 2 cards
+ * 
+ * @author dinh_,tran_
+ * @see ButtonCard
+ */
 public class PanelJoueur extends JPanel implements Observer {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ButtonCard[] cartes = new ButtonCard[2];
 	private JLabel nomJoueur;
@@ -28,6 +32,9 @@ public class PanelJoueur extends JPanel implements Observer {
 	private JButton regarderCarte;
 	private JLabel point;
 
+	/**
+	 * Constructor for the class
+	 */
 	public PanelJoueur() {
 		setBackground(Color.BLUE);
 		Border line = BorderFactory.createLineBorder(Color.WHITE);
@@ -93,13 +100,13 @@ public class PanelJoueur extends JPanel implements Observer {
 	}
 
 	public void renouvellerImageCarte(Joueur joueur) throws IOException {
-		for (int i = 0; i < joueur.getMain().listCarte.size(); i++) {
-			if (joueur.getMain().listCarte.get(i) != null) {
-				this.cartes[i].renouvellerEtatDeCarte(joueur.getMain().listCarte.get(i).getEtat(),
-						joueur.getMain().listCarte.get(i));
+		for (int i = 0; i < joueur.getMain().getCarteTas().size(); i++) {
+			if (joueur.getMain().getCarteTas().get(i) != null) {
+				this.cartes[i].renouvellerEtatDeCarte(joueur.getMain().getCarteTas().get(i).getEtat(),
+						joueur.getMain().getCarteTas().get(i));
 			}
 		}
-		if (joueur.getMain().listCarte.size() < 2) {
+		if (joueur.getMain().getCarteTas().size() < 2) {
 			this.cartes[1].setVisible(false);
 		} else {
 			this.cartes[1].setVisible(true);
@@ -127,6 +134,10 @@ public class PanelJoueur extends JPanel implements Observer {
 		cartes[1].setEnabled(b);
 	}
 
+	/**
+	 * This method implements the Observer design pattern, it calls for an update in
+	 * cards if any changes occurred.
+	 */
 	public void update(Observable o, Object a) {
 		if (o instanceof Joueur) {
 			Joueur joueur = (Joueur) o;
