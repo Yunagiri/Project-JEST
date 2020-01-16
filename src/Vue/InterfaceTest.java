@@ -1,24 +1,11 @@
 package Vue;
 
 import java.awt.EventQueue;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
-import Modele.CompteurDeScore1;
-import Modele.Joueur;
-import Modele.JoueurVirt;
 import Modele.Partie;
-import Modele.Visitor;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 /**
  * This class is used to launch the GUI
@@ -27,9 +14,8 @@ import javax.swing.JButton;
  */
 public class InterfaceTest {
 
-	private JestInterface jinter;
 	private FenetreParamettre fp;
-	
+
 	private Partie partie;
 
 	/**
@@ -41,7 +27,7 @@ public class InterfaceTest {
 				try {
 					InterfaceTest window = new InterfaceTest();
 					window.fp.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,8 +37,9 @@ public class InterfaceTest {
 
 	/**
 	 * Create the application.
-	 * @throws IOException 
-	 * @throws InterruptedException 
+	 * 
+	 * @throws IOException
+	 * @throws InterruptedException
 	 */
 	public InterfaceTest() throws IOException, InterruptedException {
 		initialize();
@@ -60,18 +47,17 @@ public class InterfaceTest {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws InterruptedException 
-	 * @throws IOException 
+	 * 
+	 * @throws InterruptedException
+	 * @throws IOException
 	 */
 	private void initialize() throws IOException, InterruptedException {
-		
-		
-		partie= new Partie();
-		this.fp= new FenetreParamettre(partie);
-		
-		
+
+		partie = new Partie();
+		this.fp = new FenetreParamettre(partie);
+
 		fp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fp.getContentPane().setLayout(null);
 	}
-		
+
 }

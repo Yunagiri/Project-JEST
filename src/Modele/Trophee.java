@@ -40,7 +40,6 @@ public class Trophee extends Tas {
 							}
 						}
 				}
-				// JoueurMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = JoueurMax;
 				} else if (temp.indexOf(carteT) == 1) {
@@ -73,7 +72,6 @@ public class Trophee extends Tas {
 				} else if (temp.indexOf(carteT) == 1) {
 					joueur2 = JoueurMin;
 				}
-				// JoueurMin.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 			} else if (carteT.condi.cond == action.MAJORITY) {
 				Joueur JoueurMax = new Joueur();
 				JoueurMax = joueurs.get(0);
@@ -100,7 +98,6 @@ public class Trophee extends Tas {
 						highestValeur = valeur;
 					}
 				}
-				//JoueurMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = JoueurMax;
 				} else if (temp.indexOf(carteT) == 1) {
@@ -115,7 +112,6 @@ public class Trophee extends Tas {
 						} else if (temp.indexOf(carteT) == 1) {
 							joueur2 = j;
 						}
-						// j.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 					} else {
 						nbnoJoker ++;
 					}
@@ -160,7 +156,6 @@ public class Trophee extends Tas {
 				} else if (temp.indexOf(carteT) == 1) {
 					joueur2 = jMax;
 				}
-				// jMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 			} else if (carteT.condi.cond == action.BEST_NOJOKER) {
 				Joueur jMax = new Joueur();
 				int highestValeur = 0;
@@ -189,7 +184,6 @@ public class Trophee extends Tas {
 						highestValeur = Valeur;
 					} else {
 					}
-					// jMax.prendreOffre(this.trophee.listCarte.indexOf(carteT), trophee);
 				}
 				for (Joueur i : joueurs) {
 					

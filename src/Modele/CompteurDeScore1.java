@@ -55,7 +55,6 @@ public class CompteurDeScore1 implements Visitor {
 					for (Carte l : temps) {
 						if (c.hauteur == l.hauteur) {
 							if ((l.enseigne == suits.PIQUE || l.enseigne == suits.TREFLE) && l.enseigne != c.enseigne) {
-				
 								this.score = this.score + 2;
 
 							}
@@ -154,7 +153,6 @@ public class CompteurDeScore1 implements Visitor {
 		if (nbCarreauAce == 1 && nbCarreau == 0) {
 			for (Carte c : j) {
 				if (c.hauteur == 1 && c.enseigne == suits.CARREAU) {
-					// c.setHauteur(5);
 					this.score = this.score - 4;
 				}
 			}

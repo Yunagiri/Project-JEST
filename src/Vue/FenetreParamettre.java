@@ -1,7 +1,5 @@
 package Vue;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -26,8 +24,13 @@ import java.awt.event.ActionEvent;
 
 public class FenetreParamettre extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Partie partie;
-	
+
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
 	private JCheckBox chckbxDifficile;
@@ -35,35 +38,33 @@ public class FenetreParamettre extends JFrame {
 	private JButton btnNewButton;
 	private JCheckBox chckbxOrigin;
 	private JCheckBox chckbxVar;
-	
-	
-	
+
 	public FenetreParamettre(Partie partie) {
 		this.setBounds(100, 100, 450, 380);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		this.setVisible(false);
-		
+
 		comboBox = new JComboBox();
 		comboBox.setBounds(170, 41, 43, 22);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"2", "3", "4" }));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "2", "3", "4" }));
 		this.getContentPane().add(comboBox);
-		
+
 		JLabel lblCombienDeJoueurs = new JLabel("Nombre de joueurs reels:");
 		lblCombienDeJoueurs.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblCombienDeJoueurs.setBounds(12, 96, 189, 40);
 		this.getContentPane().add(lblCombienDeJoueurs);
-		
+
 		JLabel lblNombredejoueur = new JLabel("Nombre de joueurs:");
 		lblNombredejoueur.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNombredejoueur.setBounds(12, 43, 165, 16);
 		this.getContentPane().add(lblNombredejoueur);
-		
+
 		comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"1","2", "3","4"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 		comboBox_1.setBounds(213, 107, 43, 22);
 		this.getContentPane().add(comboBox_1);
-		
+
 		chckbxFacile = new JCheckBox("Facile");
 		chckbxFacile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -72,8 +73,7 @@ public class FenetreParamettre extends JFrame {
 		});
 		chckbxFacile.setBounds(157, 175, 75, 25);
 		this.getContentPane().add(chckbxFacile);
-		
-		
+
 		chckbxDifficile = new JCheckBox("Difficile");
 		chckbxDifficile.setBounds(276, 175, 113, 25);
 		chckbxDifficile.addActionListener(new ActionListener() {
@@ -82,17 +82,17 @@ public class FenetreParamettre extends JFrame {
 			}
 		});
 		this.getContentPane().add(chckbxDifficile);
-		
+
 		JLabel lblNiveau = new JLabel("Niveau de difficulte:");
 		lblNiveau.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNiveau.setBounds(21, 178, 128, 16);
 		this.getContentPane().add(lblNiveau);
-		
+
 		JLabel lblRegle = new JLabel("Regle a suivre: ");
 		lblRegle.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblRegle.setBounds(21, 230, 128, 16);
 		this.getContentPane().add(lblRegle);
-		
+
 		chckbxOrigin = new JCheckBox("Originale");
 		chckbxOrigin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -101,7 +101,7 @@ public class FenetreParamettre extends JFrame {
 		});
 		chckbxOrigin.setBounds(157, 230, 128, 16);
 		this.getContentPane().add(chckbxOrigin);
-		
+
 		chckbxVar = new JCheckBox("DLC Season Pass");
 		chckbxVar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -110,75 +110,69 @@ public class FenetreParamettre extends JFrame {
 		});
 		chckbxVar.setBounds(276, 230, 128, 16);
 		this.getContentPane().add(chckbxVar);
-		
+
 		btnNewButton = new JButton("Valider");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {				
-				int a =Integer.parseInt(comboBox.getSelectedItem().toString());
-				int b =Integer.parseInt(comboBox_1.getSelectedItem().toString());
-				if((chckbxFacile.isSelected() || chckbxDifficile.isSelected())& a>=b && (chckbxVar.isSelected() || chckbxOrigin.isSelected())) {
+			public void actionPerformed(ActionEvent arg0) {
+				int a = Integer.parseInt(comboBox.getSelectedItem().toString());
+				int b = Integer.parseInt(comboBox_1.getSelectedItem().toString());
+				if ((chckbxFacile.isSelected() || chckbxDifficile.isSelected()) & a >= b
+						&& (chckbxVar.isSelected() || chckbxOrigin.isSelected())) {
 					partie.setNbJoueurs(Integer.parseInt(comboBox.getSelectedItem().toString()));
 					partie.setNbJoueursPhysic(Integer.parseInt(comboBox_1.getSelectedItem().toString()));
 					if (chckbxVar.isSelected()) {
 						CompteurDeScore1 compteur1 = new CompteurDeScore1();
 						partie.setCompteur(compteur1);
 						System.out.println("Original");
-					}
-					else if(chckbxOrigin.isSelected()) {
+					} else if (chckbxOrigin.isSelected()) {
 						CompteurDeScore2 compteur2 = new CompteurDeScore2();
 						partie.setCompteur(compteur2);
 						System.out.println("Variante");
 					}
-					
-					for(int j=0;j<a;j++) {
-						if(j<b) {
-							Joueur joueur= new JoueurPhys(Joueur.numero+"");
+
+					for (int j = 0; j < a; j++) {
+						if (j < b) {
+							Joueur joueur = new JoueurPhys(Joueur.numero + "");
 							partie.joueurs.add(joueur);
 
-						}
-						else if(j>=b) {
-							if(chckbxFacile.isSelected()) {
-								Joueur joueur= new JoueurVirt(1,Joueur.numero+"");
+						} else if (j >= b) {
+							if (chckbxFacile.isSelected()) {
+								Joueur joueur = new JoueurVirt(1, Joueur.numero + "");
 								partie.joueurs.add(joueur);
 
-							}
-							else {
-								Joueur joueur= new JoueurVirt(2,Joueur.numero+"");
+							} else {
+								Joueur joueur = new JoueurVirt(2, Joueur.numero + "");
 								partie.joueurs.add(joueur);
 							}
-							
+
 						}
 					}
 					FenetreParamettre.this.setVisible(false);
-//					partie.continu();
 					VueText vue = new VueText(partie);
 					partie.creerPioche();
 					partie.getPiocheGrand().melanger();
 					partie.preparer();
-					JestInterface jf= new JestInterface(partie);
+					JestInterface jf = new JestInterface(partie);
 					jf.setVisible(true);
 					System.out.println("Faites une offre!");
 					vue.start();
-					Thread t= new Thread() {
+					Thread t = new Thread() {
 						public void run() {
 							try {
-								boolean condition =true;
-								while(condition) {
+								boolean condition = true;
+								while (condition) {
 									partie.distribuerCartes();
 									partie.continu();
 									JOptionPane.showMessageDialog(null, "Choisir une carte a faire offre");
 									partie.pause();
 									System.out.println("--------------------------------");
-									if(!partie.console) {
+									if (!partie.console) {
 										partie.choisirJoueur();
 										int tours = 0;
 										ArrayList<Joueur> temp1 = new ArrayList<Joueur>();
-										ArrayList<Joueur> joueurs= partie.joueurs;
+										ArrayList<Joueur> joueurs = partie.joueurs;
 										temp1.addAll(joueurs);
 										while (tours < joueurs.size()) {
-											// Actions to take in a single turn of a player: Choose a player, take a card in
-											// their hand and put it in jest.
-											// for (int i = 0; i < this.joueurs.size(); i++) {
 											Iterator<Joueur> itJoueur = joueurs.iterator();
 											while (itJoueur.hasNext()) {
 												Joueur a = (Joueur) itJoueur.next();
@@ -198,18 +192,20 @@ public class FenetreParamettre extends JFrame {
 																temp.remove(a);
 																for (Joueur j : temp) {
 																	if (j.main.nombreDeCartes == 2) {
-																		System.out.println("Il reste encore des gens ayant 2 cartes!");
+																		System.out.println(
+																				"Il reste encore des gens ayant 2 cartes!");
 																		differentPrenom = true;
 																	}
 																}
 															} else if (d.main.nombreDeCartes == 1) {
-																String msg = String.format("%s n'a seulement qu'une carte", d.prenom);
+																String msg = String.format(
+																		"%s n'a seulement qu'une carte", d.prenom);
 																System.out.println(msg);
 															} else {
 																differentPrenom = false;
 															}
 														} while (differentPrenom);
-		
+
 														Joueur prochainJoueur = new Joueur();
 														Iterator<Joueur> it = joueurs.iterator();
 														while (it.hasNext()) {
@@ -226,10 +222,13 @@ public class FenetreParamettre extends JFrame {
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel = (Joueur) it1.next();
 																			for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-																				if (!joueurActuel.main.listCarte.get(counter).getFaceCachee()) {
+																				if (!joueurActuel.main.listCarte
+																						.get(counter).getFaceCachee()) {
 																					if (joueurActuel.main.listCarte
-																							.get(counter).getValeur() > prochainJoueur.main.listCarte
-																									.get(counter).getValeur()) {
+																							.get(counter)
+																							.getValeur() > prochainJoueur.main.listCarte
+																									.get(counter)
+																									.getValeur()) {
 																						prochainJoueur = joueurActuel;
 																					}
 																				}
@@ -242,55 +241,45 @@ public class FenetreParamettre extends JFrame {
 														partie.finirTour(a);
 														partie.donnerTour(prochainJoueur);
 														tours++;
-													}else {
+													} else {
 														System.out.println("A vous de jouer!");
 														partie.notifyObservers("prendreOffre");
 														JOptionPane.showMessageDialog(null, "A vous de jouer");
 														partie.pause();
 														Joueur prochainJoueur = new Joueur();
 														System.out.println("Recherche du joueur en cours");
-														/*
-														 * for (int recherche = 0; recherche < this.joueurs.size(); recherche++) { if
-														 * (this.joueurs.get(recherche).getPrenom().equals(prenom)) {
-														 * this.joueurs.get(i).prendreOffre(z, this.joueurs.get(recherche));
-														 * prochainJoueur = this.joueurs.get(recherche); } }
-														 */
-		//												Iterator<Joueur> it = joueurs.iterator();
-		//												while (it.hasNext()) {
-		//													Joueur o = (Joueur) it.next();
-		//													if (o.getPrenom().equals(window.partie.joueurActuel.prenom)) {
-																if (temp1.indexOf(partie.joueurActuel) != -1) {
-																	prochainJoueur = partie.joueurActuel;
-																} else {
-																	Iterator<Joueur> it1 = temp1.iterator();
-																	
-																	if (temp1.size() != 0) {
-																		prochainJoueur = it1.next();
-																		while (it1.hasNext()) {
-																			Joueur joueurActuel1 = (Joueur) it1.next();
-																			for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
-																				if (!joueurActuel1.main.listCarte.get(counter).getFaceCachee()) {
-																					if (joueurActuel1.main.listCarte
-																							.get(counter).getValeur() > prochainJoueur.main.listCarte
-																									.get(counter).getValeur()) {
-																						prochainJoueur = joueurActuel1;
-																					}
-																				}
+														if (temp1.indexOf(partie.joueurActuel) != -1) {
+															prochainJoueur = partie.joueurActuel;
+														} else {
+															Iterator<Joueur> it1 = temp1.iterator();
+
+															if (temp1.size() != 0) {
+																prochainJoueur = it1.next();
+																while (it1.hasNext()) {
+																	Joueur joueurActuel1 = (Joueur) it1.next();
+																	for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
+																		if (!joueurActuel1.main.listCarte.get(counter)
+																				.getFaceCachee()) {
+																			if (joueurActuel1.main.listCarte
+																					.get(counter)
+																					.getValeur() > prochainJoueur.main.listCarte
+																							.get(counter).getValeur()) {
+																				prochainJoueur = joueurActuel1;
 																			}
 																		}
 																	}
 																}
-		//													}
-		//												}
+															}
+														}
 														partie.finirTour(a);
 														partie.donnerTour(prochainJoueur);
 														tours++;
 													}
-												
+
 												}
 											}
 										}
-									}else {
+									} else {
 										System.out.println("--------------");
 										partie.continu();
 										System.out.println("--------------");
@@ -302,7 +291,7 @@ public class FenetreParamettre extends JFrame {
 										condition = false;
 									}
 									partie.creerPiochePetit();
-									
+
 									partie.getpiochePetite().melanger();
 								}
 								partie.notifyObservers("terminer");
@@ -325,7 +314,6 @@ public class FenetreParamettre extends JFrame {
 		btnNewButton.setBounds(167, 270, 97, 25);
 		this.getContentPane().add(btnNewButton);
 
-		 
 	}
-	
+
 }
