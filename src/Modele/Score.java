@@ -1,7 +1,7 @@
 package Modele;
 /**
  * This interface implements the Visitor design pattern, used by visitable classes
- * @author dinh_
+ * @author dinh_,tran_
  *
  */
 public interface Score {

@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * This class implements the Visitor design pattern. This is the easy variant that does everything randomly.
- * @author dinh_
+ * @author dinh_ ,tran_
  *
  */
 public class Facile implements Strategie {

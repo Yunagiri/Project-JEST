@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * This class implements the design pattern Strategie. This is the hard variant, it will look for the card with the lowest value in hand,
  * and make an offer putting that card face up in order to conceal their higher value card, so that the opponent's jest won't get a higher socre.
- * @author dinh_
+ * @author dinh_ ,tran_
  *
  */
 public class Difficile implements Strategie {

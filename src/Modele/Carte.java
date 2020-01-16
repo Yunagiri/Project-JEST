@@ -6,7 +6,7 @@ package Modele;
  * </p>
  * 
  * @see SuitCards,Joker
- * @author dinh_
+ * @author dinh_ ,tran_
  *
  */
 public class Carte {

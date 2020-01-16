@@ -13,7 +13,7 @@ import java.util.Random;
  * <li>BEST_NOJOKER: the trophy is awarded to the player with the highest total jest value, without joker.
  * 
  * @see suits, Carte
- * @author dinh_
+ * @author dinh_, tran_
  *
  */
 public enum action {

@@ -2,7 +2,7 @@ package Modele;
 /**
  * This class represents the condition inscribed at the bottom of each card, for whenever it is a trophy card. The card will be awarded to the player
  * meeting the requirements.
- * @author dinh_
+ * @author dinh_ ,tran_
  *
  */
 public class Conditions {

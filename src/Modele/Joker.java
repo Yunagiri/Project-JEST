@@ -2,7 +2,7 @@ package Modele;
 
 /**
  * This class represents the joker card in the game. It doesn't have a suit and has a face value of 0. 
- * @author dinh_ 
+ * @author dinh_ ,tran_
  *
  */
 public class Joker extends Carte {

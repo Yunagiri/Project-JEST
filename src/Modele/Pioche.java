@@ -1,7 +1,7 @@
 package Modele;
 /**
  * This class inherits from the Tas, which is a composition of Cartes
- * @author dinh_
+ * @author dinh_,tran_
  * @see Tas, Carte
  *
  */

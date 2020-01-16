@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * 
  * @see Visitor, CompteurDeScore2
  * 
- * @author dinh_
+ * @author dinh_ ,tran_
  *
  */
 public class CompteurDeScore1 implements Visitor {

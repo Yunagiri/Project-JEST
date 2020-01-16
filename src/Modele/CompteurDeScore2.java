@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * For example, instead of decreasing the score, Diamond suits now increases the score of that jest.
  * 
  * @see Visitor, CompteurDeScore1
- * @author dinh_
+ * @author dinh_ ,tran_
  *
  */
 public class CompteurDeScore2 implements Visitor {

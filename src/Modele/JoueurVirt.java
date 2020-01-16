@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * This class inherits from Joueur and is the main user of the Strategy design pattern. 
  * This class has redefined methods from its superclass. 
- * @author dinh_
+ * @author dinh_,tran_
  *
  */
 public class JoueurVirt extends Joueur {

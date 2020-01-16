@@ -1,7 +1,7 @@
 package Modele;
 /**
  * This class represents the Jest in the game. It implements the Score interface which allows it to be visited.
- * @author tran_
+ * @author tran_ ,dinh_
  *
  */
 public class Jest extends Tas implements Score {

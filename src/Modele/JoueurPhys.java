@@ -2,7 +2,7 @@ package Modele;
 /**
  * Inherits from the Joueur, doesn't implement any methods but instead call methods from the superclass. 
  * This class' main purpose is to define a proper constructor as the superclass lacks of any constructor.
- * @author dinh_
+ * @author dinh_,tran_
  * @see Joueur, JoueurVirt, Observable
  *
  */
