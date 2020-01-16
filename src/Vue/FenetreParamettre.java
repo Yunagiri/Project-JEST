@@ -191,13 +191,13 @@ public class FenetreParamettre extends JFrame {
 																temp.addAll(joueurs);
 																temp.remove(a);
 																for (Joueur j : temp) {
-																	if (j.main.nombreDeCartes == 2) {
+																	if (j.getMain().nombreDeCartes == 2) {
 																		System.out.println(
 																				"Il reste encore des gens ayant 2 cartes!");
 																		differentPrenom = true;
 																	}
 																}
-															} else if (d.main.nombreDeCartes == 1) {
+															} else if (d.getMain().nombreDeCartes == 1) {
 																String msg = String.format(
 																		"%s n'a seulement qu'une carte", d.prenom);
 																System.out.println(msg);
@@ -221,12 +221,12 @@ public class FenetreParamettre extends JFrame {
 																		prochainJoueur = it1.next();
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel = (Joueur) it1.next();
-																			for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-																				if (!joueurActuel.main.listCarte
+																			for (int counter = 0; counter < joueurActuel.getMain().nombreDeCartes; counter++) {
+																				if (!joueurActuel.getMain().listCarte
 																						.get(counter).getFaceCachee()) {
-																					if (joueurActuel.main.listCarte
+																					if (joueurActuel.getMain().listCarte
 																							.get(counter)
-																							.getValeur() > prochainJoueur.main.listCarte
+																							.getValeur() > prochainJoueur.getMain().listCarte
 																									.get(counter)
 																									.getValeur()) {
 																						prochainJoueur = joueurActuel;
@@ -257,12 +257,12 @@ public class FenetreParamettre extends JFrame {
 																prochainJoueur = it1.next();
 																while (it1.hasNext()) {
 																	Joueur joueurActuel1 = (Joueur) it1.next();
-																	for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
-																		if (!joueurActuel1.main.listCarte.get(counter)
+																	for (int counter = 0; counter < joueurActuel1.getMain().nombreDeCartes; counter++) {
+																		if (!joueurActuel1.getMain().listCarte.get(counter)
 																				.getFaceCachee()) {
-																			if (joueurActuel1.main.listCarte
+																			if (joueurActuel1.getMain().listCarte
 																					.get(counter)
-																					.getValeur() > prochainJoueur.main.listCarte
+																					.getValeur() > prochainJoueur.getMain().listCarte
 																							.get(counter).getValeur()) {
 																				prochainJoueur = joueurActuel1;
 																			}
