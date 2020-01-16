@@ -18,14 +18,14 @@ public class Partie extends Observable {
 	private Tas piochePetite;
 	private int nbJoueurs;
 	private int nbJoueursPhysic;
-	private VisitorDeJest compteur;
+	private Visitor compteur;
 	
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 	
-	public VisitorDeJest getCompteur() {
+	public Visitor getCompteur() {
 		return this.compteur;
 	}
-	public void setCompteur(VisitorDeJest compteur) {
+	public void setCompteur(Visitor compteur) {
 		this.compteur = compteur;
 	}
 

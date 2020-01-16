@@ -1,5 +1,5 @@
 package Modele;
 
-public interface VisitorDeJest {
+public interface Visitor {
 	public int visiter(Jest j);
 }

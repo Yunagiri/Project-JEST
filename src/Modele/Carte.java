@@ -93,8 +93,9 @@ public class Carte {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * This method shows the card's name e.g "1 de Coeur" and it's value on a console command line.
+	 * @return a line on the console command, either the card is face down and you can't see it, or it's face up and will return 
+	 * its characteristics.
 	 */
 	public String montrer() {
 		StringBuffer sb = new StringBuffer();

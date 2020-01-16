@@ -14,12 +14,17 @@ import Modele.CompteurDeScore1;
 import Modele.Joueur;
 import Modele.JoueurVirt;
 import Modele.Partie;
-import Modele.VisitorDeJest;
+import Modele.Visitor;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/**
+ * This class is used to launch the GUI
+ * @author dinh_
+ *
+ */
 public class InterfaceTest {
 
 	private JestInterface jinter;
@@ -28,7 +33,7 @@ public class InterfaceTest {
 	private Partie partie;
 
 	/**
-	 * Launch the application.
+	 * Start the thread dedicated to the GUI
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

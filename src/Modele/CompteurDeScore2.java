@@ -2,7 +2,15 @@ package Modele;
 
 import java.util.ArrayList;
 
-public class CompteurDeScore2 implements VisitorDeJest {
+/**
+ * This class implements the Visitor design pattern. It has the same structure as the CompteurDeScore1, but the rules for scoring are reversed.
+ * For example, instead of decreasing the score, Diamond suits now increases the score of that jest.
+ * 
+ * @see Visitor, CompteurDeScore1
+ * @author dinh_
+ *
+ */
+public class CompteurDeScore2 implements Visitor {
 	private int score;
 
 	public CompteurDeScore2() {

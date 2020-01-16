@@ -10,7 +10,7 @@ public class Trophee extends Tas {
 	/*Award the trophy card to the player fulfilling the condition of the trophy card
 	* posTrophee indicates which card to give, and jestGagnant indicates who to give to
 	 */
-	public void distribuerTrophee(ArrayList<Joueur> joueurs, VisitorDeJest compteur) {
+	public void distribuerTrophee(ArrayList<Joueur> joueurs, Visitor compteur) {
 		boolean cantakecard1 = true;
 		boolean cantakecard2 = true;
 		

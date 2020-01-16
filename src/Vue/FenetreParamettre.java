@@ -298,7 +298,7 @@ public class FenetreParamettre extends JFrame {
 										partie.pause();
 									}
 									partie.augmenternumeroRound();
-									if (partie.piocheGrand.nombreDeCartes < partie.joueurs.size()) {
+									if (partie.getPiocheGrand().nombreDeCartes < partie.joueurs.size()) {
 										condition = false;
 									}
 									partie.creerPiochePetit();

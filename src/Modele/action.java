@@ -19,15 +19,4 @@ import java.util.Random;
 public enum action {
 	HIGHEST, LOWEST, MAJORITY, JOKER, BEST, BEST_NOJOKER;
 
-
-	
-	/**
-	 * <b>This method returns a random action, used for randomizing trophy conditions on every card.
-	 * 
-	 * @return an action at random.
-	 */
-	public static action getRandomAction() {
-		Random random = new Random();
-		return values()[random.nextInt(values().length)];
-	}
 }
