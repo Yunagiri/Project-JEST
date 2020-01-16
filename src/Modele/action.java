@@ -1,45 +1,31 @@
 package Modele;
 import java.util.Random;
 
-/* Condition of each card in the game will be defined by an enum class which will link each condition to a 
- * way to calculate to whom should the trophy card be awarded.
+/**
+ * <b>This enumeration stores the actions needed to get the trophy.</b>
+ * <p>
+ * There are 6 possible actions that a trophy can require:
+ * <li>HIGHEST: the trophy is awarded to the player with the highest card value of a given suit in their jest.
+ * <li>LOWEST: the trophy is awarded to the player with the lowest card value of a given suit in their jest.
+ * <li>MAJORITY: the trophy is awarded to the player with the most cards of a given value in their jest.
+ * <li>JOKER: the trophy is awarded to the player with the joker in their jest.
+ * <li>BEST: the trophy is awarded to the player with the highest total jest value.
+ * <li>BEST_NOJOKER: the trophy is awarded to the player with the highest total jest value, without joker.
+ * 
+ * @see suits, Carte
+ * @author dinh_
+ *
  */
 public enum action {
 	HIGHEST, LOWEST, MAJORITY, JOKER, BEST, BEST_NOJOKER;
 
-//public static void main(String[] args) {
 
-	/*
-	 * //I've come to the conclusion that the best type of Map is the EnumMap, to
-	 * link 2 enums together EnumMap<condition,List<suits>> omega_condition = new
-	 * EnumMap<condition, List<suits>>(condition.class);
+	
+	/**
+	 * <b>This method returns a random action, used for randomizing trophy conditions on every card.
 	 * 
-	 * //Since you can't have multiple values in 1 key I've decided to pair a key
-	 * with a List (List doesn't work but ArrayList does...) List<suits> listSuits =
-	 * new ArrayList<suits>(); for (suits enseigne : suits.values()) {
-	 * listSuits.add(enseigne); } System.out.println(listSuits);
-	 * 
-	 * 
-	 * //2 loops to pair up actions that can be paired with a suit and pair null
-	 * with actions that doesn't need a suit for (condition act: condition.values())
-	 * {
-	 * 
-	 * //These are the actions that doesn't need a suit to be done if (act !=
-	 * condition.JOKER && act != condition.BEST_NOJOKER && act != condition.BEST) {
-	 * 
-	 * //Pair an action to win the card with a suit, the problem is to find how to
-	 * choose a specific suit... omega_condition.put(act, listSuits); } else {
-	 * omega_condition.put(act, null); }
-	 * 
-	 * } System.out.println(omega_condition.toString());
-	 * System.out.println(omega_condition.get(HIGHEST).get(2));
+	 * @return an action at random.
 	 */
-
-//	SuitCards carte = new SuitCards(5, true, HIGHEST, suits.COEUR, suits.PIQUE );
-
-	// }
-
-
 	public static action getRandomAction() {
 		Random random = new Random();
 		return values()[random.nextInt(values().length)];

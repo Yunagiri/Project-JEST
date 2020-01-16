@@ -56,17 +56,15 @@ public class InterfaceTest {
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws InterruptedException 
+	 * @throws IOException 
 	 */
 	private void initialize() throws IOException, InterruptedException {
 		
 		
 		partie= new Partie();
-		
-//		partie.pause();
 		this.fp= new FenetreParamettre(partie);
 		
 		
-//			System.out.println(partie.joueurs.get(0).getMain().listCarte.get(0).montrer());
 		fp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fp.getContentPane().setLayout(null);
 	}
