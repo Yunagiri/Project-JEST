@@ -25,15 +25,11 @@ public class CompteurDeScore1 implements Visitor {
 		for (Carte c : j) {
 			if (c instanceof SuitCards) {
 				if (c.enseigne == suits.PIQUE || c.enseigne == suits.TREFLE) {
-					// j.setValeur(j.getValeur() + c.hauteur);
 					this.score = this.score + c.hauteur;
 					temps.remove(c);
 					for (Carte l : temps) {
 						if (c.hauteur == l.hauteur) {
 							if ((l.enseigne == suits.PIQUE || l.enseigne == suits.TREFLE) && l.enseigne != c.enseigne) {
-								// j.setValeur(j.getValeur() + 2);
-								// c.hauteur += 2;
-								// j.get(j.indexOf(l)).hauteur +=2;
 								this.score = this.score + 2;
 
 							}
@@ -41,7 +37,6 @@ public class CompteurDeScore1 implements Visitor {
 					}
 
 				} else if (c.enseigne == suits.CARREAU) {
-					// j.setValeur(j.getValeur() - c.hauteur);
 					this.score = this.score - c.hauteur;
 				}
 			}
@@ -70,7 +65,6 @@ public class CompteurDeScore1 implements Visitor {
 
 	public void compterScoreCoeur(ArrayList<Carte> j) {
 		if (this.hasJoker(j)) {
-			// int pos = this.trouverJoker(j);
 			if (this.CompterNbCoeur(j) == 0) {
 				this.score = this.score + 4;
 			} else if (this.CompterNbCoeur(j) <= 3) {
@@ -128,7 +122,6 @@ public class CompteurDeScore1 implements Visitor {
 		if (nbCarreauAce == 1 && nbCarreau == 0) {
 			for (Carte c : j) {
 				if (c.hauteur == 1 && c.enseigne == suits.CARREAU) {
-					// c.setHauteur(5);
 					this.score = this.score - 4;
 				}
 			}
