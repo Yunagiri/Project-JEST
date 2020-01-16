@@ -130,83 +130,83 @@ public class Partie extends Observable {
 	public void creerPioche() {
 
 		Joker joker = new Joker();
-		this.piocheGrand.listCarte.add(joker);
-		this.piocheGrand.listCarte.get(0).valeur = 0;
+		this.piocheGrand.getCarteTas().add(joker);
+		this.piocheGrand.getCarteTas().get(0).valeur = 0;
 
 		Conditions lowest_trefle = new Conditions(action.LOWEST, suits.TREFLE);
 		SuitCards PIQUE_4 = new SuitCards(4, true, lowest_trefle, suits.PIQUE);
-		this.piocheGrand.listCarte.add(PIQUE_4);
-		this.piocheGrand.listCarte.get(1).valeur = 16;
+		this.piocheGrand.getCarteTas().add(PIQUE_4);
+		this.piocheGrand.getCarteTas().get(1).valeur = 16;
 
 		Conditions lowest_pique = new Conditions(action.LOWEST, suits.PIQUE);
 		SuitCards TREFLE_4 = new SuitCards(4, true, lowest_pique, suits.TREFLE);
-		this.piocheGrand.listCarte.add(TREFLE_4);
-		this.piocheGrand.listCarte.get(2).valeur = 15;
+		this.piocheGrand.getCarteTas().add(TREFLE_4);
+		this.piocheGrand.getCarteTas().get(2).valeur = 15;
 
 		Conditions Joker = new Conditions(action.JOKER);
 		SuitCards COEUR_4 = new SuitCards(4, true, Joker, suits.COEUR);
-		this.piocheGrand.listCarte.add(COEUR_4);
-		this.piocheGrand.listCarte.get(3).valeur = 13;
+		this.piocheGrand.getCarteTas().add(COEUR_4);
+		this.piocheGrand.getCarteTas().get(3).valeur = 13;
 
 		Conditions best_nojoker = new Conditions(action.BEST_NOJOKER);
 		SuitCards CARREAU_4 = new SuitCards(4, true, best_nojoker, suits.CARREAU);
-		this.piocheGrand.listCarte.add(CARREAU_4);
-		this.piocheGrand.listCarte.get(4).valeur = 14;
+		this.piocheGrand.getCarteTas().add(CARREAU_4);
+		this.piocheGrand.getCarteTas().get(4).valeur = 14;
 
 		Conditions lowest_coeur = new Conditions(action.LOWEST, suits.COEUR);
 		SuitCards TREFLE_3 = new SuitCards(3, true, lowest_coeur, suits.TREFLE);
-		this.piocheGrand.listCarte.add(TREFLE_3);
-		this.piocheGrand.listCarte.get(5).valeur = 11;
+		this.piocheGrand.getCarteTas().add(TREFLE_3);
+		this.piocheGrand.getCarteTas().get(5).valeur = 11;
 
 		Conditions maj_2 = new Conditions(action.MAJORITY, 2);
 		SuitCards PIQUE_3 = new SuitCards(3, true, maj_2, suits.PIQUE);
-		this.piocheGrand.listCarte.add(PIQUE_3);
-		this.piocheGrand.listCarte.get(6).valeur = 12;
+		this.piocheGrand.getCarteTas().add(PIQUE_3);
+		this.piocheGrand.getCarteTas().get(6).valeur = 12;
 
 		Conditions lowest_carreau = new Conditions(action.LOWEST, suits.CARREAU);
 		SuitCards CARREAU_3 = new SuitCards(3, true, lowest_carreau, suits.CARREAU);
-		this.piocheGrand.listCarte.add(CARREAU_3);
-		this.piocheGrand.listCarte.get(7).valeur = 10;
+		this.piocheGrand.getCarteTas().add(CARREAU_3);
+		this.piocheGrand.getCarteTas().get(7).valeur = 10;
 
 		SuitCards COEUR_3 = new SuitCards(3, true, Joker, suits.COEUR);
-		this.piocheGrand.listCarte.add(COEUR_3);
-		this.piocheGrand.listCarte.get(8).valeur = 9;
+		this.piocheGrand.getCarteTas().add(COEUR_3);
+		this.piocheGrand.getCarteTas().get(8).valeur = 9;
 
 		SuitCards TREFLE_2 = new SuitCards(2, true, lowest_coeur, suits.TREFLE);
-		this.piocheGrand.listCarte.add(TREFLE_2);
-		this.piocheGrand.listCarte.get(9).valeur = 7;
+		this.piocheGrand.getCarteTas().add(TREFLE_2);
+		this.piocheGrand.getCarteTas().get(9).valeur = 7;
 
 		Conditions maj_3 = new Conditions(action.MAJORITY, 3);
 		SuitCards PIQUE_2 = new SuitCards(2, true, maj_3, suits.PIQUE);
-		this.piocheGrand.listCarte.add(PIQUE_2);
-		this.piocheGrand.listCarte.get(10).valeur = 8;
+		this.piocheGrand.getCarteTas().add(PIQUE_2);
+		this.piocheGrand.getCarteTas().get(10).valeur = 8;
 
 		Conditions highest_carreau = new Conditions(action.HIGHEST, suits.CARREAU);
 		SuitCards CARREAU_2 = new SuitCards(2, true, highest_carreau, suits.CARREAU);
-		this.piocheGrand.listCarte.add(CARREAU_2);
-		this.piocheGrand.listCarte.get(11).valeur = 6;
+		this.piocheGrand.getCarteTas().add(CARREAU_2);
+		this.piocheGrand.getCarteTas().get(11).valeur = 6;
 
 		SuitCards COEUR_2 = new SuitCards(2, true, Joker, suits.COEUR);
-		this.piocheGrand.listCarte.add(COEUR_2);
-		this.piocheGrand.listCarte.get(12).valeur = 5;
+		this.piocheGrand.getCarteTas().add(COEUR_2);
+		this.piocheGrand.getCarteTas().get(12).valeur = 5;
 
 		SuitCards COEUR_1 = new SuitCards(1, true, Joker, suits.COEUR);
-		this.piocheGrand.listCarte.add(COEUR_1);
-		this.piocheGrand.listCarte.get(13).valeur = 1;
+		this.piocheGrand.getCarteTas().add(COEUR_1);
+		this.piocheGrand.getCarteTas().get(13).valeur = 1;
 
 		SuitCards PIQUE_1 = new SuitCards(1, true, lowest_trefle, suits.PIQUE);
-		this.piocheGrand.listCarte.add(PIQUE_1);
-		this.piocheGrand.listCarte.get(14).valeur = 4;
+		this.piocheGrand.getCarteTas().add(PIQUE_1);
+		this.piocheGrand.getCarteTas().get(14).valeur = 4;
 
 		Conditions highest_pique = new Conditions(action.HIGHEST, suits.PIQUE);
 		SuitCards TREFLE_1 = new SuitCards(1, true, highest_pique, suits.TREFLE);
-		this.piocheGrand.listCarte.add(TREFLE_1);
-		this.piocheGrand.listCarte.get(15).valeur = 3;
+		this.piocheGrand.getCarteTas().add(TREFLE_1);
+		this.piocheGrand.getCarteTas().get(15).valeur = 3;
 
 		Conditions maj_4 = new Conditions(action.MAJORITY, 4);
 		SuitCards CARREAU_1 = new SuitCards(1, true, maj_4, suits.CARREAU);
-		this.piocheGrand.listCarte.add(CARREAU_1);
-		this.piocheGrand.listCarte.get(16).valeur = 2;
+		this.piocheGrand.getCarteTas().add(CARREAU_1);
+		this.piocheGrand.getCarteTas().get(16).valeur = 2;
 
 		this.piocheGrand.nombreDeCartes = 17;
 
@@ -224,9 +224,9 @@ public class Partie extends Observable {
 			Iterator<Joueur> it = joueurs.iterator();
 			while (it.hasNext()) {
 				Joueur o = (Joueur) it.next();
-				o.main.listCarte.get(0).faceCachee = true;
-				this.piochePetite.listCarte.add(o.main.listCarte.get(0));
-				o.main.listCarte.remove(0);
+				o.main.getCarteTas().get(0).faceCachee = true;
+				this.piochePetite.getCarteTas().add(o.main.getCarteTas().get(0));
+				o.main.getCarteTas().remove(0);
 				o.main.nombreDeCartes--;
 				this.piochePetite.nombreDeCartes++;
 			}
@@ -252,7 +252,7 @@ public class Partie extends Observable {
 		this.piocheGrand.melanger();
 		for (int i = 0; i < 2; i++) {
 			this.piocheGrand.distribuer(this.trophee);
-			System.out.println(trophee.listCarte.size());
+			System.out.println(trophee.getCarteTas().size());
 		}
 
 	}
@@ -262,7 +262,7 @@ public class Partie extends Observable {
 	 */
 	public void montrerTrophee() {
 		System.out.println("Les trophees sont: ");
-		for (Carte c : this.trophee.listCarte) {
+		for (Carte c : this.trophee.getCarteTas()) {
 			c.faceCachee = false;
 			System.out.println(c.montrer() + "     ");
 		}
@@ -281,14 +281,14 @@ public class Partie extends Observable {
 				String msg = String.format("Distribution en cours au joueur %s", j.prenom);
 				System.out.println(msg);
 				for (int i = 0; i < 2; i++) {
-					j.prendreCartes(this.piocheGrand.listCarte.get(piocheGrand.nombreDeCartes - 1), this.piocheGrand);
+					j.prendreCartes(this.piocheGrand.getCarteTas().get(piocheGrand.nombreDeCartes - 1), this.piocheGrand);
 
 				}
 			} else {
 				String msg = String.format("Distribution en cours au joueur %s", j.prenom);
 				System.out.println(msg);
 				for (int i = 0; i < 2; i++) {
-					j.prendreCartes(this.piochePetite.listCarte.get(piochePetite.nombreDeCartes - 1),
+					j.prendreCartes(this.piochePetite.getCarteTas().get(piochePetite.nombreDeCartes - 1),
 							this.piochePetite);
 
 				}
@@ -331,8 +331,8 @@ public class Partie extends Observable {
 		while (it.hasNext()) {
 			Joueur joueurActuel = (Joueur) it.next();
 			for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-				if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
-					if (joueurActuel.main.listCarte.get(counter).valeur > joueurMax.main.listCarte
+				if (!joueurActuel.main.getCarteTas().get(counter).faceCachee) {
+					if (joueurActuel.main.getCarteTas().get(counter).valeur > joueurMax.main.getCarteTas()
 							.get(counter).valeur) {
 						joueurMax = joueurActuel;
 					}
@@ -424,9 +424,9 @@ public class Partie extends Observable {
 											Joueur joueurActuel = (Joueur) it1.next();
 											//compare the face up value of the hands of remaining players
 											for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-												if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
-													if (joueurActuel.main.listCarte
-															.get(counter).valeur > prochainJoueur.main.listCarte
+												if (!joueurActuel.main.getCarteTas().get(counter).faceCachee) {
+													if (joueurActuel.main.getCarteTas()
+															.get(counter).valeur > prochainJoueur.main.getCarteTas()
 																	.get(counter).valeur) {
 														prochainJoueur = joueurActuel;
 													}
@@ -495,9 +495,9 @@ public class Partie extends Observable {
 										while (it1.hasNext()) {
 											Joueur joueurActuel = (Joueur) it1.next();
 											for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-												if (!joueurActuel.main.listCarte.get(counter).faceCachee) {
-													if (joueurActuel.main.listCarte
-															.get(counter).valeur > prochainJoueur.main.listCarte
+												if (!joueurActuel.main.getCarteTas().get(counter).faceCachee) {
+													if (joueurActuel.main.getCarteTas()
+															.get(counter).valeur > prochainJoueur.main.getCarteTas()
 																	.get(counter).valeur) {
 														prochainJoueur = joueurActuel;
 													}
@@ -534,10 +534,10 @@ public class Partie extends Observable {
 	 * Show the original deck on console
 	 */
 	public void montrerPiocheGrand() {
-		for (int i = 0; i < this.piocheGrand.listCarte.size(); i++) {
-			this.piocheGrand.listCarte.get(i).faceCachee = false;
-			System.out.println(this.piocheGrand.listCarte.get(i).montrer());
-			this.piocheGrand.listCarte.get(i).faceCachee = true;
+		for (int i = 0; i < this.piocheGrand.getCarteTas().size(); i++) {
+			this.piocheGrand.getCarteTas().get(i).faceCachee = false;
+			System.out.println(this.piocheGrand.getCarteTas().get(i).montrer());
+			this.piocheGrand.getCarteTas().get(i).faceCachee = true;
 		}
 	}
 
@@ -545,10 +545,10 @@ public class Partie extends Observable {
 	 * Show the small deck on console
 	 */
 	public void montrerPiochePetite() {
-		for (int i = 0; i < this.piochePetite.listCarte.size(); i++) {
-			this.piochePetite.listCarte.get(i).faceCachee = false;
-			System.out.println(this.piochePetite.listCarte.get(i).montrer());
-			this.piochePetite.listCarte.get(i).faceCachee = true;
+		for (int i = 0; i < this.piochePetite.getCarteTas().size(); i++) {
+			this.piochePetite.getCarteTas().get(i).faceCachee = false;
+			System.out.println(this.piochePetite.getCarteTas().get(i).montrer());
+			this.piochePetite.getCarteTas().get(i).faceCachee = true;
 		}
 	}
 
@@ -712,9 +712,9 @@ public class Partie extends Observable {
 		for (Joueur i : joueurs) {
 			System.out.println("Le jest de " + i.prenom);
 			for (int j = 0; j < i.jest.nombreDeCartes; j++) {
-				i.jest.listCarte.get(j).faceCachee = false;
-				System.out.println(i.jest.listCarte.get(j).montrer());
-				i.jest.listCarte.get(j).faceCachee = true;
+				i.jest.getCarteTas().get(j).faceCachee = false;
+				System.out.println(i.jest.getCarteTas().get(j).montrer());
+				i.jest.getCarteTas().get(j).faceCachee = true;
 			}
 
 		}

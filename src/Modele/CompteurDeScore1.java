@@ -1,14 +1,16 @@
 package Modele;
 
 import java.util.ArrayList;
+
 /**
- * This class is a Visitor designed to calculate player's jest scores. It contains methods that uses the value of each 
- * card in the player's jest in order to get the final jest score. It takes in account the game's rules such as double value for 
- * a pair of same face-value Spade and Club.
+ * This class is a Visitor designed to calculate player's jest scores. It
+ * contains methods that uses the value of each card in the player's jest in
+ * order to get the final jest score. It takes in account the game's rules such
+ * as double value for a pair of same face-value Spade and Club.
  * 
  * @see Visitor, CompteurDeScore2
  * 
- * @author dinh_ ,tran_
+ * @author dinh_, tran_
  *
  */
 public class CompteurDeScore1 implements Visitor {
@@ -19,13 +21,16 @@ public class CompteurDeScore1 implements Visitor {
 	private int score;
 
 	/**
-	 * The constructor of this class, initialise the score to 0 for each time it is called to calculate a jest's score.
+	 * The constructor of this class, initialise the score to 0 for each time it is
+	 * called to calculate a jest's score.
 	 */
 	public CompteurDeScore1() {
 		this.score = 0;
 	}
+
 	/**
 	 * This method counts the number of hearts in a player's jest.
+	 * 
 	 * @param takes a player's jest
 	 * @return the number of hearts in the jest.
 	 */
@@ -38,10 +43,13 @@ public class CompteurDeScore1 implements Visitor {
 		}
 		return nbCoeurs;
 	}
+
 	/**
-	 * This method contains all the elements to calculate the score of Spade, Club and Diamond suit cards. 
-	 * If the card suit is a Spade or a Club, the score of the jest increases of the face value of the card.
-	 * If the card suit is Diamond, it decreases the score of the jest of the face value of the card.
+	 * This method contains all the elements to calculate the score of Spade, Club
+	 * and Diamond suit cards. If the card suit is a Spade or a Club, the score of
+	 * the jest increases of the face value of the card. If the card suit is
+	 * Diamond, it decreases the score of the jest of the face value of the card.
+	 * 
 	 * @param j the jest which needs scoring.
 	 */
 	public void compterTrefleCarreauPique(ArrayList<Carte> j) {
@@ -67,8 +75,10 @@ public class CompteurDeScore1 implements Visitor {
 			}
 		}
 	}
+
 	/**
-	 * This method indicates if a jest has a joker card in it or not. 
+	 * This method indicates if a jest has a joker card in it or not.
+	 * 
 	 * @param j the Jest that needs scoring
 	 * @return true if the jest contains a Joker, false if not.
 	 */
@@ -80,14 +90,19 @@ public class CompteurDeScore1 implements Visitor {
 		}
 		return false;
 	}
-	
+
 	/**
-	 * This method calculates the score Heart cards gives. The Heart score is dictated by the rules of the game:
+	 * This method calculates the score Heart cards gives. The Heart score is
+	 * dictated by the rules of the game:
 	 * <ul>
 	 * <li>If the jest has a joker and no Hearts, increases the score by 4.
-	 * <li>If the jest has a joker and 3 Hearts or less, decreases the score by the total face value of all the Hearts.
-	 * <li>If the jest has a joker and all Hearts, increases the score by the total face value of all Hearts.
-	 * <li>If the jest doesn't have a joker, Hearts doesn't add anything nor decrease anything.
+	 * <li>If the jest has a joker and 3 Hearts or less, decreases the score by the
+	 * total face value of all the Hearts.
+	 * <li>If the jest has a joker and all Hearts, increases the score by the total
+	 * face value of all Hearts.
+	 * <li>If the jest doesn't have a joker, Hearts doesn't add anything nor
+	 * decrease anything.
+	 * 
 	 * @param j the Jest which needs scoring
 	 */
 	public void compterScoreCoeur(ArrayList<Carte> j) {
@@ -111,7 +126,9 @@ public class CompteurDeScore1 implements Visitor {
 	}
 
 	/**
-	 * This method determines  whether an Ace is worth 1 or 5 points, depending on the number of cards of the same suit in the jest. 
+	 * This method determines whether an Ace is worth 1 or 5 points, depending on
+	 * the number of cards of the same suit in the jest.
+	 * 
 	 * @param j The Jest which needs scoring
 	 */
 	public void compterAce(ArrayList<Carte> j) {
@@ -183,15 +200,16 @@ public class CompteurDeScore1 implements Visitor {
 	}
 
 	/**
-	 * The method that implements the Visitor interface. Call all the methods defined above and return the score of the Jest visited.
+	 * The method that implements the Visitor interface. Call all the methods
+	 * defined above and return the score of the Jest visited.
+	 * 
 	 * @param j the Jest which needs scoring.
 	 */
-
 
 	public int visit(Jest j) {
 		this.score = 0;
 		ArrayList<Carte> temp = new ArrayList<Carte>();
-		temp.addAll(j.listCarte);
+		temp.addAll(j.getCarteTas());
 		this.compterAce(temp);
 		this.compterTrefleCarreauPique(temp);
 		this.compterScoreCoeur(temp);

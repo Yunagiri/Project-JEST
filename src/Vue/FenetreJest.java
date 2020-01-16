@@ -19,10 +19,17 @@ import javax.swing.SwingConstants;
 import Modele.Carte;
 import Modele.Jest;
 
+/**
+ * This class is the basis for the GUI, it is the window.
+ * 
+ * @author dinh_,tran_ 
+ * see InterfaceTest,JestInterface,PanelJeu,PanelJoueur,TableDeJeu
+ */
 public class FenetreJest extends JFrame {
 
 	/**
-	 * 
+	 * The attributes are the buttons and labels, aswell as the player's jest and
+	 * the counter.
 	 */
 	private static final long serialVersionUID = 1L;
 	private Jest jests;
@@ -31,6 +38,11 @@ public class FenetreJest extends JFrame {
 	private JButton b2;
 	private int compteur;
 
+	/**
+	 * This is the constructor, it initialises the attributes of the GUI
+	 * 
+	 * @param jests
+	 */
 	public FenetreJest(Jest jests) {
 		compteur = 0;
 		this.jests = jests;
@@ -68,7 +80,7 @@ public class FenetreJest extends JFrame {
 			public void actionPerformed(ActionEvent o) {
 				compteur++;
 				dessinerJests();
-				if (compteur == FenetreJest.this.jests.listCarte.size() - 1) {
+				if (compteur == FenetreJest.this.jests.getCarteTas().size() - 1) {
 					b2.setEnabled(false);
 				}
 				if (b1.isEnabled() == false) {
@@ -87,10 +99,13 @@ public class FenetreJest extends JFrame {
 		this.dessinerJests();
 	}
 
+	/**
+	 * This method allows cards to get a face up and face down side
+	 */
 	public void dessinerJests() {
 		this.remove(image);
-		if (compteur < jests.listCarte.size()) {
-			Carte carte = jests.listCarte.get(compteur);
+		if (compteur < jests.getCarteTas().size()) {
+			Carte carte = jests.getCarteTas().get(compteur);
 			try {
 				BufferedImage image;
 				image = ImageIO.read(new File("src/image/" + carte.getValeur() + ".png"));
@@ -107,7 +122,7 @@ public class FenetreJest extends JFrame {
 			this.repaint();
 			this.validate();
 		}
-		if (jests.listCarte.size() - compteur > 1) {
+		if (jests.getCarteTas().size() - compteur > 1) {
 			b2.setEnabled(true);
 		}
 	}

@@ -2,20 +2,30 @@ package Modele;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the trophy, it contains an array of 2 cards which are the trophies. It inherits from the Tas superclass
+ * @author dinh_, tran_
+ * @see Tas
+ */
 public class Trophee extends Tas {
+	/**
+	 * This class uses its superclass constructor
+	 */
 	public Trophee() {
 		super();
 	}
-	
-	/*Award the trophy card to the player fulfilling the condition of the trophy card
-	* posTrophee indicates which card to give, and jestGagnant indicates who to give to
+	/**
+	 * Award the trophy card to the player fulfilling the condition of the trophy card
+	* posTrophee indicates which card to give, and jestGagnant indicates who to give to.
+	 * @param joueurs the players in game
+	 * @param compteur the counter used to calculate the score 
 	 */
 	public void distribuerTrophee(ArrayList<Joueur> joueurs, Visitor compteur) {
 		boolean cantakecard1 = true;
 		boolean cantakecard2 = true;
 		
 		ArrayList<Carte> temp = new ArrayList<Carte>();
-		temp.addAll(this.listCarte);
+		temp.addAll(this.getCarteTas());
 		Joueur joueur1 = new Joueur();
 		Joueur joueur2 = new Joueur();
 		for (Carte carteT : temp) {
@@ -23,8 +33,8 @@ public class Trophee extends Tas {
 				Joueur JoueurMax = new Joueur();
 				ArrayList<Joueur> joueurHighest = new ArrayList<Joueur>();
 				for (Joueur joueur : joueurs) {
-					for (int i = 0; i < joueur.jest.listCarte.size(); i++) {
-						if (joueur.jest.listCarte.get(i).enseigne == carteT.condi.enseigne ) {
+					for (int i = 0; i < joueur.jest.getCarteTas().size(); i++) {
+						if (joueur.jest.getCarteTas().get(i).enseigne == carteT.condi.enseigne ) {
 							joueurHighest.add(joueur);
 						}
 					}
@@ -33,8 +43,8 @@ public class Trophee extends Tas {
 					JoueurMax = joueurHighest.get(0);
 					int index = 0;
 					for (Joueur joueur21 : joueurHighest) {
-						for (int i = 0; i < joueur21.jest.listCarte.size(); i++) {
-							if ( joueur21.jest.listCarte.get(i).hauteur > JoueurMax.jest.listCarte.get(index).hauteur) {
+						for (int i = 0; i < joueur21.jest.getCarteTas().size(); i++) {
+							if ( joueur21.jest.getCarteTas().get(i).hauteur > JoueurMax.jest.getCarteTas().get(index).hauteur) {
 								index = i;
 								JoueurMax = joueur21;
 							}
@@ -49,8 +59,8 @@ public class Trophee extends Tas {
 				Joueur JoueurMin = new Joueur();
 				ArrayList<Joueur> joueurLowest = new ArrayList<Joueur>();
 				for (Joueur joueur : joueurs) {
-					for (int i = 0; i < joueur.jest.listCarte.size(); i++) {
-						if (joueur.jest.listCarte.get(i).enseigne == carteT.condi.enseigne ) {
+					for (int i = 0; i < joueur.jest.getCarteTas().size(); i++) {
+						if (joueur.jest.getCarteTas().get(i).enseigne == carteT.condi.enseigne ) {
 							joueurLowest.add(joueur);
 						}
 					}
@@ -60,8 +70,8 @@ public class Trophee extends Tas {
 				}
 				int index = 0;
 				for (Joueur joueur : joueurLowest) {
-					for (int i = 0; i < joueur.jest.listCarte.size(); i++) {
-						if ( joueur.jest.listCarte.get(i).hauteur < JoueurMin.jest.listCarte.get(index).hauteur) {
+					for (int i = 0; i < joueur.jest.getCarteTas().size(); i++) {
+						if ( joueur.jest.getCarteTas().get(i).hauteur < JoueurMin.jest.getCarteTas().get(index).hauteur) {
 							index = i;
 							JoueurMin = joueur;
 						}
@@ -80,7 +90,7 @@ public class Trophee extends Tas {
 				for (Joueur joueur : joueurs) {
 					int majority = 0;
 					int valeur = 0;
-					for (Carte carte : joueur.jest.listCarte) {
+					for (Carte carte : joueur.jest.getCarteTas()) {
 						if (carte.hauteur == carteT.condi.hauteur) {
 							majority++;
 							if (carte.valeur > valeur) {
@@ -130,7 +140,7 @@ public class Trophee extends Tas {
 				for (Joueur i : joueurs) {
 					int Valeur = 0;
 					
-					for (Carte c : i.jest.listCarte) {
+					for (Carte c : i.jest.getCarteTas()) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
 						}
@@ -168,7 +178,7 @@ public class Trophee extends Tas {
 				jMax = temp3.get(0);
 				for (Joueur i : temp3) {
 					int Valeur = 0;
-					for (Carte c : i.jest.listCarte) {
+					for (Carte c : i.jest.getCarteTas()) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
 						}
@@ -208,7 +218,7 @@ public class Trophee extends Tas {
 		this.setChanged();
 		this.notifyObservers(1);
 		}
-		this.listCarte.clear();
+		this.getCarteTas().clear();
 		this.nombreDeCartes = 0;
 		
 	}

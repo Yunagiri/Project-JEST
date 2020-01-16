@@ -22,11 +22,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
+/**
+ * @author dinh_,tran_ 
+ * This class is the settings/configuration windows before the game begins
+ */
 public class FenetreParamettre extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private Partie partie;
@@ -221,12 +222,16 @@ public class FenetreParamettre extends JFrame {
 																		prochainJoueur = it1.next();
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel = (Joueur) it1.next();
-																			for (int counter = 0; counter < joueurActuel.getMain().nombreDeCartes; counter++) {
-																				if (!joueurActuel.getMain().listCarte
-																						.get(counter).getFaceCachee()) {
-																					if (joueurActuel.getMain().listCarte
-																							.get(counter)
-																							.getValeur() > prochainJoueur.getMain().listCarte
+																			for (int counter = 0; counter < joueurActuel
+																					.getMain().nombreDeCartes; counter++) {
+																				if (!joueurActuel.getMain()
+																						.getCarteTas().get(counter)
+																						.getFaceCachee()) {
+																					if (joueurActuel.getMain()
+																							.getCarteTas().get(counter)
+																							.getValeur() > prochainJoueur
+																									.getMain()
+																									.getCarteTas()
 																									.get(counter)
 																									.getValeur()) {
 																						prochainJoueur = joueurActuel;
@@ -257,12 +262,14 @@ public class FenetreParamettre extends JFrame {
 																prochainJoueur = it1.next();
 																while (it1.hasNext()) {
 																	Joueur joueurActuel1 = (Joueur) it1.next();
-																	for (int counter = 0; counter < joueurActuel1.getMain().nombreDeCartes; counter++) {
-																		if (!joueurActuel1.getMain().listCarte.get(counter)
-																				.getFaceCachee()) {
-																			if (joueurActuel1.getMain().listCarte
+																	for (int counter = 0; counter < joueurActuel1
+																			.getMain().nombreDeCartes; counter++) {
+																		if (!joueurActuel1.getMain().getCarteTas()
+																				.get(counter).getFaceCachee()) {
+																			if (joueurActuel1.getMain().getCarteTas()
 																					.get(counter)
-																					.getValeur() > prochainJoueur.getMain().listCarte
+																					.getValeur() > prochainJoueur
+																							.getMain().getCarteTas()
 																							.get(counter).getValeur()) {
 																				prochainJoueur = joueurActuel1;
 																			}
