@@ -15,6 +15,7 @@ public class CompteurDeScore1 implements Visitor {
 	/**
 	 * The score for each player's jest.
 	 */
+
 	private int score;
 
 	/**
@@ -182,12 +183,14 @@ public class CompteurDeScore1 implements Visitor {
 			}
 		}
 	}
-	
+
 	/**
 	 * The method that implements the Visitor interface. Call all the methods defined above and return the score of the Jest visited.
 	 * @param j the Jest which needs scoring.
 	 */
-	public int visiter(Jest j) {
+
+
+	public int visit(Jest j) {
 		this.score = 0;
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(j.listCarte);

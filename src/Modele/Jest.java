@@ -13,6 +13,7 @@ public class Jest extends Tas implements Score {
     /**
      * This is the constructor of the class, it calls the superclass constructor.
      */
+
     public Jest() {
     	super();
     }
@@ -43,9 +44,10 @@ public class Jest extends Tas implements Score {
 	 * This method implements the Visitor design pattern, allow for visits.
 	 */
 	@Override
-	public void accepter(Visitor v) {
+
+	public void accept(Visitor v) {
 		// TODO Auto-generated method stub
-		v.visiter(this);
+		v.visit(this);
 	}
 
 	

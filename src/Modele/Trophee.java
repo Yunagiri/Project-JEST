@@ -139,13 +139,13 @@ public class Trophee extends Tas {
 							Valeur = c.valeur;
 						}
 					}
-					if (compteur.visiter(i.jest) > compteur.visiter(jMax.jest)) {
+					if (compteur.visit(i.jest) > compteur.visit(jMax.jest)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if (compteur.visiter(i.jest) == compteur.visiter(jMax.jest) && highestValeur <= Valeur) {
+					} else if (compteur.visit(i.jest) == compteur.visit(jMax.jest) && highestValeur <= Valeur) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur > Valeur)) {
+					} else if ((compteur.visit(i.jest) == compteur.visit(jMax.jest)) && (highestValeur > Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
 					} else {
@@ -153,7 +153,7 @@ public class Trophee extends Tas {
 				}
 				for (Joueur i : joueurs) {
 					System.out.println("Score de " + i.prenom);
-					System.out.println(compteur.visiter(i.jest));
+					System.out.println(compteur.visit(i.jest));
 				}
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = jMax;
@@ -178,13 +178,13 @@ public class Trophee extends Tas {
 							Valeur = c.valeur;
 						}
 					}
-					if (compteur.visiter(i.jest) > compteur.visiter(jMax.jest)) {
+					if (compteur.visit(i.jest) > compteur.visit(jMax.jest)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur <= Valeur)) {
+					} else if ((compteur.visit(i.jest) == compteur.visit(jMax.jest)) && (highestValeur <= Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
-					} else if ((compteur.visiter(i.jest) == compteur.visiter(jMax.jest)) && (highestValeur > Valeur)) {
+					} else if ((compteur.visit(i.jest) == compteur.visit(jMax.jest)) && (highestValeur > Valeur)) {
 						jMax = i;
 						highestValeur = Valeur;
 					} else {
@@ -194,7 +194,7 @@ public class Trophee extends Tas {
 				for (Joueur i : joueurs) {
 					
 					System.out.println("Score de " + i.prenom);
-					System.out.println(compteur.visiter(i.jest));
+					System.out.println(compteur.visit(i.jest));
 				}
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = jMax;

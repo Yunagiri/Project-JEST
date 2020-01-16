@@ -162,7 +162,7 @@ public class CompteurDeScore2 implements Visitor {
 		}
 	}
 
-	public int visiter(Jest j) {
+	public int visit(Jest j) {
 		this.score = 0;
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(j.listCarte);
