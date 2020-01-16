@@ -6,20 +6,52 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
-
+/**
+ * The core of the game, the Partie class inherits Observable and is where the game plays on console and a major part of it 
+ * is used for the GUI interaction. The partie can chose the player that begins the round, give the turn to the next player,
+ * supervise how a round of cards go and does this for both virtual and physical players. 
+ * @author dinh_,tran_
+ * @see Observable, Pioche, Trophee, Tas, Visitor, Joueur
+ */
 public class Partie extends Observable {
+	/**
+	 * If true, the game continues, else the game stops
+	 */
 	private boolean partieEnCours;
+	/**
+	 * The number of rounds that has passed in a single game
+	 */
 	public int numeroRound;
-
+	/**
+	 * The original deck where cards are distributed from
+	 */
 	private Pioche piocheGrand;
+	/**
+	 * The trophy zone, containing 2 trophy cards
+	 */
 	private Trophee trophee;
+	/**
+	 * The small deck which constitutes itself from player's hands
+	 */
 	private Tas piochePetite;
+	/**
+	 * The number of players in game
+	 */
 	private int nbJoueurs;
+	/**
+	 * The number of physical players in the game
+	 */
 	private int nbJoueursPhysic;
+	/**
+	 * Contains the visitor that will calculate the score of each player
+	 */
 	private Visitor compteur;
+	
+	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
-	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
-
+	public ArrayList<Joueur> getListeJoueurs(){
+		return this.joueurs;
+	}
 	public Visitor getCompteur() {
 		return this.compteur;
 	}

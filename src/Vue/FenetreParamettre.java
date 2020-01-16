@@ -133,16 +133,16 @@ public class FenetreParamettre extends JFrame {
 					for (int j = 0; j < a; j++) {
 						if (j < b) {
 							Joueur joueur = new JoueurPhys(Joueur.numero + "");
-							partie.joueurs.add(joueur);
+							partie.getListeJoueurs().add(joueur);
 
 						} else if (j >= b) {
 							if (chckbxFacile.isSelected()) {
 								Joueur joueur = new JoueurVirt(1, Joueur.numero + "");
-								partie.joueurs.add(joueur);
+								partie.getListeJoueurs().add(joueur);
 
 							} else {
 								Joueur joueur = new JoueurVirt(2, Joueur.numero + "");
-								partie.joueurs.add(joueur);
+								partie.getListeJoueurs().add(joueur);
 							}
 
 						}
@@ -170,7 +170,7 @@ public class FenetreParamettre extends JFrame {
 										partie.choisirJoueur();
 										int tours = 0;
 										ArrayList<Joueur> temp1 = new ArrayList<Joueur>();
-										ArrayList<Joueur> joueurs = partie.joueurs;
+										ArrayList<Joueur> joueurs = partie.getListeJoueurs();
 										temp1.addAll(joueurs);
 										while (tours < joueurs.size()) {
 											Iterator<Joueur> itJoueur = joueurs.iterator();
@@ -191,13 +191,13 @@ public class FenetreParamettre extends JFrame {
 																temp.addAll(joueurs);
 																temp.remove(a);
 																for (Joueur j : temp) {
-																	if (j.main.nombreDeCartes == 2) {
+																	if (j.getMain().nombreDeCartes == 2) {
 																		System.out.println(
 																				"Il reste encore des gens ayant 2 cartes!");
 																		differentPrenom = true;
 																	}
 																}
-															} else if (d.main.nombreDeCartes == 1) {
+															} else if (d.getMain().nombreDeCartes == 1) {
 																String msg = String.format(
 																		"%s n'a seulement qu'une carte", d.prenom);
 																System.out.println(msg);
@@ -221,12 +221,12 @@ public class FenetreParamettre extends JFrame {
 																		prochainJoueur = it1.next();
 																		while (it1.hasNext()) {
 																			Joueur joueurActuel = (Joueur) it1.next();
-																			for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
-																				if (!joueurActuel.main.listCarte
+																			for (int counter = 0; counter < joueurActuel.getMain().nombreDeCartes; counter++) {
+																				if (!joueurActuel.getMain().listCarte
 																						.get(counter).getFaceCachee()) {
-																					if (joueurActuel.main.listCarte
+																					if (joueurActuel.getMain().listCarte
 																							.get(counter)
-																							.getValeur() > prochainJoueur.main.listCarte
+																							.getValeur() > prochainJoueur.getMain().listCarte
 																									.get(counter)
 																									.getValeur()) {
 																						prochainJoueur = joueurActuel;
@@ -257,12 +257,12 @@ public class FenetreParamettre extends JFrame {
 																prochainJoueur = it1.next();
 																while (it1.hasNext()) {
 																	Joueur joueurActuel1 = (Joueur) it1.next();
-																	for (int counter = 0; counter < joueurActuel1.main.nombreDeCartes; counter++) {
-																		if (!joueurActuel1.main.listCarte.get(counter)
+																	for (int counter = 0; counter < joueurActuel1.getMain().nombreDeCartes; counter++) {
+																		if (!joueurActuel1.getMain().listCarte.get(counter)
 																				.getFaceCachee()) {
-																			if (joueurActuel1.main.listCarte
+																			if (joueurActuel1.getMain().listCarte
 																					.get(counter)
-																					.getValeur() > prochainJoueur.main.listCarte
+																					.getValeur() > prochainJoueur.getMain().listCarte
 																							.get(counter).getValeur()) {
 																				prochainJoueur = joueurActuel1;
 																			}
@@ -287,7 +287,7 @@ public class FenetreParamettre extends JFrame {
 										partie.pause();
 									}
 									partie.augmenternumeroRound();
-									if (partie.getPiocheGrand().nombreDeCartes < partie.joueurs.size()) {
+									if (partie.getPiocheGrand().nombreDeCartes < partie.getListeJoueurs().size()) {
 										condition = false;
 									}
 									partie.creerPiochePetit();
@@ -296,7 +296,7 @@ public class FenetreParamettre extends JFrame {
 								}
 								partie.notifyObservers("terminer");
 								partie.continu();
-								partie.getTrophee().distribuerTrophee(partie.joueurs, new CompteurDeScore1());
+								partie.getTrophee().distribuerTrophee(partie.getListeJoueurs(), new CompteurDeScore1());
 								partie.compterScore(partie.getCompteur());
 								partie.afficherJest();
 								partie.choisirVainqueur();

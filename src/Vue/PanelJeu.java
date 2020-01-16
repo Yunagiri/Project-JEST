@@ -32,24 +32,24 @@ public class PanelJeu extends JPanel implements Observer {
 		this.setBackground(new Color(0, 0, 255));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.setSize(960, 540);
-		pj = new PanelJoueur[partie.joueurs.size()];
-		if (partie.joueurs.size() == 2) {
+		pj = new PanelJoueur[partie.getListeJoueurs().size()];
+		if (partie.getListeJoueurs().size() == 2) {
 			pj[0] = this.creerEspaceDeJoueur(5, this.getHeight() * 720 / 1080);
 			pj[1] = this.creerEspaceDeJoueur(this.getWidth() * 1365 / 1920, 5);
-		} else if (partie.joueurs.size() == 3) {
+		} else if (partie.getListeJoueurs().size() == 3) {
 			pj[0] = this.creerEspaceDeJoueur(5, this.getHeight() * 720 / 1080);
 			pj[1] = this.creerEspaceDeJoueur(this.getWidth() * 1365 / 1920, 5);
 			pj[2] = this.creerEspaceDeJoueur(this.getWidth() * 1365 / 1920, this.getHeight() * 720 / 1080);
-		} else if (partie.joueurs.size() == 4) {
+		} else if (partie.getListeJoueurs().size() == 4) {
 			pj[0] = this.creerEspaceDeJoueur(5, this.getHeight() * 720 / 1080);
 			pj[1] = this.creerEspaceDeJoueur(5, 5);
 			pj[2] = this.creerEspaceDeJoueur(this.getWidth() * 1365 / 1920, 5);
 			pj[3] = this.creerEspaceDeJoueur(this.getWidth() * 1365 / 1920, this.getHeight() * 720 / 1080);
 		}
-		for (int i = 0; i < partie.joueurs.size(); i++) {
+		for (int i = 0; i < partie.getListeJoueurs().size(); i++) {
 			if (pj[i] != null) {
-				partie.joueurs.get(i).addObserver(pj[i]);
-				if (partie.joueurs.get(i) instanceof JoueurPhys) {
+				partie.getListeJoueurs().get(i).addObserver(pj[i]);
+				if (partie.getListeJoueurs().get(i) instanceof JoueurPhys) {
 					System.out.println("nice!" + i);
 				}
 				pj[i].setVisible(true);
