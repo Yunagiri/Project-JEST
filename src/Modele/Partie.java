@@ -49,6 +49,9 @@ public class Partie extends Observable {
 	
 	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
+	public ArrayList<Joueur> getListeJoueurs(){
+		return this.joueurs;
+	}
 	public Visitor getCompteur() {
 		return this.compteur;
 	}

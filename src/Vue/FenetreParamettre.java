@@ -133,16 +133,16 @@ public class FenetreParamettre extends JFrame {
 					for (int j = 0; j < a; j++) {
 						if (j < b) {
 							Joueur joueur = new JoueurPhys(Joueur.numero + "");
-							partie.joueurs.add(joueur);
+							partie.getListeJoueurs().add(joueur);
 
 						} else if (j >= b) {
 							if (chckbxFacile.isSelected()) {
 								Joueur joueur = new JoueurVirt(1, Joueur.numero + "");
-								partie.joueurs.add(joueur);
+								partie.getListeJoueurs().add(joueur);
 
 							} else {
 								Joueur joueur = new JoueurVirt(2, Joueur.numero + "");
-								partie.joueurs.add(joueur);
+								partie.getListeJoueurs().add(joueur);
 							}
 
 						}
@@ -170,7 +170,7 @@ public class FenetreParamettre extends JFrame {
 										partie.choisirJoueur();
 										int tours = 0;
 										ArrayList<Joueur> temp1 = new ArrayList<Joueur>();
-										ArrayList<Joueur> joueurs = partie.joueurs;
+										ArrayList<Joueur> joueurs = partie.getListeJoueurs();
 										temp1.addAll(joueurs);
 										while (tours < joueurs.size()) {
 											Iterator<Joueur> itJoueur = joueurs.iterator();
@@ -287,7 +287,7 @@ public class FenetreParamettre extends JFrame {
 										partie.pause();
 									}
 									partie.augmenternumeroRound();
-									if (partie.getPiocheGrand().nombreDeCartes < partie.joueurs.size()) {
+									if (partie.getPiocheGrand().nombreDeCartes < partie.getListeJoueurs().size()) {
 										condition = false;
 									}
 									partie.creerPiochePetit();
@@ -296,7 +296,7 @@ public class FenetreParamettre extends JFrame {
 								}
 								partie.notifyObservers("terminer");
 								partie.continu();
-								partie.getTrophee().distribuerTrophee(partie.joueurs, new CompteurDeScore1());
+								partie.getTrophee().distribuerTrophee(partie.getListeJoueurs(), new CompteurDeScore1());
 								partie.compterScore(partie.getCompteur());
 								partie.afficherJest();
 								partie.choisirVainqueur();

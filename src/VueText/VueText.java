@@ -18,7 +18,7 @@ public class VueText extends Thread implements Observer {
 	public VueText(Partie partie) {
 		this.partie = partie;
 		partie.addObserver(this);
-		for (Joueur joueur : partie.joueurs) {
+		for (Joueur joueur : partie.getListeJoueurs()) {
 			joueur.addObserver(this);
 		}
 		t = new Thread(this);

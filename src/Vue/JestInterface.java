@@ -29,7 +29,7 @@ public class JestInterface extends JFrame {
 		panel.setSize(960, 540);
 		this.add(panel);
 
-		for (Joueur joueur : partie.joueurs) {
+		for (Joueur joueur : partie.getListeJoueurs()) {
 			if (joueur instanceof JoueurPhys) {
 				pjeu = new PanelJeu(partie, (JoueurPhys) joueur);
 				break;
