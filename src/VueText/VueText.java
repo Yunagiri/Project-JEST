@@ -15,9 +15,7 @@ import Modele.*;
  * @author dinh_,tran_
  */
 public class VueText extends Thread implements Observer {
-	/**
-	 * The game which is observed by this class
-	 */
+	
 	private Partie partie;
 	private boolean continu = true;
 
