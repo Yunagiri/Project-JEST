@@ -23,6 +23,7 @@ The game has been completed, minor fixes and maintenance objectives :
 
 -Use InputStream to be able to input from both the console command window and the GUI.
 
--Update the UML class diagram.
+-Update the UML class diagram. //DONE
 
 -The player is still able to pick his own offer even if others still have 2 cards.
+
