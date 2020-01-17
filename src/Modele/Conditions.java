@@ -5,7 +5,7 @@ package Modele;
  * whenever it is a trophy card. The card will be awarded to the player meeting
  * the requirements.
  * 
- * @author dinh_
+ * @author dinh_, tran_
  *
  */
 public class Conditions {

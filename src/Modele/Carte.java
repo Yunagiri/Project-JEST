@@ -7,7 +7,7 @@ package Modele;
  * It contains the constructors for its subclasses, SuitCards and Joker.
  * </p>
  * 
- * @see SuitCards,Joker
+ * @see SuitCards
  * @author dinh_, tran_
  *
  */

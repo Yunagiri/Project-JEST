@@ -8,7 +8,7 @@ import java.util.List;
  * of cards and is observable.
  * 
  * @author dinh_, tran_
- * @see Observable, Pioche, Main, Jest
+ * @see Observable
  *
  */
 public class Tas extends Observable {

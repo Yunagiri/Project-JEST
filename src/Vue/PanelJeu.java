@@ -20,7 +20,7 @@ import Controleur.*;
  * game, it contains the PanelJoueur, the TableDeJeu
  * 
  * @author dinh_,tran_
- * @see PanelJoueur, TableDeJeu
+ * @see PanelJoueur
  */
 public class PanelJeu extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;

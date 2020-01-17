@@ -6,12 +6,16 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+
 /**
- * The core of the game, the Partie class inherits Observable and is where the game plays on console and a major part of it 
- * is used for the GUI interaction. The partie can chose the player that begins the round, give the turn to the next player,
- * supervise how a round of cards go and does this for both virtual and physical players. 
+ * The core of the game, the Partie class inherits Observable and is where the
+ * game plays on console and a major part of it is used for the GUI interaction.
+ * The partie can chose the player that begins the round, give the turn to the
+ * next player, supervise how a round of cards go and does this for both virtual
+ * and physical players.
+ * 
  * @author dinh_,tran_
- * @see Observable, Pioche, Trophee, Tas, Visitor, Joueur
+ * @see Observable
  */
 public class Partie extends Observable {
 	/**
@@ -51,9 +55,10 @@ public class Partie extends Observable {
 	 */
 	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 
-	public ArrayList<Joueur> getListeJoueurs(){
+	public ArrayList<Joueur> getListeJoueurs() {
 		return this.joueurs;
 	}
+
 	public Visitor getCompteur() {
 		return this.compteur;
 	}
@@ -81,23 +86,24 @@ public class Partie extends Observable {
 	public Tas getpiochePetite() {
 		return this.piochePetite;
 	}
-	
+
 	/**
-	 * This boolean act as a lock for the threads using Partie. 
+	 * This boolean act as a lock for the threads using Partie.
 	 */
 	private boolean waitForIt;
 	/**
 	 * This is the player in turn
 	 */
 	public Joueur joueurActuel;
-	
+
 	/**
 	 * This boolean checks if the player wants to use the GUI or the console
 	 */
 	public boolean console = false;
 
 	/**
-	 * The constructor for Partie. initialise the round at 1, create the original deck and a smaller deck
+	 * The constructor for Partie. initialise the round at 1, create the original
+	 * deck and a smaller deck
 	 */
 	public Partie() {
 		numeroRound = 1;
@@ -124,8 +130,10 @@ public class Partie extends Observable {
 	}
 
 	/**
-	 * This method create cards and add them to the original deck of Partie, using Carte constructor and Conditions.
-	 * @see Carte, Conditions
+	 * This method create cards and add them to the original deck of Partie, using
+	 * Carte constructor and Conditions.
+	 * 
+	 * @see Conditions
 	 */
 	public void creerPioche() {
 
@@ -217,7 +225,8 @@ public class Partie extends Observable {
 	}
 
 	/**
-	 * Create the smaller deck where cards not taken at the end of the round are sent to.
+	 * Create the smaller deck where cards not taken at the end of the round are
+	 * sent to.
 	 */
 	public void creerPiochePetit() {
 		if (this.piocheGrand.nombreDeCartes >= this.joueurs.size()) {
@@ -245,7 +254,7 @@ public class Partie extends Observable {
 	}
 
 	/**
-	 *  shuffles piocheGrand AND distribute 2 cards to the trophy.
+	 * shuffles piocheGrand AND distribute 2 cards to the trophy.
 	 */
 	public void preparer() {
 
@@ -256,7 +265,7 @@ public class Partie extends Observable {
 		}
 
 	}
-	
+
 	/**
 	 * Show the trophy cards on the console
 	 */
@@ -269,7 +278,8 @@ public class Partie extends Observable {
 	}
 
 	/**
-	 *  This method allows each player to take 2 cards from the piocheGrand in the 1st round and 2 cards from the piochePetit from the 2nd round onwards
+	 * This method allows each player to take 2 cards from the piocheGrand in the
+	 * 1st round and 2 cards from the piochePetit from the 2nd round onwards
 	 */
 	public void distribuerCartes() {
 		this.partieEnCours = true;
@@ -281,7 +291,8 @@ public class Partie extends Observable {
 				String msg = String.format("Distribution en cours au joueur %s", j.prenom);
 				System.out.println(msg);
 				for (int i = 0; i < 2; i++) {
-					j.prendreCartes(this.piocheGrand.getCarteTas().get(piocheGrand.nombreDeCartes - 1), this.piocheGrand);
+					j.prendreCartes(this.piocheGrand.getCarteTas().get(piocheGrand.nombreDeCartes - 1),
+							this.piocheGrand);
 
 				}
 			} else {
@@ -299,6 +310,7 @@ public class Partie extends Observable {
 
 	/**
 	 * gives the turn to the designated player
+	 * 
 	 * @param joueur the designated player
 	 */
 	public void donnerTour(Joueur joueur) {
@@ -309,9 +321,9 @@ public class Partie extends Observable {
 		}
 	}
 
-	
 	/**
 	 * End a player's round
+	 * 
 	 * @param joueur the designated player
 	 */
 	public void finirTour(Joueur joueur) {
@@ -351,21 +363,22 @@ public class Partie extends Observable {
 	}
 
 	/**
-	 * This method simulates what a player's round is like for both virtual and physical players. First, they must chose a player to 
-	 * take an offer from, then choose a card from their offer to take.
+	 * This method simulates what a player's round is like for both virtual and
+	 * physical players. First, they must chose a player to take an offer from, then
+	 * choose a card from their offer to take.
 	 */
 	public void lancerRound() {
 		this.choisirJoueur();
 		int tours = 0;
 		ArrayList<Joueur> temp1 = new ArrayList<Joueur>();
 		temp1.addAll(joueurs);
-		//While all the players haven't had their turn yet 
+		// While all the players haven't had their turn yet
 		while (tours < this.joueurs.size()) {
 			Iterator<Joueur> itJoueur = joueurs.iterator();
-			//Iterates all players
+			// Iterates all players
 			while (itJoueur.hasNext()) {
 				Joueur a = (Joueur) itJoueur.next();
-				//Checks each player to see if it's their turn 
+				// Checks each player to see if it's their turn
 				while (a.estEnTour) {
 					temp1.remove(a);
 					for (int j = 0; j < this.joueurs.size(); j++) {
@@ -373,21 +386,21 @@ public class Partie extends Observable {
 						this.joueurs.get(j).montrerOffre();
 					}
 					boolean differentPrenom = true;
-					//The virtual player's path
+					// The virtual player's path
 					if (a instanceof JoueurVirt) {
 						Joueur d;
 						do {
-							//Choose a player 
+							// Choose a player
 							d = ((JoueurVirt) a).choisirJoueur(joueurs);
 							differentPrenom = true;
-							//Check if a chose himself or not
+							// Check if a chose himself or not
 							if (a.prenom.equals(d.prenom)) {
 								differentPrenom = false;
 								ArrayList<Joueur> temp = new ArrayList<Joueur>();
 								temp.addAll(joueurs);
-								//a had their turn, we remove him from the array of players 
+								// a had their turn, we remove him from the array of players
 								temp.remove(a);
-								//Check if a CAN actually choose himself or not
+								// Check if a CAN actually choose himself or not
 								for (Joueur j : temp) {
 									if (j.main.nombreDeCartes == 2) {
 										System.out.println("Il reste encore des gens ayant 2 cartes!");
@@ -401,28 +414,28 @@ public class Partie extends Observable {
 								differentPrenom = false;
 							}
 						} while (differentPrenom);
-						
-						//Choosing the next player 
+
+						// Choosing the next player
 						Joueur prochainJoueur = new Joueur();
 						Iterator<Joueur> it = joueurs.iterator();
 						while (it.hasNext()) {
 							Joueur o = (Joueur) it.next();
-							//if the player chosen by a is o, a takes his offer
+							// if the player chosen by a is o, a takes his offer
 							if (o.getPrenom().equals(d.prenom)) {
 								a.prendreOffre(1, o);
-								//if o is in the list of players waiting for their turn
+								// if o is in the list of players waiting for their turn
 								if (temp1.indexOf(o) != -1) {
 									prochainJoueur = o;
-									
-								} 
-								//else, find the next player to give turn to
+
+								}
+								// else, find the next player to give turn to
 								else {
 									Iterator<Joueur> it1 = temp1.iterator();
 									if (temp1.size() != 0) {
 										prochainJoueur = it1.next();
 										while (it1.hasNext()) {
 											Joueur joueurActuel = (Joueur) it1.next();
-											//compare the face up value of the hands of remaining players
+											// compare the face up value of the hands of remaining players
 											for (int counter = 0; counter < joueurActuel.main.nombreDeCartes; counter++) {
 												if (!joueurActuel.main.getCarteTas().get(counter).faceCachee) {
 													if (joueurActuel.main.getCarteTas()
@@ -437,12 +450,12 @@ public class Partie extends Observable {
 								}
 							}
 						}
-						//end a's turn and give the turn to the next player
+						// end a's turn and give the turn to the next player
 						this.finirTour(a);
 						this.donnerTour(prochainJoueur);
 						tours++;
 					}
-					//Physical player path
+					// Physical player path
 					else {
 						Scanner sc = new Scanner(System.in);
 						String prenom;
@@ -564,8 +577,9 @@ public class Partie extends Observable {
 	}
 
 	/**
-	 * This method allows one to start a game, asks for a number of players, their names, if they're virtual or physical and if they're virtual,
-	 * indicates the difficulty of the virtual player.
+	 * This method allows one to start a game, asks for a number of players, their
+	 * names, if they're virtual or physical and if they're virtual, indicates the
+	 * difficulty of the virtual player.
 	 */
 	public void commencer() {
 		Scanner sc = new Scanner(System.in);
@@ -631,7 +645,6 @@ public class Partie extends Observable {
 
 	}
 
-	
 	/**
 	 * This method allows everyone to make offers
 	 */
@@ -653,9 +666,10 @@ public class Partie extends Observable {
 
 	/**
 	 * This method uses the counter to visit each player's jest and get their score
+	 * 
 	 * @param v the visitor, can be either CompteurDeScore1 or CompteurDeScore2
 	 * 
-	 * @see CompteurDeScore1, CompteurDeScore2
+	 * @see CompteurDeScore1
 	 */
 	public void compterScore(Visitor v) {
 
@@ -667,7 +681,6 @@ public class Partie extends Observable {
 		}
 	}
 
-	
 	/**
 	 * This method chooses the winner of the game
 	 */
@@ -685,9 +698,9 @@ public class Partie extends Observable {
 
 	}
 
-	
 	/**
 	 * This method pauses all threads that accesses this instance.
+	 * 
 	 * @throws InterruptedException
 	 */
 	public synchronized void pause() throws InterruptedException {
@@ -698,7 +711,8 @@ public class Partie extends Observable {
 	}
 
 	/**
-	 * This method resumes and give the lock back to the next thread waiting, it sends out a notification to all Observers.
+	 * This method resumes and give the lock back to the next thread waiting, it
+	 * sends out a notification to all Observers.
 	 */
 	public synchronized void continu() {
 		this.waitForIt = false;
@@ -720,9 +734,9 @@ public class Partie extends Observable {
 		}
 	}
 
-	
 	/**
 	 * The main method, it creates the Partie and simulates an entire game
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {

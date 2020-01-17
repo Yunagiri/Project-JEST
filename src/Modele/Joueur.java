@@ -5,7 +5,7 @@ package Modele;
  * Physical player. Methods are defined here and used in the subclasses.
  * 
  * @author dinh_, tran_
- * @see JoueurPhys, JoueurVirt, Observable
+ * @see Observable
  */
 public class Joueur extends Observable {
 	/**
@@ -147,7 +147,7 @@ public class Joueur extends Observable {
 	 * This method allow the player to take a card from the trophy zone. Notify all
 	 * observers
 	 * 
-	 * @param i the position of the trophy card to be taken
+	 * @param pos the position of the trophy card to be taken
 	 * @param t the trophy composed of 2 cards
 	 */
 	public void prendreOffre(int pos, Trophee t) {

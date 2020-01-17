@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * This class represents the table on which are the trophies
  * 
  * @author dinh_,tran_
- * @see PanelJeu, JestInterface
+ * @see PanelJeu
  */
 public class TableDeJeu extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;

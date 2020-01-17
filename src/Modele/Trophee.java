@@ -3,7 +3,9 @@ package Modele;
 import java.util.ArrayList;
 
 /**
- * This class represents the trophy, it contains an array of 2 cards which are the trophies. It inherits from the Tas superclass
+ * This class represents the trophy, it contains an array of 2 cards which are
+ * the trophies. It inherits from the Tas superclass
+ * 
  * @author dinh_, tran_
  * @see Tas
  */
@@ -14,16 +16,19 @@ public class Trophee extends Tas {
 	public Trophee() {
 		super();
 	}
+
 	/**
-	 * Award the trophy card to the player fulfilling the condition of the trophy card
-	* posTrophee indicates which card to give, and jestGagnant indicates who to give to.
-	 * @param joueurs the players in game
-	 * @param compteur the counter used to calculate the score 
+	 * Award the trophy card to the player fulfilling the condition of the trophy
+	 * card posTrophee indicates which card to give, and jestGagnant indicates who
+	 * to give to.
+	 * 
+	 * @param joueurs  the players in game
+	 * @param compteur the counter used to calculate the score
 	 */
 	public void distribuerTrophee(ArrayList<Joueur> joueurs, Visitor compteur) {
 		boolean cantakecard1 = true;
 		boolean cantakecard2 = true;
-		
+
 		ArrayList<Carte> temp = new ArrayList<Carte>();
 		temp.addAll(this.getCarteTas());
 		Joueur joueur1 = new Joueur();
@@ -34,21 +39,22 @@ public class Trophee extends Tas {
 				ArrayList<Joueur> joueurHighest = new ArrayList<Joueur>();
 				for (Joueur joueur : joueurs) {
 					for (int i = 0; i < joueur.jest.getCarteTas().size(); i++) {
-						if (joueur.jest.getCarteTas().get(i).enseigne == carteT.condi.enseigne ) {
+						if (joueur.jest.getCarteTas().get(i).enseigne == carteT.condi.enseigne) {
 							joueurHighest.add(joueur);
 						}
 					}
 				}
-				
-					JoueurMax = joueurHighest.get(0);
-					int index = 0;
-					for (Joueur joueur21 : joueurHighest) {
-						for (int i = 0; i < joueur21.jest.getCarteTas().size(); i++) {
-							if ( joueur21.jest.getCarteTas().get(i).hauteur > JoueurMax.jest.getCarteTas().get(index).hauteur) {
-								index = i;
-								JoueurMax = joueur21;
-							}
+
+				JoueurMax = joueurHighest.get(0);
+				int index = 0;
+				for (Joueur joueur21 : joueurHighest) {
+					for (int i = 0; i < joueur21.jest.getCarteTas().size(); i++) {
+						if (joueur21.jest.getCarteTas().get(i).hauteur > JoueurMax.jest.getCarteTas()
+								.get(index).hauteur) {
+							index = i;
+							JoueurMax = joueur21;
 						}
+					}
 				}
 				if (temp.indexOf(carteT) == 0) {
 					joueur1 = JoueurMax;
@@ -60,18 +66,19 @@ public class Trophee extends Tas {
 				ArrayList<Joueur> joueurLowest = new ArrayList<Joueur>();
 				for (Joueur joueur : joueurs) {
 					for (int i = 0; i < joueur.jest.getCarteTas().size(); i++) {
-						if (joueur.jest.getCarteTas().get(i).enseigne == carteT.condi.enseigne ) {
+						if (joueur.jest.getCarteTas().get(i).enseigne == carteT.condi.enseigne) {
 							joueurLowest.add(joueur);
 						}
 					}
 				}
-				if(joueurLowest.size()>0) {
+				if (joueurLowest.size() > 0) {
 					JoueurMin = joueurLowest.get(0);
 				}
 				int index = 0;
 				for (Joueur joueur : joueurLowest) {
 					for (int i = 0; i < joueur.jest.getCarteTas().size(); i++) {
-						if ( joueur.jest.getCarteTas().get(i).hauteur < JoueurMin.jest.getCarteTas().get(index).hauteur) {
+						if (joueur.jest.getCarteTas().get(i).hauteur < JoueurMin.jest.getCarteTas()
+								.get(index).hauteur) {
 							index = i;
 							JoueurMin = joueur;
 						}
@@ -114,7 +121,7 @@ public class Trophee extends Tas {
 					joueur2 = JoueurMax;
 				}
 			} else if (carteT.condi.cond == action.JOKER) {
-				int nbnoJoker =0;
+				int nbnoJoker = 0;
 				for (Joueur j : joueurs) {
 					if (j.jest.hasJoker()) {
 						if (temp.indexOf(carteT) == 0) {
@@ -123,10 +130,10 @@ public class Trophee extends Tas {
 							joueur2 = j;
 						}
 					} else {
-						nbnoJoker ++;
+						nbnoJoker++;
 					}
 				}
-				if ( nbnoJoker == joueurs.size()) {
+				if (nbnoJoker == joueurs.size()) {
 					if (temp.indexOf(carteT) == 0) {
 						cantakecard1 = false;
 					} else if (temp.indexOf(carteT) == 1) {
@@ -139,7 +146,7 @@ public class Trophee extends Tas {
 				int highestValeur = 0;
 				for (Joueur i : joueurs) {
 					int Valeur = 0;
-					
+
 					for (Carte c : i.jest.getCarteTas()) {
 						if (c.valeur > Valeur) {
 							Valeur = c.valeur;
@@ -171,7 +178,7 @@ public class Trophee extends Tas {
 				int highestValeur = 0;
 				ArrayList<Joueur> temp3 = new ArrayList<Joueur>();
 				for (Joueur i : joueurs) {
-					if(!i.jest.hasJoker()) {
+					if (!i.jest.hasJoker()) {
 						temp3.add(i);
 					}
 				}
@@ -196,7 +203,7 @@ public class Trophee extends Tas {
 					}
 				}
 				for (Joueur i : joueurs) {
-					
+
 					System.out.println("Score de " + i.prenom);
 					System.out.println(compteur.visit(i.jest));
 				}
@@ -208,19 +215,19 @@ public class Trophee extends Tas {
 
 			}
 		}
-		if ( cantakecard1 = true) { 
-		joueur1.prendreOffre(0, this);
-		this.setChanged();
-		this.notifyObservers(0);
+		if (cantakecard1 = true) {
+			joueur1.prendreOffre(0, this);
+			this.setChanged();
+			this.notifyObservers(0);
 		}
-		if ( cantakecard2 = true) {
-		joueur2.prendreOffre(1, this);
-		this.setChanged();
-		this.notifyObservers(1);
+		if (cantakecard2 = true) {
+			joueur2.prendreOffre(1, this);
+			this.setChanged();
+			this.notifyObservers(1);
 		}
 		this.getCarteTas().clear();
 		this.nombreDeCartes = 0;
-		
+
 	}
-	
+
 }

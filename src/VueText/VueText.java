@@ -1,3 +1,6 @@
+/**
+ * This package contains what makes playing on both the GUI and the console possible.
+ */
 package VueText;
 
 import java.util.InputMismatchException;
@@ -24,7 +27,7 @@ public class VueText extends Thread implements Observer {
 	 * This constructor creates a new Thread to run in and implements itself as an
 	 * observer
 	 * 
-	 * @param partie
+	 * @param partie the game currently being played
 	 */
 	public VueText(Partie partie) {
 		this.partie = partie;

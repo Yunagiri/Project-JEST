@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * instead of decreasing the score, Diamond suits now increases the score of
  * that jest.
  * 
- * @see Visitor, CompteurDeScore1
+ * @see Visitor
  * @author dinh_, tran_
  *
  */

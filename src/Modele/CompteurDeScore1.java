@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * order to get the final jest score. It takes in account the game's rules such
  * as double value for a pair of same face-value Spade and Club.
  * 
- * @see Visitor, CompteurDeScore2
+ * @see Visitor
  * 
  * @author dinh_, tran_
  *
@@ -31,7 +31,7 @@ public class CompteurDeScore1 implements Visitor {
 	/**
 	 * This method counts the number of hearts in a player's jest.
 	 * 
-	 * @param takes a player's jest
+	 * @param Jest takes a player's jest
 	 * @return the number of hearts in the jest.
 	 */
 	public int CompterNbCoeur(ArrayList<Carte> Jest) {
@@ -102,7 +102,7 @@ public class CompteurDeScore1 implements Visitor {
 	 * face value of all Hearts.
 	 * <li>If the jest doesn't have a joker, Hearts doesn't add anything nor
 	 * decrease anything.
-	 * 
+	 * </ul>
 	 * @param j the Jest which needs scoring
 	 */
 	public void compterScoreCoeur(ArrayList<Carte> j) {

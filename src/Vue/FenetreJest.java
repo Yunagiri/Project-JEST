@@ -41,7 +41,7 @@ public class FenetreJest extends JFrame {
 	/**
 	 * This is the constructor, it initialises the attributes of the GUI
 	 * 
-	 * @param jests
+	 * @param jests The jest of the player
 	 */
 	public FenetreJest(Jest jests) {
 		compteur = 0;

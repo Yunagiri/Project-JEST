@@ -13,7 +13,7 @@ import Vue.PanelJeu;
 /**
  * This class is the exterior mantle that envelops the Panels
  * 
- * @see PanelJeu, PanelJoueur,TableDeJeu
+ * @see PanelJeu
  * @author dinh_,tran_
  *
  */

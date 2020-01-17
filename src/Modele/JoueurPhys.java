@@ -6,7 +6,7 @@ package Modele;
  * constructor as the superclass lacks of any constructor.
  * 
  * @author dinh_, tran_
- * @see Joueur, JoueurVirt, Observable
+ * @see Joueur
  *
  */
 public class JoueurPhys extends Joueur {

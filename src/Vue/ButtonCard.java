@@ -1,3 +1,6 @@
+/**
+ * This package contains most of the GUI elements.
+ */
 package Vue;
 
 import java.awt.image.BufferedImage;
@@ -11,10 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import Modele.*;
+
 /**
  * This class is used for creating the cards
+ * 
  * @author dinh_,tran_
- * @see PanelJeu, PanelJoueur
+ * @see PanelJeu
  */
 public class ButtonCard extends JButton {
 	
@@ -40,18 +45,18 @@ public class ButtonCard extends JButton {
 	 * the cards must also change.
 	 * @param b the state of the card, face up or down
 	 * @param carte the card that needs to be updated
-	 * @throws IOException 
+	 * @throws IOException mismatch input type 
 	 */
 	public void renouvellerEtatDeCarte(boolean b, Carte carte) throws IOException {
 		this.removeAll();
 
 		if (b) {
-			BufferedImage image = ImageIO.read(new File("src/image/dos.jpg"));
+			BufferedImage image = ImageIO.read(this.getClass().getResource("/image/dos.jpg"));
 			ImageIcon icon = new ImageIcon(
 					image.getScaledInstance(this.getWidth(), this.getHeight(), image.SCALE_SMOOTH));
 			this.setIcon(icon);
 		} else {
-			BufferedImage image = ImageIO.read(new File("src/image/" + carte.getValeur() + ".png"));
+			BufferedImage image = ImageIO.read(this.getClass().getResource("/image/" + carte.getValeur() + ".png"));
 			ImageIcon icon = new ImageIcon(
 					image.getScaledInstance(this.getWidth(), this.getHeight(), image.SCALE_SMOOTH));
 			this.setIcon(icon);
